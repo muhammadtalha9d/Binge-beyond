@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import logo from './Binge-logo.svg';
 
 // Inline SVGs for fast loading and guaranteed preview rendering
 const Play = ({ size = 24, fill = "none", className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>);
@@ -27,13 +27,14 @@ const Navbar = () => {
         <nav className="fixed w-full z-50 top-0 transition-all duration-300 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
-                    <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
-                            <Play fill="white" size={16} className="ml-1" />
-                        </div>
-                        <span className="font-bold text-2xl tracking-tight text-white">
-              BingeBeyond
-            </span>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer">
+                        <img
+                            src={logo}
+                            alt="BingeBeyond Logo"
+                            className="h-8 w-8 object-contain mr-2"
+                        />
+                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                     </div>
 
 
