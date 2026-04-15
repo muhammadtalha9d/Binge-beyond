@@ -41,9 +41,16 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center space-x-8">
                         <a href="#how-it-works" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">How it Works</a>
                         <a href="#features" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Features</a>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block"
+                        >
                         <button className="bg-indigo-500 text-white hover:bg-indigo-600 px-6 py-2.5 rounded-full font-semibold text-sm transition-transform hover:scale-105 active:scale-95 flex items-center">
                             Download the App
                         </button>
+                            </a>
                     </div>
 
 
@@ -61,9 +68,16 @@ const Navbar = () => {
                     <div className="px-4 pt-2 pb-6 space-y-4 flex flex-col">
                         <a href="#how-it-works" className="text-base font-medium text-gray-300 hover:text-white block">How it Works</a>
                         <a href="#features" className="text-base font-medium text-gray-300 hover:text-white block">Features</a>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block"
+                        >
                         <button className="w-full mt-4 bg-indigo-500 text-white px-5 py-3 rounded-xl font-semibold text-base flex justify-center items-center">
                             Download the App
                         </button>
+                        </a>
                     </div>
                 </div>
             )}
@@ -94,7 +108,9 @@ const Hero = () => {
                         </p>
 
                         <div className="flex flex-col items-start gap-3 mt-2">
-                            <a href="#" className="inline-block transition-transform hover:scale-105 active:scale-95">
+                            <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
+                               target="_blank"
+                               rel="noopener noreferrer" className="inline-block transition-transform hover:scale-105 active:scale-95">
                                 <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 md:h-[72px] -ml-2" />
                             </a>
                         </div>
@@ -584,10 +600,13 @@ const Footer = () => (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded bg-indigo-500 flex items-center justify-center">
-                        <Play fill="white" size={10} className="ml-0.5" />
-                    </div>
-                    <span className="font-bold text-xl text-white">BingeBeyond</span>
+                    <img
+                        src={logo}
+                        alt="BingeBeyond Logo"
+                        className="h-8 w-8 object-contain mr-2"
+                    />
+                    <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                    <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                 </div>
                 <div className="flex gap-6 text-sm text-gray-500 font-medium">
                     <a href="#" className="hover:text-white transition">Privacy Policy</a>
@@ -684,7 +703,10 @@ export default function App() {
                     <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Start watching global TV today.</h2>
                         <p className="text-xl text-gray-400 mb-10">Download Binge Beyond now to unlock shows and movies from around the globe.</p>
-                        <a href="#" className="inline-block transition-transform hover:scale-105 active:scale-95">
+                        <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="inline-block transition-transform hover:scale-105 active:scale-95">
                             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 md:h-[72px]" />
                         </a>
                     </div>
