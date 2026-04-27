@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import bgImage from './collage.jpg'; // Adjust path as needed
 // 1. Brand icons imported from react-icons/fi (Feather)
 import { FiGithub as Github, FiTwitter as Twitter, FiInstagram as Instagram } from 'react-icons/fi';
 
@@ -248,13 +248,14 @@ const App = () => {
 
             {/* Hero Section */}
             <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-transparent z-10">
-                <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-3 p-3 opacity-90 animate-slow-pan pointer-events-none">
-                    {[...posters, ...posters, ...posters, ...posters].map((p, i) => (
-                        <div key={i} className="aspect-[2/3] rounded-lg bg-gray-900/50 border border-white/10 overflow-hidden shadow-inner">
-                            <img src={p.url} className="w-full h-full object-cover opacity-70" alt="" />
-                        </div>
-                    ))}
-                </div>
+                    <div className="absolute inset-0 opacity-90 pointer-events-none">
+                        <img
+                            src={bgImage}
+                            className="w-full h-full object-cover opacity-70"
+                            alt="Background"
+                        />
+                    </div>
+
                 <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(circle at 15% 50%, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 35%, rgba(30, 41, 59, 0.3) 100%)' }} />
 
                 <div className="relative z-20 px-8 md:px-20 max-w-7xl">
@@ -267,9 +268,38 @@ const App = () => {
                     <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl leading-relaxed font-semibold drop-shadow-md">
                         BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.
                     </p>
-                    <button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">
-                        <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
-                    </button>
+
+                    <a
+                        href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-1/2 sm:w-1/2 flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all group"
+                    >
+
+
+                        <svg className="w-9 h-9" viewBox="0 0 512 512" fill="currentColor">
+                            <g id="Layer_x0020_1">
+                                <path fill="#EA4335" fill-rule="nonzero"
+                                      d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                <path fill="#FBBC04" fill-rule="nonzero"
+                                      d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                <path fill="#34A853" fill-rule="nonzero"
+                                      d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                <path fill="#4285F4" fill-rule="nonzero"
+                                      d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                            </g>
+                        </svg>
+                        <div className="text-left">
+                            <div className="text-[12px] font-normal leading-none mb-1 opacity-80 text-glow-white font-black">GET IT
+                                ON
+                            </div>
+                            <div className="text-[20px] font-semibold leading-none text-glow-white font-black">Google Play</div>
+                        </div>
+                    </a>
+
+                    {/*<button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">*/}
+                    {/*    <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />*/}
+                    {/*</button>*/}
                 </div>
 
 
@@ -729,16 +759,22 @@ const App = () => {
                         <Zap size={20} fill="currentColor" /> Limited Access Override
                     </div>
                     <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10 text-glow">
-                        Stop settling for 10%. <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white italic">The whole world is waiting.</span>
+                        Get More From The Subscriptions <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white italic">You Already Pay For</span>
                     </h2>
                     <p className="text-slate-100 max-w-2xl mx-auto text-xl font-bold leading-relaxed mb-16 drop-shadow-2xl">
-                        Join 50,000+ streamers who have already unlocked their subscriptions. Fast, private, and built for 4K.
+                        Unlock more shows, more regions, and smoother streaming - without slowing down the rest of your phone.
                     </p>
                     <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-                        <button className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px] shadow-[0_0_80px_rgba(34,211,238,0.9)] hover:shadow-[0_0_100px_rgba(34,211,238,1)] hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group drop-shadow-[0_0_12px_rgba(255,255,255,1)]">
-                            <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
-                        </button>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px] shadow-[0_0_80px_rgba(34,211,238,0.9)] hover:shadow-[0_0_100px_rgba(34,211,238,1)] hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group drop-shadow-[0_0_12px_rgba(255,255,255,1)]"
+                        >
+                            <span className="text-glow-white font-black">Download the app</span>
+                            <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
+                        </a>
                         <button className="px-12 py-7 bg-white/10 border border-white/30 text-white font-black rounded-[32px] hover:bg-white/20 transition-all text-base uppercase tracking-widest shadow-2xl backdrop-blur-sm">
                             Browse Library
                         </button>
