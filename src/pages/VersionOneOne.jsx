@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import bgImage from './collage.jpg'; // Adjust path as needed
+import bgImage from './collage2.jpg'; // Adjust path as needed
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
 // 1. Brand icons imported from react-icons/fi (Feather)
@@ -408,7 +408,7 @@ const App = () => {
                     <img
                         src={bingeWatching}
                         alt="One Piece Vibrant Backdrop"
-                        className="w-full h-full object-cover opacity-[0.45] scale-105 animate-slow-pan"
+                        className="w-full h-full object-cover opacity-[0.9] animate-slow-pan"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-transparent to-[#0f172a]" />
                     <div className="absolute inset-0 bg-cyan-900/10" />
