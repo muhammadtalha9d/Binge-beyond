@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import bgImage from './collage2.jpg'; // Adjust path as needed
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
+import stepsImg from './3steps-bg.jpg';
+import favourite from './favouritesection.jpg';
 // 1. Brand icons imported from react-icons/fi (Feather)
 import { FiGithub as Github, FiTwitter as Twitter, FiInstagram as Instagram } from 'react-icons/fi';
 
@@ -339,7 +341,20 @@ const App = () => {
 
 
             {/* SCANNER SECTION */}
-            <section ref={sectionRef} className="py-40 bg-transparent px-6 relative overflow-hidden z-10">
+            <section ref={sectionRef} className="py-40 px-6 relative overflow-hidden z-10">
+
+                {/* --- ADDED BACKGROUND IMAGE --- */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <img
+                        src={favourite} /* Replace with your actual image path or variable */
+                        className="w-full h-full object-cover"
+                        alt="Scanner Section Background"
+                    />
+                    {/* Dark overlay to keep the text and scanner highly visible */}
+                    <div className="absolute inset-0 bg-[#0f172a]/45" />
+                </div>
+                {/* ------------------------------ */}
+
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="grid lg:grid-cols-5 gap-16 items-center">
                         <div className="lg:col-span-2 space-y-10 text-white">
@@ -351,7 +366,6 @@ const App = () => {
                             </h2>
                             <p className="text-[38px] font-black tracking-tighter uppercase leading-none text-glow">Stop settling for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic text-5xl font-black tracking-tighter">10% Access.</span></p>
                         </div>
-
 
                         <div
                             onClick={revealStage === 'problem' ? startAnimationSequence : handleReplay}
@@ -369,9 +383,7 @@ const App = () => {
                                 </div>
                             </div>
 
-
                             <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-
                                 {/* Single Image Replaced the Posters Grid */}
                                 <div className="w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative">
                                     <img
@@ -390,7 +402,6 @@ const App = () => {
                                     </div>
                                 </div>
                             </div>
-
 
                             <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
@@ -507,14 +518,26 @@ const App = () => {
 
 
             {/* HOW IT WORKS SECTION */}
-            <section id="protocol" className="relative bg-[#1e293b] py-56 overflow-hidden z-10">
+            <section id="protocol" className="relative py-56 overflow-hidden z-10">
+
+                {/* --- ADDED BACKGROUND IMAGE --- */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <img
+                        src={stepsImg}
+                        className="w-full h-full object-cover"
+                        alt="Protocol Background"
+                    />
+                    {/* Dark overlay to ensure text stays readable */}
+                    <div className="absolute inset-0 bg-[#1e293b]/45" />
+                </div>
+                {/* ------------------------------ */}
+
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="flex flex-col items-center text-center mb-32 text-white">
                         <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
                             Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching</span> in 3 simple steps.
                         </h2>
                     </div>
-
 
                     <div className="grid lg:grid-cols-12 gap-24 items-center">
                         <div className="lg:col-span-5 space-y-6">
@@ -537,7 +560,6 @@ const App = () => {
                                 </div>
                             ))}
                         </div>
-
 
                         <div className="lg:col-span-7 relative h-[650px] bg-slate-800/80 border border-white/30 rounded-[70px] overflow-hidden shadow-3xl backdrop-blur-3xl group">
                             <div className="absolute inset-0 blueprint-grid opacity-30" />
