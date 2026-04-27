@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import logo from './Binge-logo.svg';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import VersionOneOne from './pages/VersionOneOne';
+
 
 // Inline SVGs for fast loading and guaranteed preview rendering
 const Play = ({ size = 24, fill = "none", className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>);
@@ -620,7 +623,8 @@ const Footer = () => (
 );
 
 
-export default function App() {
+// Home component with all the home page content
+const Home = () => {
     return (
         <div className="min-h-screen bg-slate-950 font-sans text-gray-100 selection:bg-indigo-500/30">
             <Navbar />
@@ -718,6 +722,17 @@ export default function App() {
 
             <Footer />
         </div>
+    );
+};
+
+export default function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/v1.1" element={<VersionOneOne />} />
+            </Routes>
+        </Router>
     );
 }
 
