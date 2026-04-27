@@ -775,9 +775,7 @@ const App = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/60 via-[#0f172a]/80 to-[#0f172a]" />
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
-                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full mb-10 backdrop-blur-md text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-2xl">
-                        <Zap size={20} fill="currentColor" /> Limited Access Override
-                    </div>
+
                     <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10 text-glow">
                         Get More From The Subscriptions <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white italic">You Already Pay For</span>
@@ -795,9 +793,7 @@ const App = () => {
                             <span className="text-glow-white font-black">Download the app</span>
                             <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
                         </a>
-                        <button className="px-12 py-7 bg-white/10 border border-white/30 text-white font-black rounded-[32px] hover:bg-white/20 transition-all text-base uppercase tracking-widest shadow-2xl backdrop-blur-sm">
-                            Browse Library
-                        </button>
+
                     </div>
                 </div>
             </section>
