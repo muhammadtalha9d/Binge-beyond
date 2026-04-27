@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import bgImage from './collage.jpg'; // Adjust path as needed
+import unlocked from './unlocked.jpg';
+import bingeWatching from './bingeWatching.jpg';
 // 1. Brand icons imported from react-icons/fi (Feather)
 import { FiGithub as Github, FiTwitter as Twitter, FiInstagram as Instagram } from 'react-icons/fi';
 
@@ -256,7 +258,7 @@ const App = () => {
                         />
                     </div>
 
-                <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(circle at 15% 50%, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 35%, rgba(30, 41, 59, 0.3) 100%)' }} />
+                <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(circle at 10% 30%, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.05) 35%, rgba(30, 41, 59, 0.05) 50%)' }} />
 
                 <div className="relative z-20 px-8 md:px-20 max-w-7xl">
                     <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>
@@ -277,17 +279,8 @@ const App = () => {
                     >
 
 
-                        <svg className="w-9 h-9" viewBox="0 0 512 512" fill="currentColor">
-                            <g id="Layer_x0020_1">
-                                <path fill="#EA4335" fill-rule="nonzero"
-                                      d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
-                                <path fill="#FBBC04" fill-rule="nonzero"
-                                      d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
-                                <path fill="#34A853" fill-rule="nonzero"
-                                      d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
-                                <path fill="#4285F4" fill-rule="nonzero"
-                                      d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
-                            </g>
+                        <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
                         </svg>
                         <div className="text-left">
                             <div className="text-[12px] font-normal leading-none mb-1 opacity-80 text-glow-white font-black">GET IT
@@ -378,14 +371,19 @@ const App = () => {
 
 
                             <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                                <div className="grid grid-cols-3 gap-4 h-full">
-                                    {posters.map((p, i) => (
-                                        <div key={i} className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
-                                            <img src={p.url} className="w-full h-full object-cover" alt="" />
-                                            <div className="absolute top-3 right-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded-lg border border-white/20 text-[10px] text-white font-black">{p.flag}</div>
-                                        </div>
-                                    ))}
+
+                                {/* Single Image Replaced the Posters Grid */}
+                                <div className="w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative">
+                                    <img
+                                        src={unlocked}
+                                        className="w-full h-full object-cover"
+                                        alt="Unlocked Content"
+                                    />
+                                    {/* Optional dark overlay so the '100% UNLOCKED' badge stands out better */}
+                                    <div className="absolute inset-0 bg-black/20" />
                                 </div>
+
+                                {/* 100% UNLOCKED Badge (Unchanged) */}
                                 <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                                     <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
                                         <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
@@ -408,7 +406,7 @@ const App = () => {
                 {/* VIBRANT ONE PIECE THEMED LONG BACKGROUND IMAGE */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=2000"
+                        src={bingeWatching}
                         alt="One Piece Vibrant Backdrop"
                         className="w-full h-full object-cover opacity-[0.45] scale-105 animate-slow-pan"
                     />
