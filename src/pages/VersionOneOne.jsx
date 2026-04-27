@@ -820,20 +820,20 @@ const App = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className="space-y-10 text-white">
-                            <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>
-                            <ul className="space-y-5 text-base font-bold">
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>
-                            </ul>
-                        </div>
+                        {/*<div className="space-y-10 text-white">*/}
+                        {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
+                        {/*    <ul className="space-y-5 text-base font-bold">*/}
+                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>*/}
+                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>*/}
+                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
                         <div className="space-y-10 text-white">
                             <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Protocol Support</h5>
                             <ul className="space-y-5 text-base font-bold">
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Shield</a></li>
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Legal Hub</a></li>
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a></li>
+                                {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
                             </ul>
                         </div>
                     </div>
