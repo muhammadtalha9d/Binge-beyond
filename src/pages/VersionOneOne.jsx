@@ -812,13 +812,13 @@ const App = () => {
                             <p className="text-slate-200 max-w-sm mb-14 font-semibold text-lg leading-relaxed italic drop-shadow-sm">
                                 BingeBeyond bridges the gap between your local catalog and the global multiverse of content. Optimized for speed, built for privacy.
                             </p>
-                            <div className="flex gap-6">
-                                {[Twitter, Instagram, Github, Mail].map((Icon, i) => (
-                                    <div key={i} className="w-14 h-14 rounded-2xl bg-white/[0.15] border border-white/30 flex items-center justify-center hover:bg-cyan-400 hover:text-black hover:scale-110 cursor-pointer transition-all duration-300 text-white shadow-xl">
-                                        <Icon size={22} />
-                                    </div>
-                                ))}
-                            </div>
+                            {/*<div className="flex gap-6">*/}
+                            {/*    {[Twitter, Instagram, Github, Mail].map((Icon, i) => (*/}
+                            {/*        <div key={i} className="w-14 h-14 rounded-2xl bg-white/[0.15] border border-white/30 flex items-center justify-center hover:bg-cyan-400 hover:text-black hover:scale-110 cursor-pointer transition-all duration-300 text-white shadow-xl">*/}
+                            {/*            <Icon size={22} />*/}
+                            {/*        </div>*/}
+                            {/*    ))}*/}
+                            {/*</div>*/}
                         </div>
                         {/*<div className="space-y-10 text-white">*/}
                         {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
@@ -837,17 +837,7 @@ const App = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="pt-12 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-slate-300 text-[10px] font-black tracking-[0.6em] gap-10 text-center uppercase">
-                        <div className="flex items-center gap-5">
-                            <span>© 2024 BINGEBEYOND NETWORKS</span>
-                            <div className="w-2 h-2 bg-slate-600 rounded-full" />
-                            <span className="text-cyan-400 font-black drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">SYSTEM STATUS: OPTIMAL</span>
-                        </div>
-                        <div className="flex gap-12 text-slate-400 font-bold">
-                            <a href="#" className="hover:text-white transition-colors">Privacy Override</a>
-                            <a href="#" className="hover:text-white transition-colors">Term of Protocol</a>
-                        </div>
-                    </div>
+
                 </div>
             </footer>
         </div>
