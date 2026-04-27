@@ -1,725 +1,803 @@
-import React, { useState } from 'react';
-import logo from './Binge-logo.svg';
-
-// Inline SVGs for fast loading and guaranteed preview rendering
-const Play = ({ size = 24, fill = "none", className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>);
-const Zap = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>);
-const Smartphone = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>);
-const Globe2 = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>);
-const Star = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>);
-const Menu = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>);
-const X = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>);
-const AlertCircle = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>);
-const Layers = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>);
-const Settings = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>);
-const CheckCircle = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>);
+import React, { useState, useEffect, useRef } from 'react';
+import {
+    Play, Plus, Info, Monitor, Smartphone, Tablet, Tv, Gamepad2,
+    ChevronRight, ChevronLeft, Search, User, Menu, X, Check, Zap, MessageSquare,
+    Layers, Star, HelpCircle, ChevronDown, Globe as GlobeIcon, ShieldCheck,
+    Lock, Unlock, AlertCircle, RotateCcw, Pointer, Radio, Activity, ZapIcon,
+    Cpu, MousePointer2, Wifi, FastForward, Target, PlayCircle, Terminal,
+    Navigation, Share2, Layers as LayersIcon, Zap as ZapBolt, AppWindow,
+    Instagram, Twitter, Github, Mail, ExternalLink, Quote, Plus as PlusIcon, Minus as MinusIcon
+} from 'lucide-react';
 
 
-// Device Icons for Trust/Compatibility
-const AndroidIcon = ({ size = 24, className = "" }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M17.5 15c.8 0 1.5-.7 1.5-1.5S18.3 12 17.5 12 16 12.7 16 13.5s.7 1.5 1.5 1.5zm-11 0c.8 0 1.5-.7 1.5-1.5S7.3 12 6.5 12 5 12.7 5 13.5 5.7 15 6.5 15zM12 3C8.1 3 5 6.1 5 10v6h14v-6c0-3.9-3.1-7-7-7z" /></svg>);
+const App = () => {
+    const [scrolled, setScrolled] = useState(false);
+    const [revealStage, setRevealStage] = useState('problem');
+    const [activeStep, setActiveStep] = useState(0);
+    const [openFaq, setOpenFaq] = useState(null);
+    const [testimonialSlide, setTestimonialSlide] = useState(0);
+    const sectionRef = useRef(null);
+    const timeoutIds = useRef([]);
 
 
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
 
-    return (
-        <nav className="fixed w-full z-50 top-0 transition-all duration-300 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
-                    <div className="flex-shrink-0 flex items-center cursor-pointer">
-                        <img
-                            src={logo}
-                            alt="BingeBeyond Logo"
-                            className="h-8 w-8 object-contain mr-2"
-                        />
-                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
-                    </div>
-
-
-                    <div className="hidden md:flex items-center space-x-8">
-                        <a href="#how-it-works" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">How it Works</a>
-                        <a href="#features" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Features</a>
-                        <a
-                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block"
-                        >
-                        <button className="bg-indigo-500 text-white hover:bg-indigo-600 px-6 py-2.5 rounded-full font-semibold text-sm transition-transform hover:scale-105 active:scale-95 flex items-center">
-                            Download the App
-                        </button>
-                            </a>
-                    </div>
-
-
-                    <div className="md:hidden flex items-center">
-                        <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-            {isOpen && (
-                <div className="md:hidden bg-slate-900 border-b border-slate-800 absolute w-full">
-                    <div className="px-4 pt-2 pb-6 space-y-4 flex flex-col">
-                        <a href="#how-it-works" className="text-base font-medium text-gray-300 hover:text-white block">How it Works</a>
-                        <a href="#features" className="text-base font-medium text-gray-300 hover:text-white block">Features</a>
-                        <a
-                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block"
-                        >
-                        <button className="w-full mt-4 bg-indigo-500 text-white px-5 py-3 rounded-xl font-semibold text-base flex justify-center items-center">
-                            Download the App
-                        </button>
-                        </a>
-                    </div>
-                </div>
-            )}
-        </nav>
-    );
-};
-
-
-const Hero = () => {
-    return (
-        <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-
-                    <div className="text-left order-2 lg:order-1">
-                        <p className="text-indigo-400 font-bold tracking-widest text-sm mb-4 uppercase">Unlock Global Content</p>
-
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                            Watch Shows, Movies & Live Sports - <br className="hidden lg:block" />
-                            <span className="text-indigo-400">Without Location Limits</span>
-                        </h1>
-
-                        <p className="text-lg md:text-xl text-gray-400 mb-10 leading-relaxed max-w-lg">
-                            BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.
-                        </p>
-
-                        <div className="flex flex-col items-start gap-3 mt-2">
-                            <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                               target="_blank"
-                               rel="noopener noreferrer" className="inline-block transition-transform hover:scale-105 active:scale-95">
-                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 md:h-[72px] -ml-2" />
-                            </a>
-                        </div>
-                    </div>
-
-
-                    <div className="relative mt-8 lg:mt-0 order-1 lg:order-2">
-                        <div className="relative bg-slate-900 border border-slate-800/80 rounded-2xl shadow-2xl p-4 overflow-hidden transform md:rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg mx-auto lg:ml-auto lg:mr-0">
-                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                                <div className="flex items-center gap-2"><Globe2 size={20} className="text-indigo-400"/> <span className="font-bold text-white">Discover Hub</span></div>
-                                <div className="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Zap size={12}/> Connected</div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { title: "The Office", platform: "Netflix", region: "UK", color: "bg-red-500/20 text-red-400" },
-                                    { title: "IPL Live", platform: "SonyLiv", region: "IND", color: "bg-blue-500/20 text-blue-400" },
-                                    { title: "F1 Grand Prix", platform: "F1TV", region: "USA", color: "bg-red-600/20 text-red-500" },
-                                    { title: "Tokyo Anime", platform: "Crunchyroll", region: "JPN", color: "bg-orange-500/20 text-orange-400" },
-                                ].map((item, i) => (
-                                    <div key={i} className="bg-slate-800/50 rounded-xl p-4 flex flex-col justify-end h-48 relative group cursor-pointer border border-slate-700/50 hover:border-indigo-500 transition-colors shadow-lg">
-                                        <div className="absolute top-3 right-3 bg-slate-900/80 px-2 py-1 rounded text-[10px] font-bold text-gray-300">{item.region}</div>
-                                        <div>
-                                            <h4 className="text-white font-bold text-base">{item.title}</h4>
-                                            <span className={`text-[10px] px-2 py-1 rounded font-bold ${item.color} mt-2 inline-block`}>{item.platform}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
-const Logos = () => {
-    // Stylized text-based logos for fast loading
-    const logos = [
-        <span className="text-2xl md:text-3xl font-black text-[#E50914] tracking-tighter uppercase font-sans">NETFLIX</span>,
-        <span className="text-2xl md:text-3xl font-black text-white tracking-tighter lowercase font-sans">max</span>,
-        <span className="text-2xl md:text-3xl font-bold text-white tracking-wider font-serif italic">Disney+</span>,
-        <span className="text-2xl md:text-3xl font-black text-[#1ce783] tracking-tighter lowercase font-sans">hulu</span>,
-        <span className="text-2xl md:text-3xl font-black text-white tracking-tight">SONY<span className="text-[#00A8E1]">LIV</span></span>,
-        <span className="text-xl md:text-2xl font-bold text-[#00A8E1] tracking-tight font-sans">prime video</span>,
-        <span className="text-2xl md:text-3xl font-black text-green-500 tracking-tighter italic font-sans">PTV Sports</span>,
-    ];
-
-
-    return (
-        <div className="py-6 bg-slate-900 border-y border-slate-800 flex items-center overflow-hidden">
-            <style>{`
-        @keyframes marquee-fast {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee-fast {
-          animation: marquee-fast 20s linear infinite;
-          width: max-content;
-        }
-        .animate-marquee-fast:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-            <div className="max-w-7xl mx-auto px-4 w-full flex items-center">
-                {/* Static Left Side */}
-                <div className="relative z-20 pr-6 md:pr-10 bg-slate-900 border-r border-slate-800 flex-shrink-0 flex items-center h-12">
-                    <span className="text-sm font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">Works With</span>
-                </div>
-
-
-                {/* Scrolling Right Side */}
-                <div className="flex-1 overflow-hidden relative ml-4 md:ml-8 h-12 flex items-center">
-                    {/* Fade Edges */}
-                    <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
-
-                    <div className="animate-marquee-fast flex items-center gap-12 md:gap-20 opacity-60 hover:opacity-100 transition-opacity cursor-default">
-                        {/* Duplicated multiple times to ensure seamless infinite scroll on ultra-wide screens */}
-                        {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-                            <div key={index} className="flex-shrink-0">
-                                {logo}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
-/* --- INTEGRATED GATHER SECTIONS --- */
-
-
-const ProblemSection = () => {
-    return (
-        <div id="problem" className="py-24 bg-slate-950 border-y border-slate-800/50 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-slate-950 to-slate-950"></div>
-
-
-            <div className="max-w-5xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Your favorite shows aren't gone. <br className="md:hidden"/>They're being gatekept.</h2>
-                    <p className="text-xl text-gray-400">You pay 100% for the subscriptions. Stop settling for 10%.</p>
-                </div>
-
-
-                <div className="max-w-2xl mx-auto">
-                    <div className="bg-slate-900 border border-red-500/30 rounded-2xl p-10 md:p-14 flex flex-col items-center text-center shadow-[0_0_50px_rgba(239,68,68,0.1)] relative overflow-hidden group">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-red-500/50"></div>
-                        <AlertCircle size={56} className="text-red-400 mb-6 group-hover:scale-110 transition-transform duration-500" />
-                        <p className="text-white font-bold text-2xl md:text-3xl leading-snug">"This title is not available in your current region."</p>
-                        <div className="mt-8 bg-red-500/10 text-red-400 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-red-500/20">
-                            Error: Geo-blocked
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
-const MentalModel = () => {
-    return (
-        <div className="py-24 bg-indigo-950/10 relative border-b border-slate-800/50">
-            {/* Abstract background blur to differentiate the section visually */}
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none"></div>
-
-
-            <div className="max-w-5xl mx-auto px-4 relative z-10">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 text-center leading-tight">
-                    Your favorite streaming apps, <br className="hidden md:block"/>
-                    now without borders.
-                </h2>
-
-
-                {/* Asymmetrical Bento Box Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-                    {/* Card 1: Wide */}
-                    <div className="md:col-span-7 bg-gradient-to-br from-indigo-900/20 to-slate-900 border border-slate-800/50 rounded-3xl p-10 md:p-12 flex flex-col justify-center relative overflow-hidden group hover:border-slate-700 transition-all">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[50px] group-hover:bg-indigo-500/10 transition-colors"></div>
-                        <Layers size={48} className="text-indigo-400 mb-8 relative z-10" strokeWidth={1.5} />
-                        <h3 className="text-2xl font-bold text-white mb-4 relative z-10">No new apps</h3>
-                        <p className="text-gray-400 text-lg relative z-10 leading-relaxed">Keep using the streaming apps already installed on your phone.</p>
-                    </div>
-
-
-                    {/* Card 2: Square */}
-                    <div className="md:col-span-5 bg-slate-900 border border-slate-800/50 rounded-3xl p-10 md:p-12 flex flex-col justify-center group hover:border-slate-700 transition-all">
-                        <Globe2 size={48} className="text-indigo-400 mb-8" strokeWidth={1.5} />
-                        <h3 className="text-2xl font-bold text-white mb-4">No switching platforms</h3>
-                        <p className="text-gray-400 text-lg leading-relaxed">Browse what’s available globally from one central hub.</p>
-                    </div>
-
-
-                    {/* Card 3: Full Width Banner */}
-                    <div className="md:col-span-12 bg-slate-900 border border-slate-800/50 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-8 group hover:border-slate-700 transition-all">
-                        <div className="w-20 h-20 shrink-0 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                            <Settings size={36} className="text-indigo-400" />
-                        </div>
-                        <div>
-                            <h3 className="text-2xl font-bold text-white mb-3">No complicated setup</h3>
-                            <p className="text-gray-400 text-lg">It just works in the background. Zero tech skills required.</p>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
-/* --- OLD PAGE SECTIONS RESUME --- */
-
-
-const ContentShowcase = () => {
-    const row1 = [
-        { title: "IPL Cricket Finals", platform: "SonyLiv", region: "IND", category: "Live Sports", color: "text-blue-400", image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop" },
-        { title: "Demon Slayer S4", platform: "Crunchyroll", region: "JPN", category: "Global Anime", color: "text-orange-400", image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600&auto=format&fit=crop" },
-        { title: "Premier League", platform: "Peacock", region: "USA", category: "Live Sports", color: "text-green-400", image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop" },
-        { title: "Jujutsu Kaisen", platform: "Netflix", region: "JPN", category: "Global Anime", color: "text-red-400", image: "https://images.unsplash.com/photo-1580477655124-b908ef922d41?q=80&w=600&auto=format&fit=crop" },
-        { title: "UFC Fight Night", platform: "ESPN+", region: "USA", category: "Live Sports", color: "text-red-500", image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=600&auto=format&fit=crop" },
-    ];
-
-
-    const row2 = [
-        { title: "The Untamed", platform: "Netflix", region: "CHN", category: "C-Drama", color: "text-red-400", image: "https://images.unsplash.com/photo-1545785002-95f70bb7e3ff?q=80&w=600&auto=format&fit=crop" },
-        { title: "The Last of Us", platform: "HBO Max", region: "USA", category: "Drama", color: "text-purple-400", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop" },
-        { title: "Squid Game", platform: "Netflix", region: "KR", category: "K-Drama", color: "text-pink-400", image: "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=600&auto=format&fit=crop" },
-        { title: "The Bear", platform: "Hulu", region: "USA", category: "Originals", color: "text-green-400", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=600&auto=format&fit=crop" },
-        { title: "Queen of Tears", platform: "Netflix", region: "KR", category: "K-Drama", color: "text-indigo-400", image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600&auto=format&fit=crop" },
-    ];
-
-
-    const getPlatformLogo = (platform) => {
-        switch (platform.toLowerCase()) {
-            case 'netflix': return <span className="font-black text-[#E50914] tracking-tighter uppercase font-sans">NETFLIX</span>;
-            case 'hbo max': return <span className="font-black text-white tracking-tighter uppercase font-sans">HBO <span className="text-purple-500">MAX</span></span>;
-            case 'disney+': return <span className="font-bold text-white tracking-wider font-serif italic">Disney+</span>;
-            case 'hulu': return <span className="font-black text-[#1ce783] tracking-tighter lowercase font-sans">hulu</span>;
-            case 'sonyliv': return <span className="font-black text-white tracking-tight">SONY<span className="text-[#00A8E1]">LIV</span></span>;
-            case 'prime video': return <span className="font-bold text-[#00A8E1] tracking-tight font-sans lowercase">prime video</span>;
-            case 'crunchyroll': return <span className="font-black text-[#F47521] tracking-tighter uppercase font-sans">CRUNCHYROLL</span>;
-            case 'peacock': return <span className="font-black text-white tracking-widest uppercase font-sans">PEACOCK</span>;
-            case 'espn+': return <span className="font-black text-[#E31837] tracking-tighter italic font-sans">ESPN+</span>;
-            default: return <span className="font-bold text-gray-300 tracking-wider uppercase">{platform}</span>;
-        }
+    const clearAllTimeouts = () => {
+        timeoutIds.current.forEach(clearTimeout);
+        timeoutIds.current = [];
     };
 
 
+    const startAnimationSequence = () => {
+        if (revealStage === 'scanning') return;
+        clearAllTimeouts();
+        setRevealStage('scanning');
+        const id = setTimeout(() => {
+            setRevealStage('done');
+        }, 3100);
+        timeoutIds.current.push(id);
+    };
+
+
+    const handleReplay = () => {
+        setRevealStage('problem');
+        clearAllTimeouts();
+    };
+
+
+    const multiverseContent = [
+        { title: "UFC Fight Night", type: "LIVE SPORTS", region: "USA", platform: "ESPN+", color: "#CB2128", url: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600" },
+        { title: "IPL Cricket Finals", type: "LIVE SPORTS", region: "IND", platform: "SonyLiv", color: "#0064FF", url: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=600" },
+        { title: "Demon Slayer S4", type: "ANIME", region: "JPN", platform: "Crunchyroll", color: "#F47521", url: "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=600" },
+        { title: "Premier League", type: "LIVE SPORTS", region: "USA", platform: "Peacock", color: "#FFFFFF", url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600" },
+        { title: "The Last of Us", type: "DRAMA", region: "USA", platform: "HBO Max", color: "#991BFA", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600" },
+        { title: "Squid Game", type: "KDRAMA", region: "KR", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=600" },
+        { title: "The Bear", type: "DRAMA", region: "USA", platform: "Hulu", color: "#1CE783", url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=600" },
+        { title: "Queen of Tears", type: "KDRAMA", region: "KR", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1518131681197-4cc528943ec7?q=80&w=600" },
+        { title: "Hidden Love", type: "CDRAMA", region: "CHN", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1518131681197-4cc528943ec7?q=80&w=600" },
+    ];
+
+
+    const posters = [
+        { title: "Succession", flag: "🇺🇸", url: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600' },
+        { title: "One Piece", flag: "🇯🇵", url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600' },
+        { title: "Money Heist", flag: "🇪🇸", url: 'https://images.unsplash.com/photo-1598897349489-3d023a27965b?q=80&w=600' },
+        { title: "Peaky Blinders", flag: "🇬🇧", url: 'https://images.unsplash.com/photo-1510511459019-5dee99c48db9?q=80&w=600' },
+    ];
+
+
+    const services = [
+        { name: "YouTube", color: "#FF0000" },
+        { name: "Disney+", color: "#0063e5" },
+        { name: "Crunchyroll", color: "#f47521" },
+        { name: "Paramount", color: "#0064ff" },
+        { name: "ESPN+", color: "#cb2128" },
+        { name: "HBO Max", color: "#991bfa" },
+        { name: "Hotstar", color: "#fbcc33" },
+        { name: "JioHotstar", color: "#4b27ff" },
+        { name: "Hulu", color: "#1ce783" },
+        { name: "Peacock", color: "#ffffff" },
+        { name: "Prime Video", color: "#00a8e1" },
+        { name: "Showmax", color: "#ff0000" },
+        { name: "SonyLiv", color: "#ffffff" },
+        { name: "Syfy", color: "#92278f" },
+        { name: "TheCW", color: "#39b54a" },
+        { name: "Tubi", color: "#ff4f00" },
+        { name: "Xumo", color: "#ffffff" }
+    ];
+
+
+    const steps = [
+        {
+            title: "Connect your platforms",
+            subtitle: "Zero Login Setup",
+            desc: "Select the streaming apps you already use. Zero logins or passwords required - we just need to know what you have.",
+            icon: <AppWindow className="text-cyan-400" />
+        },
+        {
+            title: "Discover Beyond",
+            subtitle: "Universal Library",
+            desc: "Explore our unified hub to find global releases, live sports, and regional catalogs you never knew you had access to.",
+            icon: <GlobeIcon className="text-cyan-400" />
+        },
+        {
+            title: "Just hit play",
+            subtitle: "Instant Override",
+            desc: "Tap any title and we'll instantly route the right global connection in the background. Grab the popcorn, we handle the rest.",
+            icon: <PlayCircle className="text-cyan-400" />
+        }
+    ];
+
+
+    const faqs = [
+        {
+            q: "How does BingeBeyond unblock geo-restricted content on streaming apps?",
+            a: "BingeBeyond uses secure and advanced connection technology to route your internet connection through servers in different countries, bypassing geo-restrictions on platforms like Netflix, Prime Video, and Disney+. Simply select a server in the desired country to access its content library."
+        },
+        {
+            q: "How is BingeBeyond different from a regular VPN?",
+            a: "Traditional VPNs route your entire device through one connection, which can slow speeds and affect other apps. BingeBeyond is designed for streaming, so only supported streaming apps are routed while banking, maps, food delivery, and other apps impacted by location, stay local."
+        },
+        {
+            q: "Will BingeBeyond slow down my internet?",
+            a: "BingeBeyond is built for smooth streaming performance. By routing only streaming traffic instead of your whole device, it helps reduce the slowdowns often experienced with full-device VPNs."
+        },
+        {
+            q: "Which streaming apps work with BingeBeyond?",
+            a: "BingeBeyond is designed for popular streaming platforms such as Netflix, Amazon Prime Video, and other supported entertainment apps. Available platforms may vary by device and region."
+        },
+        {
+            q: "Is this app legal to use?",
+            a: "Absolutely. BingeBeyond is completely legal and safe to use. It changes your virtual location to unlock content on streaming platforms. We recommend reviewing your streaming provider’s terms of service for the best experience."
+        }
+    ];
+
+
+    const testimonials = [
+        { name: "Ahmed R.", text: "I used to spend 10 minutes guessing which VPN server wouldn't buffer my F1 stream. Now I just open the app and hit play. It's incredibly simple.", avatar: "A" },
+        { name: "Sarah M.", text: "Demon Slayer S4 dropped in Japan and I was watching it a few minutes later. It works perfectly and the connection is always stable.", avatar: "S" },
+        { name: "Alex K.", text: "I can finally watch my matches from the US without any buffering. I love that my other apps stay fast while I'm streaming in 4K.", avatar: "A" },
+        { name: "Marcus J.", text: "I travel a lot for work. Accessing my home catalogs from anywhere with perfect quality is a lifesaver. It works every single time.", avatar: "M" },
+        { name: "Julian T.", text: "The setup was so fast. I just picked my apps and everything started working. No more switching servers manually.", avatar: "J" },
+        { name: "Chloe L.", text: "I finally have access to the global library I was already paying for. The quality is amazing and there is zero configuration involved.", avatar: "C" }
+    ];
+
+
+    // Group testimonials into pages of 3
+    const testimonialPages = [];
+    for (let i = 0; i < testimonials.length; i += 3) {
+        testimonialPages.push(testimonials.slice(i, i + 3));
+    }
+
+
+    const nextTestimonial = () => setTestimonialSlide((prev) => (prev + 1) % testimonialPages.length);
+    const prevTestimonial = () => setTestimonialSlide((prev) => (prev - 1 + testimonialPages.length) % testimonialPages.length);
+
+
     return (
-        <div className="py-24 bg-slate-900 border-b border-slate-800 overflow-hidden relative">
+        <div className="min-h-screen bg-[#0f172a] text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
             <style>{`
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marqueeReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        @keyframes scannerLine { 0% { left: 0%; opacity: 1; } 95% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+        @keyframes clipReveal { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+        @keyframes lockShake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
+        @keyframes drift { 0% { transform: translate(0, 0); } 50% { transform: translate(-20px, 30px); } 100% { transform: translate(0, 0); } }
+        .animate-slow-pan { animation: slowPan 40s ease-in-out infinite; }
+        .animate-marquee { animation: marquee 35s linear infinite; }
+        .animate-marquee-reverse { animation: marqueeReverse 45s linear infinite; }
+        .animate-scanner { animation: scannerLine 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .animate-clip { animation: clipReveal 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .animate-lock-shake { animation: lockShake 0.4s ease-in-out infinite; }
+        .text-glow { text-shadow: 0 0 35px rgba(34, 211, 238, 0.7); }
+        .text-glow-white { text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 0.6); }
+        .blueprint-grid { background-image: radial-gradient(rgba(34, 211, 238, 0.12) 1.5px, transparent 1.5px); background-size: 45px 45px; }
+        .vortex-card { transform: rotateX(20deg) rotateY(-15deg); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .vortex-card:hover { transform: rotateX(0deg) rotateY(0deg) scale(1.1) translateZ(50px); z-index: 50; }
+        .mask-fade-x { mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+        .glass-card { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(35px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .luminous-divider { border-top: 1px solid rgba(34, 211, 238, 0.15); box-shadow: 0 -10px 40px rgba(34, 211, 238, 0.05); }
+       
+        .benefit-card-pop {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+          box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          min-height: 620px;
+          display: flex;
+          align-items: center;
         }
-        @keyframes scroll-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+        .benefit-card-pop:hover {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.08) 100%);
+          border-color: rgba(34, 211, 238, 0.6);
+          box-shadow: 0 35px 100px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 211, 238, 0.2);
         }
-        .animate-scroll-left {
-          animation: scroll-left 35s linear infinite;
-          width: max-content;
-        }
-        .animate-scroll-right {
-          animation: scroll-right 35s linear infinite;
-          width: max-content;
-        }
-        .animate-scroll-left:hover, .animate-scroll-right:hover {
-          animation-play-state: paused;
+
+
+        .neon-device-circle {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1.5px solid #22d3ee;
+          box-shadow: 0 0 15px rgba(34, 211, 238, 0.6), inset 0 0 10px rgba(34, 211, 238, 0.3);
+          margin-bottom: 8px;
         }
       `}</style>
 
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 relative z-10">
-                <p className="text-indigo-400 font-bold tracking-widest text-sm mb-4 uppercase">Millions of Shows, Matches & Movies</p>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                    Stream right on the apps <br className="hidden md:block"/> you already use.
-                </h2>
-                <p className="text-xl text-gray-400 leading-relaxed">
-                    Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.
-                </p>
+            {/* FIXED ATMOSPHERIC BACKGROUND LAYER */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-cyan-400/[0.05] blur-[160px] rounded-full animate-[drift_20s_ease-in-out_infinite]" />
+                <div className="absolute top-[20%] right-[-5%] w-[50%] h-[50%] bg-indigo-400/[0.04] blur-[180px] rounded-full animate-[drift_25s_ease-in-out_infinite_reverse]" />
+                <div className="absolute bottom-[10%] left-[15%] w-[45%] h-[45%] bg-cyan-400/[0.06] blur-[150px] rounded-full animate-[drift_30s_ease-in-out_infinite]" />
+                <div className="absolute bottom-[-15%] right-[10%] w-[55%] h-[55%] bg-blue-400/[0.05] blur-[200px] rounded-full animate-[drift_22s_ease-in-out_infinite_reverse]" />
             </div>
 
 
-            <div className="relative w-full flex flex-col gap-6 select-none opacity-90">
-                <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
+            {/* Navigation */}
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'bg-[#0f172a]/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>
+                <div className="flex items-center gap-8">
+                    <div className="text-2xl font-black tracking-tighter flex items-center">
+                        <span className="text-white text-[24px]">BINGE</span>
+                        <span className="text-cyan-400 text-[24px]">BEYOND</span>
+                    </div>
+                    <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">
+                        <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
+                        <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
+                        <a href="#beyond" className="hover:text-cyan-400 transition-colors uppercase">Multiverse</a>
+                    </div>
+                </div>
+                <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">Get Access</button>
+            </nav>
 
-                <div className="animate-scroll-left flex gap-6 px-3">
-                    {[...row1, ...row1].map((item, idx) => (
-                        <div key={idx} className={`flex-shrink-0 w-72 rounded-2xl border border-slate-700/50 p-5 flex flex-col justify-between h-44 cursor-pointer hover:scale-105 hover:border-slate-500 transition-all duration-300 relative overflow-hidden group shadow-lg`}>
-                            {/* Background Image & Overlay */}
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 bg-slate-800" style={{ backgroundImage: `url(${item.image})` }}></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/30 group-hover:via-slate-900/60 transition-colors duration-300"></div>
 
-                            <div className="flex justify-between items-start relative z-10">
-                                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-slate-950/80 border border-slate-700/50 ${item.color}`}>{item.category}</span>
-                                <span className="text-[10px] font-bold text-white bg-black/40 border border-white/20 px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm backdrop-blur-md">{item.region}</span>
-                            </div>
-                            <div className="relative z-10 mt-4">
-                                <h4 className="text-white font-extrabold text-lg leading-tight mb-2 tracking-tight drop-shadow-md">{item.title}</h4>
-                                <div className="flex items-center gap-1.5 drop-shadow-md">
-                                    <Play size={12} className={item.color} fill="currentColor"/>
-                                    <div className="text-[11px] flex items-center">
-                                        {getPlatformLogo(item.platform)}
-                                    </div>
-                                </div>
-                            </div>
+            {/* Hero Section */}
+            <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-transparent z-10">
+                <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-3 p-3 opacity-90 animate-slow-pan pointer-events-none">
+                    {[...posters, ...posters, ...posters, ...posters].map((p, i) => (
+                        <div key={i} className="aspect-[2/3] rounded-lg bg-gray-900/50 border border-white/10 overflow-hidden shadow-inner">
+                            <img src={p.url} className="w-full h-full object-cover opacity-70" alt="" />
                         </div>
                     ))}
                 </div>
+                <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(circle at 15% 50%, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 35%, rgba(30, 41, 59, 0.3) 100%)' }} />
+
+                <div className="relative z-20 px-8 md:px-20 max-w-7xl">
+                    <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>
+                    <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-glow text-white">
+                        Watch Shows, Movies & <br/>
+                        Live Sports - <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white text-glow">Without Location Limits</span>
+                    </h1>
+                    <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl leading-relaxed font-semibold drop-shadow-md">
+                        BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.
+                    </p>
+                    <button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">
+                        <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                    </button>
+                </div>
 
 
-                <div className="animate-scroll-right flex gap-6 px-3">
-                    {[...row2, ...row2].map((item, idx) => (
-                        <div key={idx} className={`flex-shrink-0 w-72 rounded-2xl border border-slate-700/50 p-5 flex flex-col justify-between h-44 cursor-pointer hover:scale-105 hover:border-slate-500 transition-all duration-300 relative overflow-hidden group shadow-lg`}>
-                            {/* Background Image & Overlay */}
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 bg-slate-800" style={{ backgroundImage: `url(${item.image})` }}></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/30 group-hover:via-slate-900/60 transition-colors duration-300"></div>
+                {/* DEVICE SUPPORT INDICATOR */}
+                <div className="absolute bottom-12 right-12 z-30 flex gap-8 transition-all duration-700">
+                    <div className="flex flex-col items-center group">
+                        <div className="neon-device-circle transition-all group-hover:scale-110">
+                            <Smartphone className="text-cyan-400" size={24} />
+                        </div>
+                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Mobile</span>
+                    </div>
+                    <div className="flex flex-col items-center group">
+                        <div className="neon-device-circle transition-all group-hover:scale-110">
+                            <Tablet className="text-cyan-400" size={24} />
+                        </div>
+                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Tablet</span>
+                    </div>
+                    <div className="flex flex-col items-center group">
+                        <div className="neon-device-circle transition-all group-hover:scale-110">
+                            <Tv className="text-cyan-400" size={24} />
+                        </div>
+                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Smart TV</span>
+                    </div>
+                </div>
 
-                            <div className="flex justify-between items-start relative z-10">
-                                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-slate-950/80 border border-slate-700/50 ${item.color}`}>{item.category}</span>
-                                <span className="text-[10px] font-bold text-white bg-black/40 border border-white/20 px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm backdrop-blur-md">{item.region}</span>
-                            </div>
-                            <div className="relative z-10 mt-4">
-                                <h4 className="text-white font-extrabold text-lg leading-tight mb-2 tracking-tight drop-shadow-md">{item.title}</h4>
-                                <div className="flex items-center gap-1.5 drop-shadow-md">
-                                    <Play size={12} className={item.color} fill="currentColor"/>
-                                    <div className="text-[11px] flex items-center">
-                                        {getPlatformLogo(item.platform)}
+
+                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />
+            </section>
+
+
+            {/* Marquee Bar - UPDATED SERVICES LIST */}
+            <section className="bg-slate-800/60 border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
+                <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
+                </div>
+                <div className="flex-1 overflow-hidden relative">
+                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-10 text-white">
+                        {[...services, ...services].map((s, i) => (
+                            <span key={i} className="text-3xl font-black uppercase italic tracking-tighter transition-all opacity-100 drop-shadow-[0_0_15px_currentColor] scale-110" style={{ color: s.color }}>{s.name}</span>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+            {/* SCANNER SECTION */}
+            <section ref={sectionRef} className="py-40 bg-transparent px-6 relative overflow-hidden z-10">
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-5 gap-16 items-center">
+                        <div className="lg:col-span-2 space-y-10 text-white">
+                            <h2 className="text-[38px] font-black tracking-tighter uppercase leading-[0.9] drop-shadow-lg">
+                                Favorite <br/>
+                                shows aren't <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gone.</span> <br/>
+                                They're being <br/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gatekept.</span>
+                            </h2>
+                            <p className="text-[38px] font-black tracking-tighter uppercase leading-none text-glow">Stop settling for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic text-5xl font-black tracking-tighter">10% Access.</span></p>
+                        </div>
+
+
+                        <div
+                            onClick={revealStage === 'problem' ? startAnimationSequence : handleReplay}
+                            className="lg:col-span-3 relative h-[500px] w-full rounded-[48px] border border-white/25 overflow-hidden bg-slate-800/40 shadow-[0_0_80px_rgba(34,211,238,0.2)] cursor-pointer group backdrop-blur-xl"
+                        >
+                            <div className="absolute inset-0 bg-[#0f172a]/40 flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
+                                <div className="w-full max-w-md bg-slate-800/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
+                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md">"This title is not available in your current region."</h4>
+                                        <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
+                                            <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
 
 
-                <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
-            </div>
-        </div>
-    );
-};
+                            <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
+                                <div className="grid grid-cols-3 gap-4 h-full">
+                                    {posters.map((p, i) => (
+                                        <div key={i} className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
+                                            <img src={p.url} className="w-full h-full object-cover" alt="" />
+                                            <div className="absolute top-3 right-3 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded-lg border border-white/20 text-[10px] text-white font-black">{p.flag}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                                    <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
+                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
+                                    </div>
+                                </div>
+                            </div>
 
 
-const VisualSmartRoute = () => (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 p-8 gap-6">
-        <div className="w-full bg-slate-900 border border-indigo-500/30 rounded-xl p-4 flex items-center relative overflow-hidden shadow-lg">
-            <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-            <Play size={28} className="text-indigo-400 ml-2 mr-4" fill="currentColor"/>
-            <div className="text-left flex-1">
-                <h4 className="text-white font-bold text-sm">Streaming Apps</h4>
-                <p className="text-indigo-300/80 text-xs mt-0.5">Routed globally</p>
-            </div>
-            <div className="bg-indigo-500/20 text-indigo-400 text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1">
-                <Zap size={12} /> Express Lane
-            </div>
-        </div>
-
-
-        <div className="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 flex items-center relative overflow-hidden opacity-60 shadow-lg">
-            <div className="absolute top-0 left-0 w-1 h-full bg-gray-600"></div>
-            <Smartphone size={28} className="text-gray-400 ml-2 mr-4" />
-            <div className="text-left flex-1">
-                <h4 className="text-white font-bold text-sm">Everyday Apps</h4>
-                <p className="text-gray-500 text-xs mt-0.5">Maps, Banking, Social</p>
-            </div>
-            <div className="bg-slate-800 text-gray-400 text-[10px] font-bold px-3 py-1.5 rounded-full">
-                Local Internet
-            </div>
-        </div>
-    </div>
-);
-
-
-const SimpleFeature = ({ eyebrow, title, description, points, visual, reverse }) => (
-    <div className={`py-16 lg:py-24 overflow-hidden`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div className={`order-2 ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <div className="relative rounded-2xl bg-slate-900/50 border border-slate-800/50 p-2 shadow-2xl overflow-hidden aspect-[4/3] flex items-center justify-center">
-                        {visual}
-                    </div>
-                </div>
-                <div className={`order-1 ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
-                    {eyebrow && (
-                        <p className="text-indigo-400 font-bold tracking-widest text-sm mb-4 uppercase">
-                            {eyebrow}
-                        </p>
-                    )}
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">{title}</h2>
-                    <p className="text-lg text-gray-400 leading-relaxed mb-8">{description}</p>
-
-                    {points && (
-                        <ul className="space-y-4">
-                            {points.map((point, idx) => (
-                                <li key={idx} className="flex items-start gap-3 text-gray-300">
-                                    <CheckCircle className="text-indigo-500 mt-1 flex-shrink-0" size={20} />
-                                    <span>{point}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            </div>
-        </div>
-    </div>
-);
-
-
-const VisualPerformance = () => (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 p-8">
-        <div className="text-center mb-8">
-            <div className="text-5xl font-black text-white tracking-tighter">4K <span className="text-indigo-500">UHD</span></div>
-            <p className="text-gray-400 font-medium mt-2">Smooth Playback</p>
-        </div>
-        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-500 w-full h-full animate-[pulse_2s_ease-in-out_infinite]"></div>
-        </div>
-        <p className="text-xs text-gray-500 mt-4 font-mono">Speed: Optimized for Streaming</p>
-    </div>
-);
-
-
-const VisualAutoConnect = () => (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 p-8 gap-4">
-        <div className="w-full bg-slate-900 border border-indigo-500/30 rounded-xl p-3 flex items-center gap-3 shadow-lg">
-            <Globe2 size={20} className="text-indigo-400"/>
-            <div className="text-left flex-1">
-                <div className="text-white font-bold text-sm">1. Find Show in Hub</div>
-                <div className="text-gray-500 text-[10px]">Browsing global catalog</div>
-            </div>
-        </div>
-
-        <div className="flex flex-col items-center gap-1">
-            <div className="w-1 h-4 bg-gradient-to-b from-indigo-500/50 to-indigo-500"></div>
-            <Zap size={16} className="text-indigo-500" />
-            <div className="w-1 h-4 bg-gradient-to-b from-indigo-500 to-indigo-500/50"></div>
-        </div>
-
-
-        <div className="w-full bg-indigo-500/10 border border-indigo-500/50 rounded-xl p-3 flex items-center gap-3 shadow-[0_0_20px_rgba(99,102,241,0.2)] relative overflow-hidden">
-            <div className="absolute left-0 top-0 w-1 h-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,1)]"></div>
-            <Play size={20} className="text-white" fill="white"/>
-            <div className="text-left flex-1">
-                <div className="text-white font-bold text-sm">2. Instant Playback</div>
-                <div className="text-indigo-400 text-[10px]">Auto-connected to Node</div>
-            </div>
-        </div>
-    </div>
-);
-
-
-const HowItWorks = () => {
-    return (
-        <div id="how-it-works" className="py-24 bg-gradient-to-b from-slate-900 to-indigo-950/20 border-b border-slate-800/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 text-center">Start binge-watching in 3 simple steps.</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
-                    {/* Step 1 */}
-                    <div className="bg-slate-950 border border-slate-800 rounded-3xl p-10 relative overflow-hidden group hover:border-indigo-500/50 transition-all shadow-xl">
-                        <div className="absolute -right-4 -top-8 text-[150px] font-black text-slate-800/30 group-hover:text-indigo-500/10 transition-colors pointer-events-none leading-none select-none">1</div>
-                        <div className="relative z-10">
-                            <h3 className="text-xl font-bold text-white mb-4">Connect your platforms</h3>
-                            <p className="text-gray-400 text-base leading-relaxed">Select the streaming apps you already use. Zero logins or passwords required - we just need to know what you have.</p>
+                            <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
+                            </div>
                         </div>
                     </div>
-
-
-                    {/* Step 2 */}
-                    <div className="bg-slate-950 border border-slate-800 rounded-3xl p-10 relative overflow-hidden group hover:border-indigo-500/50 transition-all shadow-xl">
-                        <div className="absolute -right-4 -top-8 text-[150px] font-black text-slate-800/30 group-hover:text-indigo-500/10 transition-colors pointer-events-none leading-none select-none">2</div>
-                        <div className="relative z-10">
-                            <h3 className="text-xl font-bold text-white mb-4">Discover Beyond</h3>
-                            <p className="text-gray-400 text-base leading-relaxed">Explore our unified hub to find global releases, live sports, and regional catalogs you never knew you had access to.</p>
-                        </div>
-                    </div>
-
-
-                    {/* Step 3 - Accent Color */}
-                    <div className="bg-indigo-600/10 border border-indigo-500/30 rounded-3xl p-10 relative overflow-hidden group hover:border-indigo-500/50 hover:bg-indigo-600/20 transition-all shadow-[0_0_30px_rgba(99,102,241,0.15)]">
-                        <div className="absolute -right-4 -top-8 text-[150px] font-black text-indigo-500/10 group-hover:text-indigo-500/20 transition-colors pointer-events-none leading-none select-none">3</div>
-                        <div className="relative z-10">
-                            <h3 className="text-xl font-bold text-white mb-4">Just hit play</h3>
-                            <p className="text-gray-300 text-base leading-relaxed">Tap any title and we'll instantly route the right global connection in the background. Grab the popcorn, we handle the rest.</p>
-                        </div>
-                    </div>
-
-
                 </div>
-            </div>
-        </div>
-    );
-};
+            </section>
 
 
-const TrustSection = () => (
-    <div id="trust" className="py-20 bg-slate-900/40 border-y border-slate-800/50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="flex justify-center mb-6">
-                {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={28} className="text-yellow-500 fill-yellow-500 mx-1" />)}
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Trusted by over 100,000 streamers</h2>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-                "I used to spend 10 minutes guessing which VPN server wouldn't buffer my F1 stream. Now I just open the app and hit play. It's incredibly simple."
-            </p>
-            <p className="text-indigo-400 font-bold">- Ahmed R., Global Expat</p>
-        </div>
-    </div>
-);
-
-
-const Footer = () => (
-    <footer className="bg-slate-950 py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center gap-2">
+            {/* UNIFIED SPOTLIGHT BENEFITS SECTION */}
+            <section id="benefits" className="relative z-10 border-t border-white/10 overflow-hidden">
+                {/* VIBRANT ONE PIECE THEMED LONG BACKGROUND IMAGE */}
+                <div className="absolute inset-0 z-0">
                     <img
-                        src={logo}
-                        alt="BingeBeyond Logo"
-                        className="h-8 w-8 object-contain mr-2"
+                        src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=2000"
+                        alt="One Piece Vibrant Backdrop"
+                        className="w-full h-full object-cover opacity-[0.45] scale-105 animate-slow-pan"
                     />
-                    <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                    <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-transparent to-[#0f172a]" />
+                    <div className="absolute inset-0 bg-cyan-900/10" />
                 </div>
-                <div className="flex gap-6 text-sm text-gray-500 font-medium">
-                    <a href="#" className="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" className="hover:text-white transition">Terms of Service</a>
-                    <a href="#" className="hover:text-white transition">Contact Us</a>
-                </div>
-                <p className="text-gray-600 text-sm">© 2026 BingeBeyond.</p>
-            </div>
-        </div>
-    </footer>
-);
 
 
-export default function App() {
-    return (
-        <div className="min-h-screen bg-slate-950 font-sans text-gray-100 selection:bg-indigo-500/30">
-            <Navbar />
-
-            <main>
-                <Hero />
-
-                <Logos />
-
-
-                <ProblemSection />
-
-                <ContentShowcase />
-
-
-                <HowItWorks />
-
-                {/* UNIFIED FEATURES SECTION */}
-                <div id="features" className="py-24 bg-slate-950 relative border-b border-gray-800">
-
-                    {/* Unifying Section Heading */}
-                    <div className="max-w-4xl mx-auto px-4 text-center mb-8 md:mb-16">
-                        <p className="text-indigo-400 font-bold tracking-widest text-sm mb-4 uppercase">High-Performance Network</p>
-                        <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                            Built for binge-watching. <br className="hidden md:block"/> Optimized for speed.
+                <div className="relative z-10">
+                    {/* Main Heading area */}
+                    <div className="max-w-7xl mx-auto px-6 py-40 text-center text-white">
+                        <div className="inline-flex items-center gap-5 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">High-Performance Network</div>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] mb-2 drop-shadow-2xl">
+                            Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching.</span>
+                        </h2>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
+                            Optimized for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">speed.</span>
                         </h2>
                     </div>
 
 
-                    <SimpleFeature
-                        reverse={true}
-                        eyebrow="Zero Tunnel Tax"
-                        title="Stream globally with zero phone lag."
-                        description="Traditional VPNs force your entire device through a slow connection, causing massive lag. BingeBeyond uses SmartRoute™ technology to fix this by intelligently separating your traffic. We apply the VPN only to the specific streaming apps you select, leaving the rest of your phone completely untouched."
-                        points={[
-                            "SmartRoute™ separates streaming traffic from normal traffic",
-                            "The VPN is only applied to the streaming apps you pick",
-                            "Everyday apps bypass the VPN to stay lightning fast"
-                        ]}
-                        visual={<VisualSmartRoute />}
-                    />
+                    {/* Subsection Grid */}
+                    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24 pb-40">
 
-                    <SimpleFeature
-                        reverse={true}
-                        eyebrow="Instant Delivery"
-                        title="Smooth, buffer-free playback."
-                        description="Wherever you connect from, the network is built for speed, stability, and smooth playback. Stop playing server roulette trying to find a good connection."
-                        points={[
-                            "Built specifically for high-speed 4K streaming",
-                            "Automatically connects to the fastest routing lane",
-                            "Optimized for live sports and global premieres"
-                        ]}
-                        visual={<VisualPerformance />}
-                    />
+                        {/* Feature 1 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="space-y-8">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md shadow-xl"><Zap size={12} fill="currentColor" /> Zero Lag</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Stream globally with <br/><span className="text-cyan-400 italic">zero phone lag.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
+                                            Traditional VPNs force your entire device through a slow connection, causing massive lag. BingeBeyond fixes this by intelligently separating your traffic. We apply the VPN only to the specific streaming apps you select, leaving the rest of your phone completely untouched.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Separates streaming traffic from normal traffic</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> The VPN is only applied to the streaming apps you pick</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Everyday apps bypass the VPN to stay lightning fast</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-cyan-400/[0.03]" />
+                                </div>
+                            </div>
+                        </div>
 
 
-                    <SimpleFeature
-                        reverse={true}
-                        eyebrow="Universal Remote"
-                        title="One tap from search to stream."
-                        description="Don't waste time guessing which country's server has the show you want. Find it directly in the BingeBeyond hub, hit play, and we automatically connect the right global node to launch your stream."
-                        points={[
-                            "Browse global catalogs in one unified hub",
-                            "Auto-connects to the required country node",
-                            "Launches your streaming app instantly"
-                        ]}
-                        visual={<VisualAutoConnect />}
-                    />
+                        {/* Feature 2 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                                </div>
+                                <div className="space-y-8 text-right">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md ml-auto"><FastForward size={12} fill="currentColor" /> Instant Delivery</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Smooth, buffer-free <br/><span className="text-cyan-400 italic">playback.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md ml-auto">
+                                            Wherever you connect from, the network is built for speed, stability, and smooth playback. Stop playing server roulette trying to find a good connection.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start justify-end gap-3">Built specifically for high-speed 4K streaming <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                            <li className="flex items-start justify-end gap-3">Automatically connects to the fastest routing lane <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                            <li className="flex items-start justify-end gap-3">Optimized for live sports and global premieres <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* Feature 3 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="space-y-8">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md"><Target size={12} fill="currentColor" /> Universal Remote</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">One tap from search <br/>to <span className="text-cyan-400 italic">stream.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
+                                            Don't waste time guessing which country's server has the show you want. Find it directly in the BingeBeyond hub, hit play, and we automatically connect the right global node to launch your stream.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Browse global catalogs in one unified hub</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Auto-connects to the required country node</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Launches your streaming app instantly</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
 
-                <MentalModel />
+            {/* HOW IT WORKS SECTION */}
+            <section id="protocol" className="relative bg-[#1e293b] py-56 overflow-hidden z-10">
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="flex flex-col items-center text-center mb-32 text-white">
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
+                            Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching</span> in 3 simple steps.
+                        </h2>
+                    </div>
 
 
-                <TrustSection />
+                    <div className="grid lg:grid-cols-12 gap-24 items-center">
+                        <div className="lg:col-span-5 space-y-6">
+                            {steps.map((step, i) => (
+                                <div
+                                    key={i}
+                                    onMouseEnter={() => setActiveStep(i)}
+                                    className={`group relative p-10 rounded-[45px] border transition-all duration-500 cursor-pointer ${activeStep === i ? 'bg-cyan-400 border-cyan-400 scale-[1.03] shadow-[0_0_60px_rgba(34,211,238,0.3)]' : 'bg-white/[0.12] border-white/10 hover:border-white/25 backdrop-blur-md'}`}
+                                >
+                                    <div className="flex gap-8 items-start">
+                                        <div className={`flex-shrink-0 w-14 h-14 rounded-3xl flex items-center justify-center font-black text-2xl italic ${activeStep === i ? 'bg-[#1e293b] text-white' : 'bg-cyan-400/10 text-cyan-400'}`}>
+                                            {i + 1}
+                                        </div>
+                                        <div>
+                                            <p className={`text-[11px] font-black uppercase tracking-[0.25em] mb-2 ${activeStep === i ? 'text-slate-900' : 'text-white'}`}>{step.subtitle}</p>
+                                            <h4 className={`text-2xl font-black uppercase tracking-tighter mb-3 ${activeStep === i ? 'text-black' : 'text-white'}`}>{step.title}</h4>
+                                            <p className={`text-base font-semibold leading-relaxed ${activeStep === i ? 'text-slate-800' : 'text-slate-200'}`}>{step.desc}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
 
-                <div className="py-24 relative overflow-hidden bg-blue-950/20">
-                    <div className="absolute inset-0 bg-indigo-900/10"></div>
-                    <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Start watching global TV today.</h2>
-                        <p className="text-xl text-gray-400 mb-10">Download Binge Beyond now to unlock shows and movies from around the globe.</p>
-                        <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="inline-block transition-transform hover:scale-105 active:scale-95">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 md:h-[72px]" />
-                        </a>
+                        <div className="lg:col-span-7 relative h-[650px] bg-slate-800/80 border border-white/30 rounded-[70px] overflow-hidden shadow-3xl backdrop-blur-3xl group">
+                            <div className="absolute inset-0 blueprint-grid opacity-30" />
+                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                                <div className="grid grid-cols-3 gap-8 w-full max-w-md">
+                                    {services.map((s, idx) => (
+                                        <div key={idx} className="aspect-square rounded-[36px] bg-white/[0.15] border border-white/30 flex items-center justify-center shadow-2xl relative overflow-hidden">
+                                            <span className="text-[14px] font-black uppercase tracking-tighter" style={{ color: s.color }}>{s.name[0]}</span>
+                                            <div className={`absolute bottom-4 right-4 w-3 h-3 rounded-full ${idx < 3 ? 'bg-cyan-400 animate-pulse shadow-[0_0_20px_#22d3ee]' : 'bg-slate-700'}`} />
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="mt-12 text-[10px] font-black uppercase tracking-[0.4em] text-white animate-pulse">Syncing Active Subscriptions</p>
+                            </div>
+                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                                <div className="w-full max-w-lg bg-white/[0.1] border border-white/30 rounded-[50px] p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+                                    <div className="flex items-center gap-6 border-b border-white/20 pb-8 mb-10">
+                                        <Search className="text-cyan-400" size={32} />
+                                        <div className="h-3 w-64 bg-white/20 rounded-full" />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-8">
+                                        <div className="aspect-[3/4] bg-white/10 rounded-3xl border border-white/20 animate-pulse" />
+                                        <div className="aspect-[3/4] bg-white/10 rounded-2xl border border-white/10 animate-pulse delay-75" />
+                                    </div>
+                                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-white text-black text-[10px] font-black rounded-full shadow-2xl">Scanning 14,000+ Titles...</div>
+                                </div>
+                            </div>
+                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                                <div className="w-full max-w-lg aspect-video bg-slate-900 rounded-[50px] overflow-hidden border border-white/30 shadow-2xl relative">
+                                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600" className="w-full h-full object-cover" alt="" />
+                                    <div className="absolute inset-0 bg-white/10 flex items-center justify-center backdrop-blur-[4px]">
+                                        <div className="w-28 h-28 rounded-full bg-cyan-400 flex items-center justify-center text-black shadow-[0_0_80px_rgba(34,211,238,0.8)]"><Play size={48} fill="black" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* MULTIVERSE FEED SECTION - RESTORED DUAL ROWS */}
+            <section id="beyond" className="relative py-48 bg-[#1e293b] relative overflow-hidden z-10 border-t border-white/10">
+                <div className="absolute inset-0 blueprint-grid opacity-60 z-0" />
+                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[1400px] max-h-[1400px] bg-cyan-500/[0.18] rounded-full blur-[240px] animate-pulse" />
+                    <div className="absolute inset-0 opacity-[0.4]">
+                        <img
+                            src="https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=2000"
+                            className="w-full h-full object-cover object-top"
+                            style={{ maskImage: 'linear-gradient(to bottom, black 65%, transparent 95%)' }}
+                            alt=""
+                        />
                     </div>
                 </div>
 
 
-            </main>
+                <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10 text-center text-white">
+                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Millions of Shows, Matches & Movies</div>
+                    <h2 className="text-[38px] font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-md">Stream right on the apps <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">you already use.</span></h2>
+                    <p className="text-slate-100 max-w-xl mx-auto text-sm font-bold leading-relaxed uppercase tracking-[0.2em] drop-shadow-md">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
+                </div>
 
 
-            <Footer />
+                <div className="relative z-10 flex flex-col gap-20 perspective-[2000px] py-10 mask-fade-x">
+                    <div className="animate-marquee whitespace-nowrap flex gap-12 py-4">
+                        {[...multiverseContent, ...multiverseContent].map((item, i) => (
+                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[40px] overflow-hidden glass-card transition-all duration-700 vortex-card shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
+                                <img src={item.url} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
+                                <div className="absolute top-5 left-5 right-5 flex justify-between items-start">
+                      <span className="px-3 py-1.5 bg-black/80 backdrop-blur-md rounded-xl text-[10px] font-black text-white border border-white/30 uppercase tracking-tight shadow-xl">
+                         {item.region} - {item.type}
+                      </span>
+                                    <div className={`w-3 h-3 rounded-full shadow-[0_0_25px_currentColor]`} style={{ backgroundColor: item.color, color: item.color }} />
+                                </div>
+                                <div className="absolute bottom-6 left-7 text-white">
+                                    <h4 className="text-xl font-black uppercase tracking-tighter mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-lg">{item.title}</h4>
+                                    <span className="text-[11px] font-bold uppercase tracking-widest drop-shadow-md opacity-80" style={{ color: item.color }}>{item.platform}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {/* ROW 2 RESTORED */}
+                    <div className="animate-marquee-reverse whitespace-nowrap flex gap-12 py-4">
+                        {[...multiverseContent].reverse().concat([...multiverseContent].reverse()).map((item, i) => (
+                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[40px] overflow-hidden glass-card transition-all duration-700 vortex-card shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" style={{ transform: 'rotateX(20deg) rotateY(15deg)' }}>
+                                <img src={item.url} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
+                                <div className="absolute top-5 left-5 right-5 flex justify-between items-start">
+                      <span className="px-3 py-1.5 bg-black/80 backdrop-blur-md rounded-xl text-[10px] font-black text-white border border-white/30 uppercase tracking-tight shadow-xl">
+                         {item.region} - {item.type}
+                      </span>
+                                    <Activity size={16} className="text-white group-hover:text-cyan-400 animate-pulse transition-colors drop-shadow-lg" />
+                                </div>
+                                <div className="absolute bottom-6 left-7 text-white">
+                                    <h4 className="text-xl font-black uppercase tracking-tighter mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-lg">{item.title}</h4>
+                                    <span className="text-[11px] font-bold uppercase tracking-widest drop-shadow-md opacity-80" style={{ color: item.color }}>{item.platform}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+            {/* TESTIMONIALS SECTION - 3 CARDS PER SLIDE */}
+            <section id="testimonials" className="relative bg-[#1e293b] py-56 overflow-hidden border-t border-white/10 z-10">
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="text-center mb-32">
+                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Reviews</div>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                            Trusted by over <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">100,000 Streamers</span>
+                        </h2>
+                    </div>
+
+
+                    <div className="relative group">
+                        <div className="relative overflow-hidden min-h-[450px]">
+                            <div
+                                className="flex transition-transform duration-700 ease-in-out h-full"
+                                style={{ transform: `translateX(-${testimonialSlide * 100}%)`, width: `${testimonialPages.length * 100}%` }}
+                            >
+                                {testimonialPages.map((page, pageIndex) => (
+                                    <div key={pageIndex} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                                        {page.map((item, i) => (
+                                            <div key={i} className="glass-card p-10 rounded-[55px] hover:-translate-y-3 transition-all duration-500 group border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col h-full bg-white/[0.08]">
+                                                <Quote className="text-cyan-400/40 mb-8 group-hover:text-cyan-400 transition-colors" size={40} />
+                                                <p className="text-lg text-white font-semibold leading-relaxed italic mb-auto">
+                                                    "{item.text}"
+                                                </p>
+                                                <div className="flex items-center gap-4 mt-10">
+                                                    <div className="w-12 h-12 rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-black text-xl">
+                                                        {item.avatar}
+                                                    </div>
+                                                    <h4 className="font-black uppercase tracking-tighter text-white text-sm">{item.name}</h4>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+
+                        <button
+                            onClick={prevTestimonial}
+                            className="absolute top-1/2 -left-4 md:-left-16 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+                        <button
+                            onClick={nextTestimonial}
+                            className="absolute top-1/2 -right-4 md:-right-16 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+
+
+                        <div className="flex justify-center gap-3 mt-12">
+                            {testimonialPages.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setTestimonialSlide(i)}
+                                    className={`w-3 h-3 rounded-full transition-all ${testimonialSlide === i ? 'bg-cyan-400 w-8' : 'bg-white/20'}`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* FAQs SECTION */}
+            <section id="faqs" className="relative bg-[#334155] py-56 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
+                <div className="max-w-5xl mx-auto px-6 relative z-10">
+                    <div className="text-center mb-32 text-white">
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
+                            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">Questions</span>
+                        </h2>
+                    </div>
+
+
+                    <div className="space-y-6">
+                        {faqs.map((item, i) => (
+                            <div
+                                key={i}
+                                className={`rounded-[40px] border transition-all duration-500 overflow-hidden cursor-pointer ${openFaq === i ? 'bg-white border-white shadow-[0_0_60px_rgba(255,255,255,0.2)]' : 'bg-white/[0.08] border-white/10 hover:border-white/30 backdrop-blur-md'}`}
+                                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                            >
+                                <div className="p-10 flex items-center justify-between gap-8">
+                                    <h4 className={`text-2xl font-black uppercase tracking-tighter transition-colors ${openFaq === i ? 'text-black' : 'text-white'}`}>{item.q}</h4>
+                                    <div className={`p-3 rounded-2xl transition-all shadow-xl ${openFaq === i ? 'bg-[#334155] text-white' : 'bg-white/10 text-white'}`}>
+                                        {openFaq === i ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
+                                    </div>
+                                </div>
+                                <div className={`transition-all duration-500 ease-in-out ${openFaq === i ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                                    <p className={`p-10 pt-0 text-lg font-semibold leading-relaxed border-t ${openFaq === i ? 'text-slate-600 border-slate-100' : 'text-slate-100 border-white/10'}`}>
+                                        {item.a}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+            {/* FINAL CTA SECTION */}
+            <section className="relative py-72 bg-[#0f172a] overflow-hidden border-t border-white/20 z-10">
+                <div className="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2000" alt="CTA Hero" className="w-full h-full object-cover scale-105 opacity-[0.6] animate-slow-pan" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/60 via-[#0f172a]/80 to-[#0f172a]" />
+                </div>
+                <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
+                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full mb-10 backdrop-blur-md text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-2xl">
+                        <Zap size={20} fill="currentColor" /> Limited Access Override
+                    </div>
+                    <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10 text-glow">
+                        Stop settling for 10%. <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white italic">The whole world is waiting.</span>
+                    </h2>
+                    <p className="text-slate-100 max-w-2xl mx-auto text-xl font-bold leading-relaxed mb-16 drop-shadow-2xl">
+                        Join 50,000+ streamers who have already unlocked their subscriptions. Fast, private, and built for 4K.
+                    </p>
+                    <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+                        <button className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px] shadow-[0_0_80px_rgba(34,211,238,0.9)] hover:shadow-[0_0_100px_rgba(34,211,238,1)] hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group drop-shadow-[0_0_12px_rgba(255,255,255,1)]">
+                            <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
+                        </button>
+                        <button className="px-12 py-7 bg-white/10 border border-white/30 text-white font-black rounded-[32px] hover:bg-white/20 transition-all text-base uppercase tracking-widest shadow-2xl backdrop-blur-sm">
+                            Browse Library
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* FOOTER */}
+            <footer className="bg-[#0f172a] pt-32 pb-16 px-6 border-t border-white/20 relative overflow-hidden z-10">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[700px] bg-cyan-500/[0.15] blur-[220px] rounded-full pointer-events-none" />
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
+                        <div className="col-span-1 md:col-span-2">
+                            <div className="text-5xl font-black tracking-tighter flex items-center mb-10 text-white">
+                                <span>BINGE</span>
+                                <span className="text-cyan-400 ml-1">BEYOND</span>
+                            </div>
+                            <p className="text-slate-200 max-w-sm mb-14 font-semibold text-lg leading-relaxed italic drop-shadow-sm">
+                                BingeBeyond bridges the gap between your local catalog and the global multiverse of content. Optimized for speed, built for privacy.
+                            </p>
+                            <div className="flex gap-6">
+                                {[Twitter, Instagram, Github, Mail].map((Icon, i) => (
+                                    <div key={i} className="w-14 h-14 rounded-2xl bg-white/[0.15] border border-white/30 flex items-center justify-center hover:bg-cyan-400 hover:text-black hover:scale-110 cursor-pointer transition-all duration-300 text-white shadow-xl">
+                                        <Icon size={22} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="space-y-10 text-white">
+                            <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>
+                            <ul className="space-y-5 text-base font-bold">
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>
+                            </ul>
+                        </div>
+                        <div className="space-y-10 text-white">
+                            <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Protocol Support</h5>
+                            <ul className="space-y-5 text-base font-bold">
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Shield</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Legal Hub</a></li>
+                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="pt-12 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-slate-300 text-[10px] font-black tracking-[0.6em] gap-10 text-center uppercase">
+                        <div className="flex items-center gap-5">
+                            <span>© 2024 BINGEBEYOND NETWORKS</span>
+                            <div className="w-2 h-2 bg-slate-600 rounded-full" />
+                            <span className="text-cyan-400 font-black drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">SYSTEM STATUS: OPTIMAL</span>
+                        </div>
+                        <div className="flex gap-12 text-slate-400 font-bold">
+                            <a href="#" className="hover:text-white transition-colors">Privacy Override</a>
+                            <a href="#" className="hover:text-white transition-colors">Term of Protocol</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
-}
+};
 
 
+export default App;
 
