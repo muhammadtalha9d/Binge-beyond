@@ -327,8 +327,13 @@ const App = () => {
             <section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-70" />
-                </div>
+                    <div className="absolute inset-0 pointer-events-none bg-transparent">
+                        <img
+                        src={bgImage}
+                          className="w-full h-full object-cover bg-transparent"
+                          alt="Background"
+                   />
+                </div>             </div>
 
                 {/* 2. Dark Overlay */}
                 <div className="absolute inset-0 z-10 bg-black/10" />
@@ -622,6 +627,111 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="benefits" className="relative z-10 border-t border-white/10 overflow-hidden bg-[#0f172a]">
+                {/* --- NEW BACKGROUND GRADIENT --- */}
+                <div className="absolute inset-0 -z-10 pointer-events-none">
+                    {/* Main large glow from top right */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-60" />
+
+                    {/* Mid-section glow to keep the long page from feeling empty */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-fuchsia-500/5 rounded-full blur-[160px]" />
+
+                    {/* Bottom glow */}
+                    <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
+                </div>
+                {/* ------------------------------ */}
+
+                <div className="relative z-10">
+                    {/* Main Heading area */}
+                    <div className="max-w-7xl mx-auto px-6 py-40 text-center text-white">
+                        <div className="inline-flex items-center gap-5 px-5 py-2 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">High-Performance Network</div>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] mb-2 drop-shadow-2xl">
+                            Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching.</span>
+                        </h2>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
+                            Optimized for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">speed.</span>
+                        </h2>
+                    </div>
+
+
+                    {/* Subsection Grid */}
+                    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24 pb-40">
+
+                        {/* Feature 1 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="space-y-8">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md shadow-xl"><Zap size={12} fill="currentColor" /> Zero Lag</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Stream globally with <br/><span className="text-cyan-400 italic">zero phone lag.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
+                                            Traditional VPNs force your entire device through a slow connection, causing massive lag. BingeBeyond fixes this by intelligently separating your traffic. We apply the VPN only to the specific streaming apps you select, leaving the rest of your phone completely untouched.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Separates streaming traffic from normal traffic</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> The VPN is only applied to the streaming apps you pick</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Everyday apps bypass the VPN to stay lightning fast</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-cyan-400/[0.03]" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* Feature 2 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
+                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                                </div>
+                                <div className="space-y-8 text-right">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md ml-auto"><FastForward size={12} fill="currentColor" /> Instant Delivery</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Smooth, buffer-free <br/><span className="text-cyan-400 italic">playback.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md ml-auto">
+                                            Wherever you connect from, the network is built for speed, stability, and smooth playback. Stop playing server roulette trying to find a good connection.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start justify-end gap-3">Built specifically for high-speed 4K streaming <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                            <li className="flex items-start justify-end gap-3">Automatically connects to the fastest routing lane <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                            <li className="flex items-start justify-end gap-3">Optimized for live sports and global premieres <Check size={18} className="text-cyan-400 mt-0.5" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* Feature 3 */}
+                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
+                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+                                <div className="space-y-8">
+                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md"><Target size={12} fill="currentColor" /> Universal Remote</div>
+                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">One tap from search <br/>to <span className="text-cyan-400 italic">stream.</span></h2>
+                                    <div className="space-y-6">
+                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
+                                            Don't waste time guessing which country's server has the show you want. Find it directly in the BingeBeyond hub, hit play, and we automatically connect the right global node to launch your stream.
+                                        </p>
+                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Browse global catalogs in one unified hub</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Auto-connects to the required country node</li>
+                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Launches your streaming app instantly</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
                                     <div className="absolute inset-0 bg-white/[0.02]" />
                                 </div>
                             </div>
