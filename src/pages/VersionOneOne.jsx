@@ -252,25 +252,102 @@ const App = () => {
 
 
             {/* Hero Section */}
-            <section className="relative h-[100vh] w-full overflow-hidden flex items-center bg-transparent z-10">
-                    <div className="absolute inset-0 pointer-events-none">
-                        <img
-                            src={bgImage}
-                            className="w-full h-full object-cover"
-                            alt="Background"
-                        />
+            {/*<section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">*/}
+            {/*        <div className="absolute inset-0 pointer-events-none">*/}
+            {/*            /!*<img*!/*/}
+            {/*            /!*    src={bgImage}*!/*/}
+            {/*            /!*    className="w-full h-full object-cover"*!/*/}
+            {/*            /!*    alt="Background"*!/*/}
+            {/*            /!*//*/}
+            {/*        </div>*/}
+
+            {/*    <div className="absolute inset-0 z-10" />*/}
+
+            {/*    <div className="relative z-20 px-8 md:px-20 max-w-7xl">*/}
+            {/*        <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>*/}
+            {/*        <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-glow text-white">*/}
+            {/*            Watch Shows, Movies & <br/>*/}
+            {/*            Live Sports - <br/>*/}
+            {/*            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white text-glow">Without Location Limits</span>*/}
+            {/*        </h1>*/}
+            {/*        <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl leading-relaxed font-semibold drop-shadow-md">*/}
+            {/*            BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.*/}
+            {/*        </p>*/}
+
+            {/*        <a*/}
+            {/*            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"*/}
+            {/*            target="_blank"*/}
+            {/*            rel="noopener noreferrer"*/}
+            {/*            className="w-1/2 sm:w-1/2 flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all group"*/}
+            {/*        >*/}
+
+
+            {/*            <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">*/}
+            {/*                <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>*/}
+            {/*            </svg>*/}
+            {/*            <div className="text-left">*/}
+            {/*                <div className="text-[12px] font-normal leading-none mb-1 opacity-80 text-glow-white font-black">GET IT*/}
+            {/*                    ON*/}
+            {/*                </div>*/}
+            {/*                <div className="text-[20px] font-semibold leading-none text-glow-white font-black">Google Play</div>*/}
+            {/*            </div>*/}
+            {/*        </a>*/}
+
+            {/*        /!*<button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">*!/*/}
+            {/*        /!*    <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />*!/*/}
+            {/*        /!*</button>*!/*/}
+            {/*    </div>*/}
+
+
+            {/*    /!* DEVICE SUPPORT INDICATOR *!/*/}
+            {/*    <div className="absolute bottom-12 right-12 z-30 flex gap-8 transition-all duration-700">*/}
+            {/*        <div className="flex flex-col items-center group">*/}
+            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
+            {/*                <Smartphone className="text-cyan-400" size={24} />*/}
+            {/*            </div>*/}
+            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Mobile</span>*/}
+            {/*        </div>*/}
+            {/*        <div className="flex flex-col items-center group">*/}
+            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
+            {/*                <Tablet className="text-cyan-400" size={24} />*/}
+            {/*            </div>*/}
+            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Tablet</span>*/}
+            {/*        </div>*/}
+            {/*        <div className="flex flex-col items-center group">*/}
+            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
+            {/*                <Tv className="text-cyan-400" size={24} />*/}
+            {/*            </div>*/}
+            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Smart TV</span>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+
+
+            {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
+            {/*</section>*/}
+            <section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
+                {/* 1. Background Gradient Fix */}
+                <div className="absolute inset-0 -z-10 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-70" />
+                </div>
+
+                {/* 2. Dark Overlay */}
+                <div className="absolute inset-0 z-10 bg-black/10" />
+
+                {/* 3. Content Container */}
+                <div className="relative z-20 px-8 md:px-20 max-w-7xl">
+                    <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">
+                        Unlock Global Content
                     </div>
 
-                <div className="absolute inset-0 z-10" />
-
-                <div className="relative z-20 px-8 md:px-20 max-w-7xl">
-                    <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>
-                    <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-glow text-white">
+                    <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
                         Watch Shows, Movies & <br/>
                         Live Sports - <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white text-glow">Without Location Limits</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white">
+                Without Location Limits
+            </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl leading-relaxed font-semibold drop-shadow-md">
+
+                    <p className="text-lg md:text-xl text-slate-100 mt-6 mb-10 max-w-2xl leading-relaxed font-semibold">
                         BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.
                     </p>
 
@@ -278,50 +355,19 @@ const App = () => {
                         href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-1/2 sm:w-1/2 flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all group"
+                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 group"
                     >
-
-
                         <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">
                             <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
                         </svg>
                         <div className="text-left">
-                            <div className="text-[12px] font-normal leading-none mb-1 opacity-80 text-glow-white font-black">GET IT
-                                ON
-                            </div>
-                            <div className="text-[20px] font-semibold leading-none text-glow-white font-black">Google Play</div>
+                            <div className="text-[12px] font-normal leading-none mb-1 opacity-80 font-black">GET IT ON</div>
+                            <div className="text-[20px] font-semibold leading-none font-black">Google Play</div>
                         </div>
                     </a>
-
-                    {/*<button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">*/}
-                    {/*    <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />*/}
-                    {/*</button>*/}
                 </div>
 
-
-                {/* DEVICE SUPPORT INDICATOR */}
-                <div className="absolute bottom-12 right-12 z-30 flex gap-8 transition-all duration-700">
-                    <div className="flex flex-col items-center group">
-                        <div className="neon-device-circle transition-all group-hover:scale-110">
-                            <Smartphone className="text-cyan-400" size={24} />
-                        </div>
-                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Mobile</span>
-                    </div>
-                    <div className="flex flex-col items-center group">
-                        <div className="neon-device-circle transition-all group-hover:scale-110">
-                            <Tablet className="text-cyan-400" size={24} />
-                        </div>
-                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Tablet</span>
-                    </div>
-                    <div className="flex flex-col items-center group">
-                        <div className="neon-device-circle transition-all group-hover:scale-110">
-                            <Tv className="text-cyan-400" size={24} />
-                        </div>
-                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Smart TV</span>
-                    </div>
-                </div>
-
-
+                {/* 4. Bottom Fade */}
                 <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />
             </section>
 
