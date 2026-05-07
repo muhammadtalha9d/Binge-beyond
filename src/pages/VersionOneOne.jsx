@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import bgImage from './collage2.jpg'; // Adjust path as needed
+// import bgImage from './collage2.jpg'; // Adjust path as needed
+import bgImage from './hero-logo.png';
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
 import stepsImg from './3steps-bg.jpg';
@@ -251,16 +252,16 @@ const App = () => {
 
 
             {/* Hero Section */}
-            <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-transparent z-10">
-                    <div className="absolute inset-0 opacity-90 pointer-events-none">
+            <section className="relative h-[100vh] w-full overflow-hidden flex items-center bg-transparent z-10">
+                    <div className="absolute inset-0 pointer-events-none">
                         <img
                             src={bgImage}
-                            className="w-full h-full object-cover opacity-70"
+                            className="w-full h-full object-cover"
                             alt="Background"
                         />
                     </div>
 
-                <div className="absolute inset-0 z-10" style={{ background: 'radial-gradient(circle at 10% 30%, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.05) 35%, rgba(30, 41, 59, 0.05) 50%)' }} />
+                <div className="absolute inset-0 z-10" />
 
                 <div className="relative z-20 px-8 md:px-20 max-w-7xl">
                     <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>
