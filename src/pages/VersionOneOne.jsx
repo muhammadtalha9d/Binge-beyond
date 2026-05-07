@@ -457,6 +457,73 @@ const App = () => {
                     </div>
                 </div>
             </section>
+            <section ref={sectionRef} className="py-40 px-6 relative overflow-hidden z-10 bg-[#0f172a]">
+
+                {/* --- NEW BACKGROUND GRADIENT --- */}
+                <div className="absolute inset-0 -z-10 pointer-events-none">
+                    {/* Primary glow from top right to bottom left */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-60" />
+
+                    {/* Secondary subtle glow behind the text area */}
+                    <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
+                </div>
+                {/* ------------------------------ */}
+
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-5 gap-16 items-center">
+                        <div className="lg:col-span-2 space-y-10 text-white">
+                            <h2 className="text-[38px] font-black tracking-tighter uppercase leading-[0.9] drop-shadow-lg">
+                                Favorite <br/>
+                                shows aren't <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gone.</span> <br/>
+                                They're being <br/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gatekept.</span>
+                            </h2>
+                            <p className="text-[38px] font-black tracking-tighter uppercase leading-none text-glow">Stop settling for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic text-5xl font-black tracking-tighter">10% Access.</span></p>
+                        </div>
+
+                        <div
+                            onClick={revealStage === 'problem' ? startAnimationSequence : handleReplay}
+                            className="lg:col-span-3 relative h-[500px] w-full rounded-[48px] border border-white/25 overflow-hidden bg-slate-800/40 shadow-[0_0_80px_rgba(34,211,238,0.2)] cursor-pointer group backdrop-blur-xl"
+                        >
+                            {/* Error Panel (Stage: Problem) */}
+                            <div className="absolute inset-0 bg-[#0f172a]/40 flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
+                                <div className="w-full max-w-md bg-slate-800/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
+                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md">"This title is not available in your current region."</h4>
+                                        <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
+                                            <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Unlocked Panel (Stage: Done) */}
+                            <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
+                                <div className="w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative">
+                                    <img
+                                        src={unlocked}
+                                        className="w-full h-full object-cover"
+                                        alt="Unlocked Content"
+                                    />
+                                    <div className="absolute inset-0 bg-black/20" />
+                                </div>
+
+                                <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                                    <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
+                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Scanner Bar (Stage: Scanning) */}
+                            <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
             {/* UNIFIED SPOTLIGHT BENEFITS SECTION */}
