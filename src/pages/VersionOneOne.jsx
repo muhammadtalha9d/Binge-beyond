@@ -918,12 +918,17 @@ const App = () => {
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
                         <div className="col-span-1 md:col-span-2">
-                            <div className="text-5xl font-black tracking-tighter flex items-center mb-10 text-white">
-                                <span>BINGE</span>
-                                <span className="text-cyan-400 ml-1">BEYOND</span>
+                            <div className="flex-shrink-0 flex items-center cursor-pointer mb-10">
+                                <img
+                                    src="/images/Binge-logo.svg"
+                                    alt="BingeBeyond Logo"
+                                    className="h-8 w-8 object-contain mr-2"
+                                />
+                                <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                                <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                             </div>
                             <p className="text-slate-200 max-w-sm mb-14 font-semibold text-lg leading-relaxed italic drop-shadow-sm">
-                                BingeBeyond bridges the gap between your local catalog and the global multiverse of content. Optimized for speed, built for privacy.
+                                Stream global content seamlessly across your favorite OTT platforms. Fast, private, and built for uninterrupted viewing.
                             </p>
                             {/*<div className="flex gap-6">*/}
                             {/*    {[Twitter, Instagram, Github, Mail].map((Icon, i) => (*/}
@@ -942,7 +947,6 @@ const App = () => {
                         {/*    </ul>*/}
                         {/*</div>*/}
                         <div className="space-y-10 text-white">
-                            <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Protocol Support</h5>
                             <ul className="space-y-5 text-base font-bold">
                                 <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a></li>
                                 <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a></li>
