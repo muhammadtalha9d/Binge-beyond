@@ -161,7 +161,7 @@ const App = () => {
 
 
     return (
-        <div className="min-h-screen bg-[#0f172a] text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
+        <div className="min-h-screen master-raycast-atmosphere text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
             <style>{`
         @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -270,7 +270,7 @@ const App = () => {
 
 
             {/* HERO SECTION */}
-            <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
+            <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-transparent z-10">
                 <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-3 p-3 opacity-90 animate-slow-pan pointer-events-none">
                     {[...posters, ...posters, ...posters, ...posters].map((p, i) => (
                         <div key={i} className="aspect-[2/3] rounded-lg bg-gray-900/50 border border-white/10 overflow-hidden shadow-inner">
@@ -298,7 +298,7 @@ const App = () => {
 
 
             {/* Marquee Bar */}
-            <section className="bg-slate-800/60 border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-20 relative">
+            <section className="bg-transparent border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-20 relative">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
                 </div>
@@ -313,7 +313,7 @@ const App = () => {
 
 
             {/* MASTER ATMOSPHERE */}
-            <div className="master-raycast-atmosphere">
+            <div className="bg-transparent relative">
                 <div className="noise-overlay" />
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
@@ -660,7 +660,7 @@ const App = () => {
 
 
                 {/* FINAL CTA SECTION */}
-                <section className="relative py-72 bg-black/15 overflow-hidden border-t border-white/10 z-10 text-white text-center">
+                <section className="relative py-72 bg-transparent overflow-hidden border-t border-white/10 z-10 text-white text-center">
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00D1E9]/30 to-transparent pointer-events-none" />
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <div className="premium-badge text-[10px] mb-10 inline-block uppercase tracking-[0.4em] shadow-2xl">
@@ -686,7 +686,7 @@ const App = () => {
 
 
                 {/* FOOTER */}
-                <footer className="bg-black/80 pt-32 pb-16 px-6 border-t border-white/5 relative overflow-hidden z-10 text-white">
+                <footer className="bg-transparent pt-32 pb-16 px-6 border-t border-white/5 relative overflow-hidden z-10 text-white">
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24 font-black">
                             <div className="col-span-1 md:col-span-2">

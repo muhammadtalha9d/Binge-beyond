@@ -18,6 +18,7 @@ import {
     Navigation, Share2, Layers as LayersIcon, Zap as ZapBolt, AppWindow,
     Mail, ExternalLink, Quote, Plus as PlusIcon, Minus as MinusIcon
 } from 'lucide-react';
+import logo from "../Binge-logo.svg";
 
 const App = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -206,7 +207,7 @@ const App = () => {
     const prevTestimonial = () => setTestimonialSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
     return (
-        <div className="min-h-screen bg-[#0f172a] text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
+        <div className="min-h-screen master-raycast-atmosphere text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
             <style>{`
         @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -378,18 +379,30 @@ const App = () => {
             {/* Navigation */}
             <nav className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'bg-[#0f172a]/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>
                 <div className="flex items-center gap-8">
-                    <div className="text-2xl font-black tracking-tighter flex items-center">
-                        <span className="text-white text-[24px]">BINGE</span>
-                        <span className="text-cyan-400 text-[24px]">BEYOND</span>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer">
+                        <img
+                            src="/images/Binge-logo.svg"
+                            alt="BingeBeyond Logo"
+                            className="h-8 w-8 object-contain mr-2"
+                        />
+                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                     </div>
                     <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">
                         <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
                         <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
-                        <a href="#beyond" className="hover:text-cyan-400 transition-colors uppercase">Multiverse</a>
+                        <a href="" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
                     </div>
                 </div>
-                <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">Get Access</button>
-            </nav>
+                <a
+                    href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block"
+                >
+                <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">Download The App</button>
+                </a>
+                </nav>
 
 
             {/* Hero Section */}
@@ -465,7 +478,7 @@ const App = () => {
 
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
-            <section className=" mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
+            <section className=" mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
                 {/* 1. Background Gradient Fix */}
                 <div className=" absolute inset-0 -z-10 pointer-events-none">
                     <div className="absolute inset-0 pointer-events-none bg-transparent">
@@ -480,9 +493,11 @@ const App = () => {
 
                 {/* 3. Content Container */}
                 <div className="relative z-20 px-8 md:px-20 max-w-7xl">
-                    <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">
-                        Unlock Global Content
-                    </div>
+                    {/*<div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">*/}
+                    {/*    Unlock Global Content*/}
+                    {/*</div>*/}
+                    <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Unlock Global Content</div>
+
 
                     <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
                         Watch Shows, Movies & <br/>
@@ -517,7 +532,7 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-slate-800/60 border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
+            <section className="bg-transparent border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
                 </div>
@@ -535,7 +550,7 @@ const App = () => {
 
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-                <section ref={sectionRef} className="py-40 bg-transparent px-6 relative overflow-hidden z-10 text-center">
+                <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
                     <div className="depth-wash-light" />
                     <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div className="space-y-6 text-white mb-20 max-w-4xl">
@@ -600,7 +615,7 @@ const App = () => {
 
 
             {/* UNIFIED SPOTLIGHT BENEFITS SECTION */}
-            <section id="benefits" className="relative z-10 py-40 bg-transparent">
+            <section id="benefits" className="relative z-10 py-20 bg-transparent">
                 <div className="depth-wash-heavy" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
                     <div className="text-center mb-24">
@@ -671,10 +686,12 @@ const App = () => {
 
 
             {/* HOW IT WORKS SECTION */}
-            <section id="protocol" className="relative bg-transparent py-56 overflow-hidden z-10 border-y border-white/5">
+            <section id="protocol" className="relative bg-transparent py-20 overflow-hidden z-10 border-y border-white/5">
                 <div className="absolute inset-0 blueprint-grid opacity-[0.08] pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
-                    <div className="flex flex-col items-center text-center mb-32">
+                    <div className="flex flex-col items-center text-center mb-20">
+                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">How it works</div>
+
                         <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 high-visibility-heading">
                             Start Binge-Watching<br/>
                             <span className="text-cyan-400">In 3 Simple Steps.</span>
@@ -734,19 +751,19 @@ const App = () => {
 
 
             {/* MULTIVERSE FEED SECTION - RESTORED DUAL ROWS */}
-            <section id="beyond" className="relative py-48 bg-[#1e293b] relative overflow-hidden z-10 border-t border-white/10">
+            <section id="beyond" className="relative py-20 bg-transparent relative overflow-hidden z-10 border-t border-white/10">
                 <div className="absolute inset-0 blueprint-grid opacity-60 z-0" />
 
 
 
-                <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10 text-center text-white">
-                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Millions of Shows, Matches & Movies</div>
+                <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
+                    <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
                     <h2 className="text-[38px] font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-md">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
                     <p className="text-slate-100 max-w-xl mx-auto text-sm font-bold leading-relaxed uppercase tracking-[0.2em] drop-shadow-md">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
                 </div>
 
 
-                <div className="relative z-10 flex flex-col gap-20 perspective-[2000px] py-10 mask-fade-x">
+                <div className="relative z-10 flex flex-col gap-20 perspective-[2000px] pb-10 mask-fade-x">
                     <div className="animate-marquee whitespace-nowrap flex gap-12 py-4">
                         {[...multiverseContent, ...multiverseContent].map((item, i) => (
                             <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
@@ -769,10 +786,10 @@ const App = () => {
 
 
             {/* TESTIMONIALS SECTION - 3 CARDS PER SLIDE */}
-            <section id="testimonials" className="relative bg-[#1e293b] py-56 overflow-hidden border-t border-white/10 z-10">
+            <section id="testimonials" className="relative bg-transparent py-20 overflow-hidden border-t border-white/10 z-10">
                 <div className="max-w-7xl mx-auto px-2 md:px-6 relative z-10">
-                    <div className="text-center mb-32">
-                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Reviews</div>
+                    <div className="text-center mb-20">
+                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Reviews</div>
                         <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
                             Trusted by over <br/> <span className="text-cyan-400">100,000 Streamers</span>
                         </h2>
@@ -830,9 +847,9 @@ const App = () => {
             </section>
 
             {/* FAQs SECTION */}
-            <section id="faqs" className="relative bg-[#334155] py-56 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
+            <section id="faqs" className="relative bg-transparent py-20 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
-                    <div className="text-center mb-32 text-white">
+                    <div className="text-center mb-20 text-white">
                         <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
                             Frequently Asked <span className="text-cyan-400">Questions</span>
                         </h2>
@@ -865,10 +882,10 @@ const App = () => {
 
 
             {/* FINAL CTA SECTION */}
-            <section className="relative py-72 bg-[#0f172a] overflow-hidden border-t border-white/20 z-10">
+            <section className="relative py-72 bg-transparent overflow-hidden border-t border-white/20 z-10">
                 <div className="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2000" alt="CTA Hero" className="w-full h-full object-cover scale-105 opacity-[0.6] animate-slow-pan" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/60 via-[#0f172a]/80 to-[#0f172a]" />
+                    <img src="/images/cta-img.png" alt="CTA Hero" className="w-full h-full object-cover scale-100 animate-slow-pan" />
+
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
 
@@ -896,7 +913,7 @@ const App = () => {
 
 
             {/* FOOTER */}
-            <footer className="bg-[#0f172a] pt-32 pb-16 px-6 border-t border-white/20 relative overflow-hidden z-10">
+            <footer className="bg-transparent pt-32 pb-16 px-6 border-t border-white/20 relative overflow-hidden z-10">
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[700px] bg-cyan-500/[0.15] blur-[220px] rounded-full pointer-events-none" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
