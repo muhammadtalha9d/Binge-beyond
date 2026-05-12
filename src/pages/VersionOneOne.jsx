@@ -913,7 +913,7 @@ const App = () => {
 
 
             {/* FOOTER */}
-            <footer className="bg-transparent pt-32 pb-16 px-6 border-t border-white/20 relative overflow-hidden z-10">
+            <footer className="bg-transparent pt-20 px-6 border-t border-white/20 relative overflow-hidden z-10">
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[700px] bg-cyan-500/[0.15] blur-[220px] rounded-full pointer-events-none" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
