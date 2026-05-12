@@ -44,8 +44,14 @@ const App = () => {
     };
 
 
+
+
+
+
+
     const startAnimationSequence = () => {
-        if (revealStage === 'scanning') return;
+        // Prevent it from firing again if it's already running or done
+        if (revealStage === 'scanning' || revealStage === 'done') return;
         clearAllTimeouts();
         setRevealStage('scanning');
         const id = setTimeout(() => {
@@ -54,23 +60,57 @@ const App = () => {
         timeoutIds.current.push(id);
     };
 
-
     const handleReplay = () => {
         setRevealStage('problem');
         clearAllTimeouts();
     };
 
+// --- NEW: Scroll Detection Logic ---
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // If the section is in view AND the animation hasn't started yet, run it
+                if (entry.isIntersecting && revealStage === 'problem') {
+                    startAnimationSequence();
+                }
+            },
+            {
+                threshold: 0.4 // Triggers when 40% of the section is visible on screen
+            }
+        );
+
+        const currentRef = sectionRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, [revealStage]); // Dependency array ensures it checks the current stage
+
 
     const multiverseContent = [
-        { title: "UFC Fight Night", type: "LIVE SPORTS", region: "USA", platform: "ESPN+", color: "#CB2128", url: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600" },
-        { title: "IPL Cricket Finals", type: "LIVE SPORTS", region: "IND", platform: "SonyLiv", color: "#0064FF", url: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=600" },
-        { title: "Demon Slayer S4", type: "ANIME", region: "JPN", platform: "Crunchyroll", color: "#F47521", url: "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=600" },
-        { title: "Premier League", type: "LIVE SPORTS", region: "USA", platform: "Peacock", color: "#FFFFFF", url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600" },
-        { title: "The Last of Us", type: "DRAMA", region: "USA", platform: "HBO Max", color: "#991BFA", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600" },
-        { title: "Squid Game", type: "KDRAMA", region: "KR", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=600" },
-        { title: "The Bear", type: "DRAMA", region: "USA", platform: "Hulu", color: "#1CE783", url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=600" },
-        { title: "Queen of Tears", type: "KDRAMA", region: "KR", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1518131681197-4cc528943ec7?q=80&w=600" },
-        { title: "Hidden Love", type: "CDRAMA", region: "CHN", platform: "Netflix", color: "#E50914", url: "https://images.unsplash.com/photo-1518131681197-4cc528943ec7?q=80&w=600" },
+        { src:"/images/adulting.png"},
+        { src:"/images/bone-breaker.png"},
+        { src:"/images/chucky.png"},
+        { src:"/images/classroom.png"},
+        { src:"/images/despicable.png"},
+        { src:"/images/friends.png"},
+        { src:"/images/masterchef.png"},
+        { src:"/images/memory.png"},
+        { src:"/images/messi.png"},
+        { src:"/images/normal-people.png"},
+        { src:"/images/onepiece.png"},
+        { src:"/images/onimai.png"},
+        { src:"/images/reign.png"},
+        { src:"/images/rickandmorty.png"},
+        { src:"/images/romeo.png"},
+        { src:"/images/scent.png"},
+        { src:"/images/southpark.png"},
+        { src:"/images/strange-hero.png"},
     ];
 
 
@@ -108,19 +148,22 @@ const App = () => {
             title: "Connect your platforms",
             subtitle: "Zero Login Setup",
             desc: "Select the streaming apps you already use. Zero logins or passwords required - we just need to know what you have.",
-            icon: <AppWindow className="text-cyan-400" />
+            icon: <AppWindow className="text-cyan-400" />,
+            imgSrc: "/images/3card1.png"
         },
         {
             title: "Discover Beyond",
             subtitle: "Universal Library",
             desc: "Explore our unified hub to find global releases, live sports, and regional catalogs you never knew you had access to.",
-            icon: <GlobeIcon className="text-cyan-400" />
+            icon: <GlobeIcon className="text-cyan-400" />,
+            imgSrc: "/images/3card2.png"
         },
         {
             title: "Just hit play",
             subtitle: "Instant Override",
             desc: "Tap any title and we'll instantly route the right global connection in the background. Grab the popcorn, we handle the rest.",
-            icon: <PlayCircle className="text-cyan-400" />
+            icon: <PlayCircle className="text-cyan-400" />,
+            imgSrc: "/images/3card3.png"
         }
     ];
 
@@ -158,20 +201,118 @@ const App = () => {
         { name: "Chloe L.", text: "I finally have access to the global library I was already paying for. The quality is amazing and there is zero configuration involved.", avatar: "C" }
     ];
 
-
-    // Group testimonials into pages of 3
-    const testimonialPages = [];
-    for (let i = 0; i < testimonials.length; i += 3) {
-        testimonialPages.push(testimonials.slice(i, i + 3));
-    }
-
-
-    const nextTestimonial = () => setTestimonialSlide((prev) => (prev + 1) % testimonialPages.length);
-    const prevTestimonial = () => setTestimonialSlide((prev) => (prev - 1 + testimonialPages.length) % testimonialPages.length);
-
+// No more grouping needed! Loop directly through the length of the array.
+    const nextTestimonial = () => setTestimonialSlide((prev) => (prev + 1) % testimonials.length);
+    const prevTestimonial = () => setTestimonialSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
+            <style>{`
+        @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marqueeReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        @keyframes scannerLine { 0% { left: 0%; opacity: 1; } 95% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+        @keyframes clipReveal { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+        @keyframes lockShake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
+        @keyframes drift { 0% { transform: translate(0, 0); } 50% { transform: translate(-20px, 30px); } 100% { transform: translate(0, 0); } }
+        .animate-slow-pan { animation: slowPan 40s ease-in-out infinite; }
+        .animate-marquee { animation: marquee 35s linear infinite; }
+        .animate-marquee-reverse { animation: marqueeReverse 45s linear infinite; }
+        .animate-scanner { animation: scannerLine 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .animate-clip { animation: clipReveal 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .animate-lock-shake { animation: lockShake 0.4s ease-in-out infinite; }
+       
+        .master-raycast-atmosphere {
+          background-color: #004D59;
+          background-image:
+            radial-gradient(circle at 50% 30%, rgba(224,251,255,0.18) 0%, transparent 50%),
+            radial-gradient(circle at 50% 40%, rgba(0,209,233,0.38) 0%, transparent 80%),
+            radial-gradient(circle at 10% 10%, rgba(0,240,255,0.18) 0%, transparent 60%),
+            radial-gradient(circle at 90% 90%, rgba(0,209,233,0.12) 0%, transparent 60%),
+            linear-gradient(180deg, #004D59 0%, #050809 100%);
+          position: relative;
+        }
+
+
+        .noise-overlay {
+          position: absolute;
+          inset: 0;
+          opacity: 0.05;
+          mix-blend-mode: overlay;
+          background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+          pointer-events: none;
+          z-index: 2;
+        }
+
+
+        .depth-wash-heavy {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, transparent 85%);
+        }
+        .depth-wash-light {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, transparent 70%);
+        }
+
+
+        .benefit-card-pop {
+          border-radius: 48px;
+          padding: 32px;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: rgba(17, 24, 39, 0.85);
+          backdrop-filter: blur(40px);
+        }
+        .benefit-card-pop:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+          border-color: rgba(0, 242, 255, 0.5);
+        }
+
+
+        .premium-badge {
+          background: #000;
+          border: 2px solid #00f2ff;
+          color: #fff;
+          font-weight: 900;
+          box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
+          text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+          padding: 8px 24px;
+          border-radius: 9999px;
+        }
+
+
+        .high-visibility-heading {
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 4px 24px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .electric-cyan-highlight {
+          color: #fff;
+          text-shadow:
+            0 0 12px #00f2ff,
+            0 0 25px rgba(0, 242, 255, 0.8),
+            0 0 45px rgba(0, 242, 255, 0.5),
+            0 4px 10px rgba(0, 0, 0, 1);
+          font-style: italic;
+        }
+
+
+        .depth-radial-overlay {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, transparent 100%);
+        }
+      `}</style>
+
             <style>{`
         @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -324,9 +465,9 @@ const App = () => {
 
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
-            <section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
+            <section className=" mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[#0f172a] z-10">
                 {/* 1. Background Gradient Fix */}
-                <div className="absolute inset-0 -z-10 pointer-events-none">
+                <div className=" absolute inset-0 -z-10 pointer-events-none">
                     <div className="absolute inset-0 pointer-events-none bg-transparent">
                         <img
                         src={bgImage}
@@ -336,7 +477,6 @@ const App = () => {
                 </div>             </div>
 
                 {/* 2. Dark Overlay */}
-                <div className="absolute inset-0 z-10 bg-black/10" />
 
                 {/* 3. Content Container */}
                 <div className="relative z-20 px-8 md:px-20 max-w-7xl">
@@ -347,7 +487,7 @@ const App = () => {
                     <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
                         Watch Shows, Movies & <br/>
                         Live Sports - <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white">
+                        <span className=" text-cyan-400 ">
                 Without Location Limits
             </span>
                     </h1>
@@ -360,7 +500,7 @@ const App = () => {
                         href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 group"
+                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all  hover:scale-105 group"
                     >
                         <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">
                             <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
@@ -372,8 +512,7 @@ const App = () => {
                     </a>
                 </div>
 
-                {/* 4. Bottom Fade */}
-                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />
+
             </section>
 
 
@@ -393,41 +532,47 @@ const App = () => {
 
 
             {/* SCANNER SECTION */}
-            <section ref={sectionRef} className="py-40 px-6 relative overflow-hidden z-10">
 
-                {/* --- ADDED BACKGROUND IMAGE --- */}
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                    <img
-                        src={favourite} /* Replace with your actual image path or variable */
-                        className="w-full h-full object-cover"
-                        alt="Scanner Section Background"
-                    />
-                    {/* Dark overlay to keep the text and scanner highly visible */}
-                    <div className="absolute inset-0 bg-[#0f172a]/45" />
-                </div>
-                {/* ------------------------------ */}
 
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid lg:grid-cols-5 gap-16 items-center">
-                        <div className="lg:col-span-2 space-y-10 text-white">
-                            <h2 className="text-[38px] font-black tracking-tighter uppercase leading-[0.9] drop-shadow-lg">
-                                Favorite <br/>
-                                shows aren't <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gone.</span> <br/>
-                                They're being <br/>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gatekept.</span>
+                {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
+                <section ref={sectionRef} className="py-40 bg-transparent px-6 relative overflow-hidden z-10 text-center">
+                    <div className="depth-wash-light" />
+                    <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
+                        <div className="space-y-6 text-white mb-20 max-w-4xl">
+                            <h2 className="text-[44px] font-black tracking-tighter uppercase leading-[1.1] high-visibility-heading">
+                                Your Favorite Shows Aren't Gone.<br/>
+                                <span className="text-cyan-400">They're Being Gatekept.</span>
                             </h2>
-                            <p className="text-[38px] font-black tracking-tighter uppercase leading-none text-glow">Stop settling for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic text-5xl font-black tracking-tighter">10% Access.</span></p>
+                            <p className="text-xl font-medium text-white/80 high-visibility-heading tracking-tight">
+                                You pay 100% for your OTT subscription. Stop settling for 10% access.
+                            </p>
                         </div>
 
+
                         <div
-                            onClick={revealStage === 'problem' ? startAnimationSequence : handleReplay}
-                            className="lg:col-span-3 relative h-[500px] w-full rounded-[48px] border border-white/25 overflow-hidden bg-slate-800/40 shadow-[0_0_80px_rgba(34,211,238,0.2)] cursor-pointer group backdrop-blur-xl"
+                            onClick={revealStage === 'done' ? handleReplay : undefined}
+                            className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden bg-black/20 shadow-[0_0_80px_rgba(0,0,0,0.5)] cursor-pointer group backdrop-blur-xl"
                         >
-                            <div className="absolute inset-0 bg-[#0f172a]/40 flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
-                                <div className="w-full max-w-md bg-slate-800/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
+                            <div className="relative w-full h-[550px] overflow-hidden">
+
+                                {/* 1. Background Image Layer */}
+                                <div className="absolute inset-0 z-0 overflow-hidden">
+                                    <img
+                                        src="/images/unlocked.jpg"
+                                        alt="Background"
+                                        className="w-full h-[550px] md:h-auto"
+                                    />
+                                     <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
+                                </div>
+
+
+
+                            </div>
+                            <div className="absolute inset-0 bg-transparent flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
+                                <div className="w-full max-w-md bg-[#111827]/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
                                     <div className="flex flex-col items-center text-center">
                                         <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
-                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md">"This title is not available in your current region."</h4>
+                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md text-glow">"This title is not available in your current region."</h4>
                                         <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
                                             <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
                                         </div>
@@ -435,19 +580,9 @@ const App = () => {
                                 </div>
                             </div>
 
-                            <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                                {/* Single Image Replaced the Posters Grid */}
-                                <div className="w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative">
-                                    <img
-                                        src={unlocked}
-                                        className="w-full h-full object-cover"
-                                        alt="Unlocked Content"
-                                    />
-                                    {/* Optional dark overlay so the '100% UNLOCKED' badge stands out better */}
-                                    <div className="absolute inset-0 bg-black/20" />
-                                </div>
 
-                                {/* 100% UNLOCKED Badge (Unchanged) */}
+                            <div className={`absolute inset-0 z-30  bg-[#111827]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
+                                <img src="/images/unlocked.jpg" alt=""/>
                                 <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                                     <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
                                         <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
@@ -455,370 +590,143 @@ const App = () => {
                                 </div>
                             </div>
 
+
                             <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section ref={sectionRef} className="py-40 px-6 relative overflow-hidden z-10 bg-[#0f172a]">
-
-                {/* --- NEW BACKGROUND GRADIENT --- */}
-                <div className="absolute inset-0 -z-10 pointer-events-none">
-                    {/* Primary glow from top right to bottom left */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-60" />
-
-                    {/* Secondary subtle glow behind the text area */}
-                    <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
-                </div>
-                {/* ------------------------------ */}
-
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid lg:grid-cols-5 gap-16 items-center">
-                        <div className="lg:col-span-2 space-y-10 text-white">
-                            <h2 className="text-[38px] font-black tracking-tighter uppercase leading-[0.9] drop-shadow-lg">
-                                Favorite <br/>
-                                shows aren't <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gone.</span> <br/>
-                                They're being <br/>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">gatekept.</span>
-                            </h2>
-                            <p className="text-[38px] font-black tracking-tighter uppercase leading-none text-glow">Stop settling for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic text-5xl font-black tracking-tighter">10% Access.</span></p>
-                        </div>
-
-                        <div
-                            onClick={revealStage === 'problem' ? startAnimationSequence : handleReplay}
-                            className="lg:col-span-3 relative h-[500px] w-full rounded-[48px] border border-white/25 overflow-hidden bg-slate-800/40 shadow-[0_0_80px_rgba(34,211,238,0.2)] cursor-pointer group backdrop-blur-xl"
-                        >
-                            {/* Error Panel (Stage: Problem) */}
-                            <div className="absolute inset-0 bg-[#0f172a]/40 flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
-                                <div className="w-full max-w-md bg-slate-800/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
-                                    <div className="flex flex-col items-center text-center">
-                                        <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
-                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md">"This title is not available in your current region."</h4>
-                                        <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
-                                            <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Unlocked Panel (Stage: Done) */}
-                            <div className={`absolute inset-0 z-30 p-8 bg-[#0f172a]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                                <div className="w-full h-full rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative">
-                                    <img
-                                        src={unlocked}
-                                        className="w-full h-full object-cover"
-                                        alt="Unlocked Content"
-                                    />
-                                    <div className="absolute inset-0 bg-black/20" />
-                                </div>
-
-                                <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                                    <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
-                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Scanner Bar (Stage: Scanning) */}
-                            <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
 
             {/* UNIFIED SPOTLIGHT BENEFITS SECTION */}
-            <section id="benefits" className="relative z-10 border-t border-white/10 overflow-hidden">
-                {/* VIBRANT ONE PIECE THEMED LONG BACKGROUND IMAGE */}
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={bingeWatching}
-                        alt="One Piece Vibrant Backdrop"
-                        className="w-full h-full object-cover opacity-[0.9] animate-slow-pan"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-transparent to-[#0f172a]" />
-                    <div className="absolute inset-0 bg-cyan-900/10" />
-                </div>
-
-
-                <div className="relative z-10">
-                    {/* Main Heading area */}
-                    <div className="max-w-7xl mx-auto px-6 py-40 text-center text-white">
-                        <div className="inline-flex items-center gap-5 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">High-Performance Network</div>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] mb-2 drop-shadow-2xl">
-                            Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching.</span>
-                        </h2>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
-                            Optimized for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">speed.</span>
+            <section id="benefits" className="relative z-10 py-40 bg-transparent">
+                <div className="depth-wash-heavy" />
+                <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
+                    <div className="text-center mb-24">
+                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">High-Performance Network</div>
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter leading-[1.1] mb-2 high-visibility-heading">
+                            Built For Binge-Watching.<br/>
+                            <span className="text-cyan-400">Optimized For Speed.</span>
                         </h2>
                     </div>
 
 
-                    {/* Subsection Grid */}
-                    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24 pb-40">
-
-                        {/* Feature 1 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="space-y-8">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md shadow-xl"><Zap size={12} fill="currentColor" /> Zero Lag</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Stream globally with <br/><span className="text-cyan-400 italic">zero phone lag.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
-                                            Traditional VPNs force your entire device through a slow connection, causing massive lag. BingeBeyond fixes this by intelligently separating your traffic. We apply the VPN only to the specific streaming apps you select, leaving the rest of your phone completely untouched.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Separates streaming traffic from normal traffic</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> The VPN is only applied to the streaming apps you pick</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Everyday apps bypass the VPN to stay lightning fast</li>
-                                        </ul>
-                                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div className="benefit-card-pop">
+                            <img src="/images/4grid1.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <div className="space-y-6">
+                                <div className="inline-flex items-center gap-2 text-white">
+                                    <Target size={24} className="text-cyan-300" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Universal Remote</span>
                                 </div>
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-cyan-400/[0.03]" />
-                                </div>
+                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">One Tap From Search <span className="text-cyan-400">To Stream.</span></h2>
+                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+                                    No more guessing which country server to pick. Find any show in our hub, hit play, and we connect you to the right node instantly.
+                                </p>
                             </div>
                         </div>
-
-
-                        {/* Feature 2 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                        <div className="benefit-card-pop">
+                            <img src="/images/4grid2.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <div className="space-y-6">
+                                <div className="inline-flex items-center gap-2 text-white">
+                                    <GlobeIcon size={24} className="text-cyan-300" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Global Discovery</span>
                                 </div>
-                                <div className="space-y-8 text-right">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md ml-auto"><FastForward size={12} fill="currentColor" /> Instant Delivery</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Smooth, buffer-free <br/><span className="text-cyan-400 italic">playback.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md ml-auto">
-                                            Wherever you connect from, the network is built for speed, stability, and smooth playback. Stop playing server roulette trying to find a good connection.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start justify-end gap-3">Built specifically for high-speed 4K streaming <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                            <li className="flex items-start justify-end gap-3">Automatically connects to the fastest routing lane <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                            <li className="flex items-start justify-end gap-3">Optimized for live sports and global premieres <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">See What You Are <span className="text-cyan-400">Missing.</span></h2>
+                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+                                    Browse movies and live sports not available in your region. Explore global catalogs in one unified hub without switching between apps.
+                                </p>
                             </div>
                         </div>
-
-
-                        {/* Feature 3 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="space-y-8">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md"><Target size={12} fill="currentColor" /> Universal Remote</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">One tap from search <br/>to <span className="text-cyan-400 italic">stream.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
-                                            Don't waste time guessing which country's server has the show you want. Find it directly in the BingeBeyond hub, hit play, and we automatically connect the right global node to launch your stream.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Browse global catalogs in one unified hub</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Auto-connects to the required country node</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Launches your streaming app instantly</li>
-                                        </ul>
-                                    </div>
+                        <div className="benefit-card-pop">
+                            <img src="/images/4grid3.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <div className="space-y-6">
+                                <div className="inline-flex items-center gap-2 text-white">
+                                    <Zap size={24} className="text-cyan-300" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Zero Lag</span>
                                 </div>
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-white/5 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-white/[0.02]" />
+                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">Stream Without <span className="text-cyan-400">Device Lag.</span></h2>
+                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+                                    Traditional VPNs slow your entire device. We target only your streaming apps, leaving your maps, banking, and messages at full speed.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="benefit-card-pop">
+                            <img src="/images/4grid4.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
+                                <div className="inline-flex items-center gap-2 text-white">
+                                    <FastForward size={24} className="text-cyan-300" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Instant Delivery</span>
                                 </div>
+                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
+                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+                                    Our network is built for high-bandwidth 4K video. Connect to optimized routing lanes for lag-free global premieres.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-
-            <section id="benefits" className="relative z-10 border-t border-white/10 overflow-hidden bg-[#0f172a]">
-                {/* --- NEW BACKGROUND GRADIENT --- */}
-                <div className="absolute inset-0 -z-10 pointer-events-none">
-                    {/* Main large glow from top right */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/10 to-transparent blur-[120px] opacity-60" />
-
-                    {/* Mid-section glow to keep the long page from feeling empty */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-fuchsia-500/5 rounded-full blur-[160px]" />
-
-                    {/* Bottom glow */}
-                    <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
-                </div>
-                {/* ------------------------------ */}
-
-                <div className="relative z-10">
-                    {/* Main Heading area */}
-                    <div className="max-w-7xl mx-auto px-6 py-40 text-center text-white">
-                        <div className="inline-flex items-center gap-5 px-5 py-2 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">High-Performance Network</div>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] mb-2 drop-shadow-2xl">
-                            Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching.</span>
-                        </h2>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
-                            Optimized for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">speed.</span>
-                        </h2>
-                    </div>
-
-
-                    {/* Subsection Grid */}
-                    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24 pb-40">
-
-                        {/* Feature 1 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="space-y-8">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md shadow-xl"><Zap size={12} fill="currentColor" /> Zero Lag</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Stream globally with <br/><span className="text-cyan-400 italic">zero phone lag.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
-                                            Traditional VPNs force your entire device through a slow connection, causing massive lag. BingeBeyond fixes this by intelligently separating your traffic. We apply the VPN only to the specific streaming apps you select, leaving the rest of your phone completely untouched.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Separates streaming traffic from normal traffic</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> The VPN is only applied to the streaming apps you pick</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Everyday apps bypass the VPN to stay lightning fast</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-cyan-400/[0.03]" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* Feature 2 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-white/[0.02]" />
-                                </div>
-                                <div className="space-y-8 text-right">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md ml-auto"><FastForward size={12} fill="currentColor" /> Instant Delivery</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">Smooth, buffer-free <br/><span className="text-cyan-400 italic">playback.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md ml-auto">
-                                            Wherever you connect from, the network is built for speed, stability, and smooth playback. Stop playing server roulette trying to find a good connection.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start justify-end gap-3">Built specifically for high-speed 4K streaming <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                            <li className="flex items-start justify-end gap-3">Automatically connects to the fastest routing lane <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                            <li className="flex items-start justify-end gap-3">Optimized for live sports and global premieres <Check size={18} className="text-cyan-400 mt-0.5" /></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* Feature 3 */}
-                        <div className="benefit-card-pop rounded-[60px] p-10 md:p-16 backdrop-blur-3xl transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl">
-                            <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-                                <div className="space-y-8">
-                                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl backdrop-blur-md"><Target size={12} fill="currentColor" /> Universal Remote</div>
-                                    <h2 className="text-[38px] font-black uppercase tracking-tighter text-glow leading-[0.95]">One tap from search <br/>to <span className="text-cyan-400 italic">stream.</span></h2>
-                                    <div className="space-y-6">
-                                        <p className="text-lg text-slate-100 font-semibold leading-relaxed drop-shadow-md">
-                                            Don't waste time guessing which country's server has the show you want. Find it directly in the BingeBeyond hub, hit play, and we automatically connect the right global node to launch your stream.
-                                        </p>
-                                        <ul className="space-y-3 text-sm font-bold text-slate-200">
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Browse global catalogs in one unified hub</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Auto-connects to the required country node</li>
-                                            <li className="flex items-start gap-3"><Check size={18} className="text-cyan-400 mt-0.5" /> Launches your streaming app instantly</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="hidden md:block h-[380px] w-full rounded-[45px] bg-slate-900/40 border border-white/10 relative overflow-hidden shadow-inner">
-                                    <div className="absolute inset-0 bg-white/[0.02]" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
 
             {/* HOW IT WORKS SECTION */}
-            <section id="protocol" className="relative py-56 overflow-hidden z-10">
-
-                {/* --- ADDED BACKGROUND IMAGE --- */}
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                    <img
-                        src={stepsImg}
-                        className="w-full h-full object-cover"
-                        alt="Protocol Background"
-                    />
-                    {/* Dark overlay to ensure text stays readable */}
-                    <div className="absolute inset-0 bg-[#1e293b]/45" />
-                </div>
-                {/* ------------------------------ */}
-
-                <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="flex flex-col items-center text-center mb-32 text-white">
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
-                            Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">binge-watching</span> in 3 simple steps.
+            <section id="protocol" className="relative bg-transparent py-56 overflow-hidden z-10 border-y border-white/5">
+                <div className="absolute inset-0 blueprint-grid opacity-[0.08] pointer-events-none" />
+                <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
+                    <div className="flex flex-col items-center text-center mb-32">
+                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 high-visibility-heading">
+                            Start Binge-Watching<br/>
+                            <span className="text-cyan-400">In 3 Simple Steps.</span>
                         </h2>
                     </div>
 
+
                     <div className="grid lg:grid-cols-12 gap-24 items-center">
-                        <div className="lg:col-span-5 space-y-6">
+                        <div className="lg:col-span-5 flex flex-col gap-4 h-[650px]">
                             {steps.map((step, i) => (
                                 <div
                                     key={i}
                                     onMouseEnter={() => setActiveStep(i)}
-                                    className={`group relative p-10 rounded-[45px] border transition-all duration-500 cursor-pointer ${activeStep === i ? 'bg-cyan-400 border-cyan-400 scale-[1.03] shadow-[0_0_60px_rgba(34,211,238,0.3)]' : 'bg-white/[0.12] border-white/10 hover:border-white/25 backdrop-blur-md'}`}
+                                    className={`flex-1 group relative p-6 rounded-[32px] border transition-all duration-500 cursor-pointer flex items-center ${activeStep === i ? 'bg-[#111827]/95 border-cyan-300/50 shadow-[0_0_40px_rgba(0,242,255,0.1)] scale-[1.02]' : 'bg-[#111827]/40 border-white/5 hover:border-white/20'}`}
                                 >
-                                    <div className="flex gap-8 items-start">
-                                        <div className={`flex-shrink-0 w-14 h-14 rounded-3xl flex items-center justify-center font-black text-2xl italic ${activeStep === i ? 'bg-[#1e293b] text-white' : 'bg-cyan-400/10 text-cyan-400'}`}>
+                                    <div className="flex gap-6 items-center">
+                                        <div className={`flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl italic ${activeStep === i ? 'bg-cyan-400 text-black shadow-[0_0_20px_rgba(0,242,255,0.4)]' : 'bg-white/5 text-white/40'}`}>
                                             {i + 1}
                                         </div>
-                                        <div>
-                                            <p className={`text-[11px] font-black uppercase tracking-[0.25em] mb-2 ${activeStep === i ? 'text-slate-900' : 'text-white'}`}>{step.subtitle}</p>
-                                            <h4 className={`text-2xl font-black uppercase tracking-tighter mb-3 ${activeStep === i ? 'text-black' : 'text-white'}`}>{step.title}</h4>
-                                            <p className={`text-base font-semibold leading-relaxed ${activeStep === i ? 'text-slate-800' : 'text-slate-200'}`}>{step.desc}</p>
+                                        <div className="pr-4 text-left">
+                                            <p className={`text-[10px] font-black uppercase tracking-[0.25em] mb-1 ${activeStep === i ? 'text-cyan-300' : 'text-white/40'}`}>{step.subtitle}</p>
+                                            <h4 className="text-lg font-black uppercase tracking-tight mb-1 text-white">{step.title}</h4>
+                                            <p className={`text-xs font-medium leading-relaxed ${activeStep === i ? 'text-white' : 'text-white/60'}`}>{step.desc}</p>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="lg:col-span-7 relative h-[650px] bg-slate-800/80 border border-white/30 rounded-[70px] overflow-hidden shadow-3xl backdrop-blur-3xl group">
-                            <div className="absolute inset-0 blueprint-grid opacity-30" />
-                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-                                <div className="grid grid-cols-3 gap-8 w-full max-w-md">
-                                    {services.map((s, idx) => (
-                                        <div key={idx} className="aspect-square rounded-[36px] bg-white/[0.15] border border-white/30 flex items-center justify-center shadow-2xl relative overflow-hidden">
-                                            <span className="text-[14px] font-black uppercase tracking-tighter" style={{ color: s.color }}>{s.name[0]}</span>
-                                            <div className={`absolute bottom-4 right-4 w-3 h-3 rounded-full ${idx < 3 ? 'bg-cyan-400 animate-pulse shadow-[0_0_20px_#22d3ee]' : 'bg-slate-700'}`} />
-                                        </div>
-                                    ))}
+
+                        {/* RIGHT COLUMN */}
+                        <div className="lg:col-span-7 relative h-[300px] md:h-[650px] lg:h-[550px] 2xl:h-[650px] bg-[#111827]/90 border border-white/30 rounded-[20px] overflow-hidden shadow-3xl backdrop-blur-3xl">
+                            {/* Optional background grid for texture */}
+                            <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
+
+                            {/* Map through the steps array to show the corresponding image */}
+                            {steps.map((step, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`absolute inset-0  transition-all duration-700 flex items-center justify-center ${
+                                        activeStep === idx
+                                            ? 'opacity-100 scale-100 z-10'
+                                            : 'opacity-0 scale-95 z-0 pointer-events-none'
+                                    }`}
+                                >
+                                    <img
+                                        src={step.imgSrc}
+                                        alt={step.title}
+                                        className="w-full h-[300px] md:h-[650px] lg:h-[550px] 2xl:h-[650px] object-cover rounded-[10px] shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
+                                    />
                                 </div>
-                                <p className="mt-12 text-[10px] font-black uppercase tracking-[0.4em] text-white animate-pulse">Syncing Active Subscriptions</p>
-                            </div>
-                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-                                <div className="w-full max-w-lg bg-white/[0.1] border border-white/30 rounded-[50px] p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
-                                    <div className="flex items-center gap-6 border-b border-white/20 pb-8 mb-10">
-                                        <Search className="text-cyan-400" size={32} />
-                                        <div className="h-3 w-64 bg-white/20 rounded-full" />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-8">
-                                        <div className="aspect-[3/4] bg-white/10 rounded-3xl border border-white/20 animate-pulse" />
-                                        <div className="aspect-[3/4] bg-white/10 rounded-2xl border border-white/10 animate-pulse delay-75" />
-                                    </div>
-                                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-white text-black text-[10px] font-black rounded-full shadow-2xl">Scanning 14,000+ Titles...</div>
-                                </div>
-                            </div>
-                            <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeStep === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-                                <div className="w-full max-w-lg aspect-video bg-slate-900 rounded-[50px] overflow-hidden border border-white/30 shadow-2xl relative">
-                                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600" className="w-full h-full object-cover" alt="" />
-                                    <div className="absolute inset-0 bg-white/10 flex items-center justify-center backdrop-blur-[4px]">
-                                        <div className="w-28 h-28 rounded-full bg-cyan-400 flex items-center justify-center text-black shadow-[0_0_80px_rgba(34,211,238,0.8)]"><Play size={48} fill="black" /></div>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -828,22 +736,12 @@ const App = () => {
             {/* MULTIVERSE FEED SECTION - RESTORED DUAL ROWS */}
             <section id="beyond" className="relative py-48 bg-[#1e293b] relative overflow-hidden z-10 border-t border-white/10">
                 <div className="absolute inset-0 blueprint-grid opacity-60 z-0" />
-                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[1400px] max-h-[1400px] bg-cyan-500/[0.18] rounded-full blur-[240px] animate-pulse" />
-                    <div className="absolute inset-0 opacity-[0.4]">
-                        <img
-                            src="https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=2000"
-                            className="w-full h-full object-cover object-top"
-                            style={{ maskImage: 'linear-gradient(to bottom, black 65%, transparent 95%)' }}
-                            alt=""
-                        />
-                    </div>
-                </div>
+
 
 
                 <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Millions of Shows, Matches & Movies</div>
-                    <h2 className="text-[38px] font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-md">Stream right on the apps <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">you already use.</span></h2>
+                    <h2 className="text-[38px] font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-md">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
                     <p className="text-slate-100 max-w-xl mx-auto text-sm font-bold leading-relaxed uppercase tracking-[0.2em] drop-shadow-md">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
                 </div>
 
@@ -851,38 +749,18 @@ const App = () => {
                 <div className="relative z-10 flex flex-col gap-20 perspective-[2000px] py-10 mask-fade-x">
                     <div className="animate-marquee whitespace-nowrap flex gap-12 py-4">
                         {[...multiverseContent, ...multiverseContent].map((item, i) => (
-                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[40px] overflow-hidden glass-card transition-all duration-700 vortex-card shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
-                                <img src={item.url} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
-                                <div className="absolute top-5 left-5 right-5 flex justify-between items-start">
-                      <span className="px-3 py-1.5 bg-black/80 backdrop-blur-md rounded-xl text-[10px] font-black text-white border border-white/30 uppercase tracking-tight shadow-xl">
-                         {item.region} - {item.type}
-                      </span>
-                                    <div className={`w-3 h-3 rounded-full shadow-[0_0_25px_currentColor]`} style={{ backgroundColor: item.color, color: item.color }} />
-                                </div>
-                                <div className="absolute bottom-6 left-7 text-white">
-                                    <h4 className="text-xl font-black uppercase tracking-tighter mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-lg">{item.title}</h4>
-                                    <span className="text-[11px] font-bold uppercase tracking-widest drop-shadow-md opacity-80" style={{ color: item.color }}>{item.platform}</span>
-                                </div>
+                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
+                                <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
+
+
                             </div>
                         ))}
                     </div>
                     {/* ROW 2 RESTORED */}
                     <div className="animate-marquee-reverse whitespace-nowrap flex gap-12 py-4">
                         {[...multiverseContent].reverse().concat([...multiverseContent].reverse()).map((item, i) => (
-                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[40px] overflow-hidden glass-card transition-all duration-700 vortex-card shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" style={{ transform: 'rotateX(20deg) rotateY(15deg)' }}>
-                                <img src={item.url} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
-                                <div className="absolute top-5 left-5 right-5 flex justify-between items-start">
-                      <span className="px-3 py-1.5 bg-black/80 backdrop-blur-md rounded-xl text-[10px] font-black text-white border border-white/30 uppercase tracking-tight shadow-xl">
-                         {item.region} - {item.type}
-                      </span>
-                                    <Activity size={16} className="text-white group-hover:text-cyan-400 animate-pulse transition-colors drop-shadow-lg" />
-                                </div>
-                                <div className="absolute bottom-6 left-7 text-white">
-                                    <h4 className="text-xl font-black uppercase tracking-tighter mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-lg">{item.title}</h4>
-                                    <span className="text-[11px] font-bold uppercase tracking-widest drop-shadow-md opacity-80" style={{ color: item.color }}>{item.platform}</span>
-                                </div>
+                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" >
+                                <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
                             </div>
                         ))}
                     </div>
@@ -892,77 +770,71 @@ const App = () => {
 
             {/* TESTIMONIALS SECTION - 3 CARDS PER SLIDE */}
             <section id="testimonials" className="relative bg-[#1e293b] py-56 overflow-hidden border-t border-white/10 z-10">
-                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="max-w-7xl mx-auto px-2 md:px-6 relative z-10">
                     <div className="text-center mb-32">
                         <div className="inline-flex items-center gap-3 px-5 py-2 bg-cyan-400/30 border border-cyan-400/50 rounded-full text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-md mb-8 shadow-xl">Reviews</div>
                         <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
-                            Trusted by over <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">100,000 Streamers</span>
+                            Trusted by over <br/> <span className="text-cyan-400">100,000 Streamers</span>
                         </h2>
                     </div>
 
-
                     <div className="relative group">
-                        <div className="relative overflow-hidden min-h-[450px]">
+                        <div className="relative overflow-hidden min-h-[400px]">
                             <div
                                 className="flex transition-transform duration-700 ease-in-out h-full"
-                                style={{ transform: `translateX(-${testimonialSlide * 100}%)`, width: `${testimonialPages.length * 100}%` }}
+                                style={{ transform: `translateX(-${testimonialSlide * 100}%)` }}
                             >
-                                {testimonialPages.map((page, pageIndex) => (
-                                    <div key={pageIndex} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-                                        {page.map((item, i) => (
-                                            <div key={i} className="glass-card p-10 rounded-[55px] hover:-translate-y-3 transition-all duration-500 group border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col h-full bg-white/[0.08]">
-                                                <Quote className="text-cyan-400/40 mb-8 group-hover:text-cyan-400 transition-colors" size={40} />
-                                                <p className="text-lg text-white font-semibold leading-relaxed italic mb-auto">
-                                                    "{item.text}"
-                                                </p>
-                                                <div className="flex items-center gap-4 mt-10">
-                                                    <div className="w-12 h-12 rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-black text-xl">
-                                                        {item.avatar}
-                                                    </div>
-                                                    <h4 className="font-black uppercase tracking-tighter text-white text-sm">{item.name}</h4>
-                                                </div>
-                                            </div>
-                                        ))}
+                                {testimonials.map((item, i) => (
+                                    <div key={i} className="min-w-full flex-shrink-0 px-4 flex justify-center">
+                                <div className="glass-card w-[250px] md:w-[600px] lg:w-full lg:max-w-3xl p-10 md:p-14 rounded-[55px]  transition-all duration-500 group border-white/30  flex flex-col bg-white/[0.08]">
+                                    <Quote className="text-cyan-400/40 mb-8 group-hover:text-cyan-400 transition-colors" size={40} />
+                                    <p className="text-[12px] md:text-2xl text-white font-semibold leading-relaxed italic mb-8">
+                                        "{item.text}"
+                                    </p>
+                                    <div className="flex items-center gap-4 mt-auto">
+                                        <div className="h-8 w-8 md:w-12 md:h-12 rounded-md md:rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-black tex-[13px] md:text-xl">
+                                            {item.avatar}
+                                        </div>
+                                        <h4 className="font-black uppercase tracking-tighter text-white text-sm">{item.name}</h4>
                                     </div>
-                                ))}
+                                </div>
                             </div>
-                        </div>
-
-
-                        <button
-                            onClick={prevTestimonial}
-                            className="absolute top-1/2 -left-4 md:-left-16 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
-                        >
-                            <ChevronLeft size={24} />
-                        </button>
-                        <button
-                            onClick={nextTestimonial}
-                            className="absolute top-1/2 -right-4 md:-right-16 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
-                        >
-                            <ChevronRight size={24} />
-                        </button>
-
-
-                        <div className="flex justify-center gap-3 mt-12">
-                            {testimonialPages.map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => setTestimonialSlide(i)}
-                                    className={`w-3 h-3 rounded-full transition-all ${testimonialSlide === i ? 'bg-cyan-400 w-8' : 'bg-white/20'}`}
-                                />
                             ))}
                         </div>
                     </div>
+
+                    <button
+                        onClick={prevTestimonial}
+                        className="absolute top-1/2 -left-2 md:left-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
+                    <button
+                        onClick={nextTestimonial}
+                        className="absolute top-1/2 -right-2 md:right-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                    >
+                        <ChevronRight size={24} />
+                    </button>
+
+                    <div className="flex justify-center gap-3 mt-12">
+                        {testimonials.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setTestimonialSlide(i)}
+                                className={`w-3 h-3 rounded-full transition-all ${testimonialSlide === i ? 'bg-cyan-400 w-8' : 'bg-white/20'}`}
+                            />
+                        ))}
+                    </div>
+                </div>
                 </div>
             </section>
-
 
             {/* FAQs SECTION */}
             <section id="faqs" className="relative bg-[#334155] py-56 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-32 text-white">
                         <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
-                            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white text-glow italic">Questions</span>
+                            Frequently Asked <span className="text-cyan-400">Questions</span>
                         </h2>
                     </div>
 
@@ -1000,9 +872,9 @@ const App = () => {
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
 
-                    <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10 text-glow">
+                    <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10">
                         Get More From The Subscriptions <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white italic">You Already Pay For</span>
+                        <span className="text-cyan-400">You Already Pay For</span>
                     </h2>
                     <p className="text-slate-100 max-w-2xl mx-auto text-xl font-bold leading-relaxed mb-16 drop-shadow-2xl">
                         Unlock more shows, more regions, and smoother streaming - without slowing down the rest of your phone.
@@ -1012,9 +884,9 @@ const App = () => {
                             href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px] shadow-[0_0_80px_rgba(34,211,238,0.9)] hover:shadow-[0_0_100px_rgba(34,211,238,1)] hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group drop-shadow-[0_0_12px_rgba(255,255,255,1)]"
+                            className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px]  hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group"
                         >
-                            <span className="text-glow-white font-black">Download the app</span>
+                            <span className=" font-black">Download the app</span>
                             <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
                         </a>
 
