@@ -948,8 +948,14 @@ const App = () => {
                         {/*</div>*/}
                         <div className="space-y-10 text-white">
                             <ul className="space-y-5 text-base font-bold">
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a></li>
-                                <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a></li>
+
+                                <li><a  href="https://bingebeyond.com/privacy-policy"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                         className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a></li>
+                                <li><a  href="https://bingebeyond.com/bingebeyond-terms-of-use"
+                                        target="_blank"
+                                        rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a></li>
                                 {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
                             </ul>
                         </div>
