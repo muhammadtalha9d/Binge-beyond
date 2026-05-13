@@ -184,11 +184,11 @@ const App = () => {
         },
         {
             q: "Which streaming apps work with BingeBeyond?",
-            a: "BingeBeyond is designed for popular streaming platforms such as Netflix, Amazon Prime Video, and other supported entertainment apps. Available platforms may vary by device and region."
+            a: "BingeBeyond is designed for popular streaming platforms such as Netflix, Amazon Prime Video, and other supported entertainment apps."
         },
         {
             q: "Is this app legal to use?",
-            a: "Absolutely. BingeBeyond is completely legal and safe to use. It changes your virtual location to unlock content on streaming platforms. We recommend reviewing your streaming provider’s terms of service for the best experience."
+            a: "Absolutely. BingeBeyond is completely legal and safe to use. It changes your virtual location to unlock content on streaming platforms."
         }
     ];
 
