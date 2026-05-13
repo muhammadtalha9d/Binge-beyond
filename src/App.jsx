@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './Binge-logo.svg';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import VersionOneOne from './pages/VersionOneOne';
+import VersionTwo from './pages/VersionTwo';
 
 
 // Inline SVGs for fast loading and guaranteed preview rendering
@@ -731,6 +732,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/v1.1" element={<VersionOneOne />} />
+                <Route path="/v2" element={<VersionTwo />} />
             </Routes>
         </Router>
     );
