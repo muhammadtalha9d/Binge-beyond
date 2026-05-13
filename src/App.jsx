@@ -121,7 +121,7 @@ const Hero = () => {
                     </div>
 
 
-                    <div className="relative mt-8 lg:mt-0 order-1 lg:order-2">
+                    <div className="relative mt-8 lg:mt-0 order-2">
                         <div className="relative bg-slate-900 border border-slate-800/80 rounded-2xl shadow-2xl p-4 overflow-hidden transform md:rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg mx-auto lg:ml-auto lg:mr-0">
                             <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                                 <div className="flex items-center gap-2"><Globe2 size={20} className="text-indigo-400"/> <span className="font-bold text-white">Discover Hub</span></div>
