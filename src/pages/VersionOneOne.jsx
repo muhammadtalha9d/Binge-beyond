@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import bgImage from './collage2.jpg'; // Adjust path as needed
-import bgImage from './hero-logo.png';
+import bgImage from './hero-logo2.png';
 import bgImage2 from './selected-movie.png';
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
@@ -583,7 +583,7 @@ const App = () => {
                                     <img
                                         src="/images/unlocked.jpg"
                                         alt="Background"
-                                        className="w-full h-[550px] md:h-auto"
+                                        className="w-full h-auto"
                                     />
 
                                      <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
@@ -606,7 +606,8 @@ const App = () => {
 
 
                             <div className={`absolute inset-0 z-30  bg-[#111827]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                                <img src="/images/unlocked.jpg" alt=""/>
+                                <img src="/images/unlocked.jpg" alt="" className="hidden md:block"/>
+                                <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
                                 <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                                     <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
                                         <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
@@ -755,7 +756,7 @@ const App = () => {
                 <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
                     <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
-                    <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight max-w-3xl mx-auto">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
+                    <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight max-w-3xl mx-auto">Access Live sports, TV shows, and movies from all your favourite OTT platforms.</p>
                 </div>
 
 
