@@ -216,7 +216,7 @@ const App = () => {
         .animate-lock-shake { animation: lockShake 0.4s ease-in-out infinite; }
        
         .master-raycast-atmosphere {
-          background: linear-gradient(135deg, #00E5FF 0%, #091115 50%);
+          background: linear-gradient(97deg, #00E5FF 0%, #091115 40%);
           position: relative;
         }
 
