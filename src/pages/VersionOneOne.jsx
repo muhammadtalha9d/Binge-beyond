@@ -381,7 +381,7 @@ const App = () => {
                 </div>
 
                 {/* 2. CENTER: Links Container (Absolutely Centered) */}
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-7 text-[16px] font-semibold tracking-[0.1em] text-gray-300 uppercase">
+                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-7 text-[16px] font-bold tracking-[0.1em] text-white uppercase">
                     <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
                     <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
                     <a href="" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
@@ -394,7 +394,7 @@ const App = () => {
                     rel="noopener noreferrer"
                     className="inline-block relative z-10"
                 >
-                    <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                    <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[16px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                         Download The App
                     </button>
                 </a>
@@ -559,7 +559,7 @@ const App = () => {
 
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-                <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#22393F,_#091115)] px-6 relative overflow-hidden z-10 text-center">
+                <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#00E5FF_0%,_#091115_50%)] px-6 relative overflow-hidden z-10 text-center">
                     <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div className="space-y-6 text-white mb-20 max-w-4xl">
                             <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
@@ -610,7 +610,7 @@ const App = () => {
                                 <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
                                 <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                                     <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
-                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNLOCKED</span>
+                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
                                     </div>
                                 </div>
                             </div>
