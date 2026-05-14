@@ -585,6 +585,7 @@ const App = () => {
                                         alt="Background"
                                         className="w-full h-[550px] md:h-auto"
                                     />
+
                                      <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
                                 </div>
 
