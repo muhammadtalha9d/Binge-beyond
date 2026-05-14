@@ -478,7 +478,7 @@ const App = () => {
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
             {/* Removed max-w-7xl and mx-auto from here */}
-            <section className="mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[linear-gradient(135deg,_#22393F_0%,_#091115_100%)] z-10">
+            <section className="mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[linear-gradient(135deg,_#22393F,_#091115)] z-10">
 
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -531,7 +531,7 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-[linear-gradient(135deg,_#22393F_0%,_#091115_100%)] border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
+            <section className="bg-[linear-gradient(135deg,_#22393F,_#091115)] border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
                 </div>
@@ -549,7 +549,7 @@ const App = () => {
 
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-                <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#22393F_0%,_#091115_100%)] px-6 relative overflow-hidden z-10 text-center">
+                <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#22393F,_#091115)] px-6 relative overflow-hidden z-10 text-center">
                     <div className="depth-wash-light" />
                     <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div className="space-y-6 text-white mb-20 max-w-4xl">
