@@ -216,13 +216,7 @@ const App = () => {
         .animate-lock-shake { animation: lockShake 0.4s ease-in-out infinite; }
        
         .master-raycast-atmosphere {
-          background-color: #004D59;
-          background-image:
-            radial-gradient(circle at 50% 30%, rgba(224,251,255,0.18) 0%, transparent 50%),
-            radial-gradient(circle at 50% 40%, rgba(0,209,233,0.38) 0%, transparent 80%),
-            radial-gradient(circle at 10% 10%, rgba(0,240,255,0.18) 0%, transparent 60%),
-            radial-gradient(circle at 90% 90%, rgba(0,209,233,0.12) 0%, transparent 60%),
-            linear-gradient(180deg, #004D59 0%, #050809 100%);
+          background: linear-gradient(135deg, #00E5FF 0%, #091115 50%);
           position: relative;
         }
 
@@ -476,7 +470,7 @@ const App = () => {
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
             {/* Removed max-w-7xl and mx-auto from here */}
-            <section className="py-20  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-[linear-gradient(135deg,_#22393F,_#091115)] z-10">
+            <section className="py-20  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
 
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -534,7 +528,7 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-[linear-gradient(135deg,_#22393F,_#091115)] border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
+            <section className="bg-transparent border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
         <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">
             Works With
@@ -558,70 +552,70 @@ const App = () => {
             {/* SCANNER SECTION */}
 
 
-                {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-                <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#00E5FF_0%,_#091115_50%)] px-6 relative overflow-hidden z-10 text-center">
-                    <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
-                        <div className="space-y-6 text-white mb-20 max-w-4xl">
-                            <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
-                                Your Favorite Shows Aren't Gone.<br/>
-                                <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
-                            </h2>
-                            <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">
-                                You pay 100% for your OTT subscription. Stop settling for 10% access.
-                            </p>
+            {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
+            <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
+                <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
+                    <div className="space-y-6 text-white mb-20 max-w-4xl">
+                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                            Your Favorite Shows Aren't Gone.<br/>
+                            <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
+                        </h2>
+                        <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">
+                            You pay 100% for your OTT subscription. Stop settling for 10% access.
+                        </p>
+                    </div>
+
+
+                    <div
+                        onClick={revealStage === 'done' ? handleReplay : undefined}
+                        className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden cursor-pointer group"
+                    >
+                        <div className="relative w-full h-[550px] overflow-hidden">
+
+                            {/* 1. Background Image Layer */}
+                            <div className="absolute inset-0 z-0 overflow-hidden">
+                                <img
+                                    src="/images/unlocked.jpg"
+                                    alt="Background"
+                                    className="w-full h-auto"
+                                />
+
+                                <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
+                            </div>
+
+
+
+                        </div>
+                        <div className="absolute inset-0 bg-transparent flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
+                            <div className="w-full max-w-md bg-[#111827]/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
+                                <div className="flex flex-col items-center text-center">
+                                    <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
+                                    <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md text-glow">"This title is not available in your current region."</h4>
+                                    <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
+                                        <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
-                        <div
-                            onClick={revealStage === 'done' ? handleReplay : undefined}
-                            className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden cursor-pointer group"
-                        >
-                            <div className="relative w-full h-[550px] overflow-hidden">
-
-                                {/* 1. Background Image Layer */}
-                                <div className="absolute inset-0 z-0 overflow-hidden">
-                                    <img
-                                        src="/images/unlocked.jpg"
-                                        alt="Background"
-                                        className="w-full h-auto"
-                                    />
-
-                                     <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
-                                </div>
-
-
-
-                            </div>
-                            <div className="absolute inset-0 bg-transparent flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
-                                <div className="w-full max-w-md bg-[#111827]/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
-                                    <div className="flex flex-col items-center text-center">
-                                        <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
-                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md text-glow">"This title is not available in your current region."</h4>
-                                        <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
-                                            <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
-                                        </div>
-                                    </div>
+                        <div className={`absolute inset-0 z-30  bg-[#111827]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
+                            <img src="/images/unlocked.jpg" alt="" className="hidden md:block"/>
+                            <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
+                            <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                                <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
+                                    <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
                                 </div>
                             </div>
+                        </div>
 
 
-                            <div className={`absolute inset-0 z-30  bg-[#111827]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                                <img src="/images/unlocked.jpg" alt="" className="hidden md:block"/>
-                                <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
-                                <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                                    <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
-                                        <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
-                            </div>
+                        <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
 
             {/* UNIFIED SPOTLIGHT BENEFITS SECTION */}
@@ -671,11 +665,11 @@ const App = () => {
                         <div className="benefit-card-pop p-4 md:p-[32px]">
                             <img src="/images/4grid4.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
 
-                                <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
-                                <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
-                                    Our network is built for high-bandwidth 4K video. Connect to optimized routing lanes for lag-free global premieres.
-                                </p>
-                            </div>
+                            <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
+                            <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
+                                Our network is built for high-bandwidth 4K video. Connect to optimized routing lanes for lag-free global premieres.
+                            </p>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -800,46 +794,46 @@ const App = () => {
                             >
                                 {testimonials.map((item, i) => (
                                     <div key={i} className="min-w-full flex-shrink-0 px-4 flex justify-center">
-                                <div className="glass-card w-[250px] md:w-[600px] lg:w-full lg:max-w-3xl p-10 md:p-14 rounded-[55px]  transition-all duration-500 group border-white/30  flex flex-col bg-white/[0.08]">
-                                    <Quote className="text-cyan-400/40 mb-8 group-hover:text-cyan-400 transition-colors" size={40} />
-                                    <p className="text-[12px] md:text-2xl text-white font-semibold leading-relaxed italic mb-8">
-                                        "{item.text}"
-                                    </p>
-                                    <div className="flex items-center gap-4 mt-auto">
-                                        <div className="h-8 w-8 md:w-12 md:h-12 rounded-md md:rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-black tex-[13px] md:text-xl">
-                                            {item.avatar}
+                                        <div className="glass-card w-[250px] md:w-[600px] lg:w-full lg:max-w-3xl p-10 md:p-14 rounded-[55px]  transition-all duration-500 group border-white/30  flex flex-col bg-white/[0.08]">
+                                            <Quote className="text-cyan-400/40 mb-8 group-hover:text-cyan-400 transition-colors" size={40} />
+                                            <p className="text-[12px] md:text-2xl text-white font-semibold leading-relaxed italic mb-8">
+                                                "{item.text}"
+                                            </p>
+                                            <div className="flex items-center gap-4 mt-auto">
+                                                <div className="h-8 w-8 md:w-12 md:h-12 rounded-md md:rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-black tex-[13px] md:text-xl">
+                                                    {item.avatar}
+                                                </div>
+                                                <h4 className="font-black uppercase tracking-tighter text-white text-sm">{item.name}</h4>
+                                            </div>
                                         </div>
-                                        <h4 className="font-black uppercase tracking-tighter text-white text-sm">{item.name}</h4>
                                     </div>
-                                </div>
+                                ))}
                             </div>
+                        </div>
+
+                        <button
+                            onClick={prevTestimonial}
+                            className="absolute top-1/2 -left-2 md:left-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+                        <button
+                            onClick={nextTestimonial}
+                            className="absolute top-1/2 -right-2 md:right-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+
+                        <div className="flex justify-center gap-3 mt-12">
+                            {testimonials.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setTestimonialSlide(i)}
+                                    className={`w-3 h-3 rounded-full transition-all ${testimonialSlide === i ? 'bg-cyan-400 w-8' : 'bg-white/20'}`}
+                                />
                             ))}
                         </div>
                     </div>
-
-                    <button
-                        onClick={prevTestimonial}
-                        className="absolute top-1/2 -left-2 md:left-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button
-                        onClick={nextTestimonial}
-                        className="absolute top-1/2 -right-2 md:right-4 -translate-y-1/2 w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all border-white/20 z-20"
-                    >
-                        <ChevronRight size={24} />
-                    </button>
-
-                    <div className="flex justify-center gap-3 mt-12">
-                        {testimonials.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setTestimonialSlide(i)}
-                                className={`w-3 h-3 rounded-full transition-all ${testimonialSlide === i ? 'bg-cyan-400 w-8' : 'bg-white/20'}`}
-                            />
-                        ))}
-                    </div>
-                </div>
                 </div>
             </section>
 
@@ -911,41 +905,40 @@ const App = () => {
 
             {/* FOOTER */}
             <footer className="bg-transparent pt-20 px-6 border-t border-white/20 relative overflow-hidden z-10">
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[700px] bg-cyan-500/[0.15] blur-[220px] rounded-full pointer-events-none" />
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between mb-10">
 
-                            <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 ">
-                                <img
-                                    src="/images/Binge-logo.svg"
-                                    alt="BingeBeyond Logo"
-                                    className="h-8 w-8 object-contain mr-2"
-                                />
-                                <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                                <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
-                            </div>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 ">
+                        <img
+                            src="/images/Binge-logo.svg"
+                            alt="BingeBeyond Logo"
+                            className="h-8 w-8 object-contain mr-2"
+                        />
+                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
+                    </div>
 
 
-                        {/*<div className="space-y-10 text-white">*/}
-                        {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
-                        {/*    <ul className="space-y-5 text-base font-bold">*/}
-                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>*/}
-                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>*/}
-                        {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
-                        <div className="space-y-10 text-white ">
-                            <div  className="space-x-10 text-base font-bold ">
+                    {/*<div className="space-y-10 text-white">*/}
+                    {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
+                    {/*    <ul className="space-y-5 text-base font-bold">*/}
+                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>*/}
+                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>*/}
+                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+                    <div className="space-y-10 text-white ">
+                        <div  className="space-x-10 text-base font-bold ">
 
-                                <a  href="https://bingebeyond.com/privacy-policy"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                         className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a>
-                                <a  href="https://bingebeyond.com/bingebeyond-terms-of-use"
-                                        target="_blank"
-                                        rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a>
-                                {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
-                            </div>
+                            <a  href="https://bingebeyond.com/privacy-policy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a>
+                            <a  href="https://bingebeyond.com/bingebeyond-terms-of-use"
+                                target="_blank"
+                                rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a>
+                            {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
                         </div>
+                    </div>
 
                 </div>
             </footer>
@@ -955,4 +948,3 @@ const App = () => {
 
 
 export default App;
-
