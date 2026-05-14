@@ -377,8 +377,7 @@ const App = () => {
 
 
             {/* Navigation */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'bg-[#0f172a]/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>
-                <div className="flex items-center gap-8">
+            <nav className={`left-0 right-0 max-w-7xl mx-auto fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>                <div className="flex items-center gap-8">
                     <div className="flex-shrink-0 flex items-center cursor-pointer">
                         <img
                             src="/images/Binge-logo.svg"
@@ -478,25 +477,26 @@ const App = () => {
 
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
-            <section className=" mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
+            {/* Removed max-w-7xl and mx-auto from here */}
+            <section className="mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[#091115] z-10">
+
                 {/* 1. Background Gradient Fix */}
-                <div className=" absolute inset-0 -z-10 pointer-events-none">
+                <div className="absolute inset-0 -z-10 pointer-events-none">
                     <div className="absolute inset-0 pointer-events-none bg-transparent">
                         <img
-                        src={bgImage}
-                          className="w-full h-full object-cover bg-transparent"
-                          alt="Background"
-                   />
-                </div>             </div>
+                            src={bgImage}
+                            className="w-full h-full object-cover bg-transparent"
+                            alt="Background"
+                        />
+                    </div>
+                </div>
 
                 {/* 2. Dark Overlay */}
 
                 {/* 3. Content Container */}
-                <div className="relative z-20 px-8 md:px-20 max-w-7xl">
-                    {/*<div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">*/}
-                    {/*    Unlock Global Content*/}
-                    {/*</div>*/}
-                    <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Unlock Global Content</div>
+                {/* Added mx-auto and w-full here to center the content within the full-width section */}
+                <div className="w-full mx-auto relative z-20 px-8  max-w-7xl">
+
 
 
                     <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
@@ -515,7 +515,7 @@ const App = () => {
                         href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all  hover:scale-105 group"
+                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all hover:scale-105 group"
                     >
                         <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">
                             <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
@@ -527,12 +527,11 @@ const App = () => {
                     </a>
                 </div>
 
-
             </section>
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-slate-800 border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
+            <section className="bg-[#091115] border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
                 </div>
@@ -550,7 +549,7 @@ const App = () => {
 
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-                <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
+                <section ref={sectionRef} className="py-20 bg-[#091115] px-6 relative overflow-hidden z-10 text-center">
                     <div className="depth-wash-light" />
                     <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div className="space-y-6 text-white mb-20 max-w-4xl">
