@@ -527,7 +527,7 @@ const App = () => {
                             Stream Right On The Apps<br/>
                             <span className="electric-cyan-highlight">You Already Use.</span>
                         </h2>
-                        <p className="text-white/80 max-w-xl mx-auto text-sm font-bold leading-relaxed uppercase tracking-[0.2em] drop-shadow-md">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
+                        <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
                     </div>
 
 

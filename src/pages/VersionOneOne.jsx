@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import bgImage from './collage2.jpg'; // Adjust path as needed
 import bgImage from './hero-logo.png';
+import bgImage2 from './selected-movie.png';
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
 import stepsImg from './3steps-bg.jpg';
@@ -124,23 +125,14 @@ const App = () => {
 
 
     const services = [
-        { name: "YouTube", color: "#FF0000" },
-        { name: "Disney+", color: "#0063e5" },
-        { name: "Crunchyroll", color: "#f47521" },
-        { name: "Paramount", color: "#0064ff" },
-        { name: "ESPN+", color: "#cb2128" },
-        { name: "HBO Max", color: "#991bfa" },
-        { name: "Hotstar", color: "#fbcc33" },
-        { name: "JioHotstar", color: "#4b27ff" },
-        { name: "Hulu", color: "#1ce783" },
-        { name: "Peacock", color: "#ffffff" },
-        { name: "Prime Video", color: "#00a8e1" },
-        { name: "Showmax", color: "#ff0000" },
-        { name: "SonyLiv", color: "#ffffff" },
-        { name: "Syfy", color: "#92278f" },
-        { name: "TheCW", color: "#39b54a" },
-        { name: "Tubi", color: "#ff4f00" },
-        { name: "Xumo", color: "#ffffff" }
+        { name: "Disney+", image: "/images/disney.png" },
+        { name: "Crunchyroll", image: "/images/crunchy.png" },
+        { name: "Paramount", image: "/images/paramount.png" },
+        { name: "ESPN+", image: "/images/espn.png" },
+        { name: "HBO Max", image: "/images/hbo.png" },
+        { name: "Hulu", image: "/images/hulu.png" },
+        { name: "Syfy", image: "/images/syfy.png" },
+        { name: "Xumo", image: "/images/xumo.png" }
     ];
 
 
@@ -155,14 +147,14 @@ const App = () => {
         {
             title: "Discover Beyond",
             subtitle: "Universal Library",
-            desc: "Explore our unified hub to find global releases, live sports, and regional catalogs you never knew you had access to.",
+            desc: "Discover movies, shows, live sports, and regional catalogs available across different countries and platforms.",
             icon: <GlobeIcon className="text-cyan-400" />,
             imgSrc: "/images/3card2.png"
         },
         {
-            title: "Just hit play",
+            title: "Launch & Stream",
             subtitle: "Instant Override",
-            desc: "Tap any title and we'll instantly route the right global connection in the background. Grab the popcorn, we handle the rest.",
+            desc: "Select a title and BingeBeyond sets the correct streaming region before launching your OTT platform",
             icon: <PlayCircle className="text-cyan-400" />,
             imgSrc: "/images/3card3.png"
         }
@@ -262,7 +254,6 @@ const App = () => {
 
         .benefit-card-pop {
           border-radius: 48px;
-          padding: 32px;
           transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           overflow: hidden;
           display: flex;
@@ -341,7 +332,6 @@ const App = () => {
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
           box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.35);
-          min-height: 620px;
           display: flex;
           align-items: center;
         }
@@ -377,31 +367,39 @@ const App = () => {
 
 
             {/* Navigation */}
-            <nav className={`left-0 right-0 max-w-7xl mx-auto fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>                <div className="flex items-center gap-8">
-                    <div className="flex-shrink-0 flex items-center cursor-pointer">
-                        <img
-                            src="/images/Binge-logo.svg"
-                            alt="BingeBeyond Logo"
-                            className="h-8 w-8 object-contain mr-2"
-                        />
-                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
-                    </div>
-                    <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">
-                        <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
-                        <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
-                        <a href="" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
-                    </div>
+            <nav className={`left-0 right-0 max-w-7xl mx-auto fixed top-0 w-full z-50 transition-all duration-500 px-6 py-4 flex items-center justify-between ${scrolled ? 'backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent'}`}>
+
+                {/* 1. LEFT: Logo Container */}
+                <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10">
+                    <img
+                        src="/images/Binge-logo.svg"
+                        alt="BingeBeyond Logo"
+                        className="h-8 w-8 object-contain mr-2"
+                    />
+                    <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                    <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                 </div>
+
+                {/* 2. CENTER: Links Container (Absolutely Centered) */}
+                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-7 text-[16px] font-semibold tracking-[0.1em] text-gray-300 uppercase">
+                    <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
+                    <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
+                    <a href="" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
+                </div>
+
+                {/* 3. RIGHT: Button Container */}
                 <a
                     href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block"
+                    className="inline-block relative z-10"
                 >
-                <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">Download The App</button>
+                    <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                        Download The App
+                    </button>
                 </a>
-                </nav>
+
+            </nav>
 
 
             {/* Hero Section */}
@@ -478,14 +476,19 @@ const App = () => {
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
             {/* Removed max-w-7xl and mx-auto from here */}
-            <section className="mt-20 lg:mt-0 relative h-[90vh] w-full overflow-hidden flex items-center bg-[linear-gradient(135deg,_#22393F,_#091115)] z-10">
+            <section className="py-20  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-[linear-gradient(135deg,_#22393F,_#091115)] z-10">
 
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
                     <div className="absolute inset-0 pointer-events-none bg-transparent">
                         <img
                             src={bgImage}
-                            className="w-full h-full object-cover bg-transparent"
+                            className="w-full h-full object-cover bg-transparent hidden md:block"
+                            alt="Background"
+                        />
+                        <img
+                            src={bgImage2}
+                            className="w-full h-full object-cover bg-transparent block md:hidden "
                             alt="Background"
                         />
                     </div>
@@ -499,7 +502,7 @@ const App = () => {
 
 
 
-                    <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
+                    <h1 className="text-[38px] md:text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
                         Watch Shows, Movies & <br/>
                         Live Sports - <br/>
                         <span className=" text-cyan-400 ">
@@ -507,7 +510,7 @@ const App = () => {
             </span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-slate-100 mt-6 mb-10 max-w-2xl leading-relaxed font-semibold">
+                    <p className="text-[18px] md:text-[20px] text-slate-100 mt-6 mb-10 max-w-2xl leading-relaxed font-semibold">
                         BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.
                     </p>
 
@@ -531,14 +534,21 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-[linear-gradient(135deg,_#22393F,_#091115)] border-y border-white/15 shadow-2xl flex items-center overflow-hidden backdrop-blur-2xl z-10">
+            <section className="bg-[linear-gradient(135deg,_#22393F,_#091115)] border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
                 <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 whitespace-nowrap">Works With</span>
+        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">
+            Works With
+        </span>
                 </div>
                 <div className="flex-1 overflow-hidden relative">
-                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-10 text-white">
+                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-10">
                         {[...services, ...services].map((s, i) => (
-                            <span key={i} className="text-3xl font-black uppercase italic tracking-tighter transition-all opacity-100 drop-shadow-[0_0_15px_currentColor] scale-110" style={{ color: s.color }}>{s.name}</span>
+                            <img
+                                key={i}
+                                src={s.image}
+                                alt={s.name}
+                                className="h-10 w-auto object-contain transition-all hover:scale-110"
+                            />
                         ))}
                     </div>
                 </div>
@@ -550,14 +560,13 @@ const App = () => {
 
                 {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
                 <section ref={sectionRef} className="py-20 bg-[linear-gradient(135deg,_#22393F,_#091115)] px-6 relative overflow-hidden z-10 text-center">
-                    <div className="depth-wash-light" />
                     <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div className="space-y-6 text-white mb-20 max-w-4xl">
-                            <h2 className="text-[44px] font-black tracking-tighter uppercase leading-[1.1] high-visibility-heading">
+                            <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                                 Your Favorite Shows Aren't Gone.<br/>
-                                <span className="text-cyan-400">They're Being Gatekept.</span>
+                                <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
                             </h2>
-                            <p className="text-xl font-medium text-white/80 high-visibility-heading tracking-tight">
+                            <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">
                                 You pay 100% for your OTT subscription. Stop settling for 10% access.
                             </p>
                         </div>
@@ -565,7 +574,7 @@ const App = () => {
 
                         <div
                             onClick={revealStage === 'done' ? handleReplay : undefined}
-                            className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden bg-black/20 shadow-[0_0_80px_rgba(0,0,0,0.5)] cursor-pointer group backdrop-blur-xl"
+                            className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden cursor-pointer group"
                         >
                             <div className="relative w-full h-[550px] overflow-hidden">
 
@@ -618,8 +627,8 @@ const App = () => {
                 <div className="depth-wash-heavy" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
                     <div className="text-center mb-24">
-                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">High-Performance Network</div>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter leading-[1.1] mb-2 high-visibility-heading">
+                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">High-Performance VPN</div>
+                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Built For Binge-Watching.<br/>
                             <span className="text-cyan-400">Optimized For Speed.</span>
                         </h2>
@@ -627,53 +636,41 @@ const App = () => {
 
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div className="benefit-card-pop">
-                            <img src="/images/4grid1.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                        <div className="benefit-card-pop p-4 md:p-[32px]">
+                            <img src="/images/4grid1.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
-                                <div className="inline-flex items-center gap-2 text-white">
-                                    <Target size={24} className="text-cyan-300" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Universal Remote</span>
-                                </div>
-                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">One Tap From Search <span className="text-cyan-400">To Stream.</span></h2>
-                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+
+                                <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">One Tap From Search <span className="text-cyan-400">To Stream.</span></h2>
+                                <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
                                     No more guessing which country server to pick. Find any show in our hub, hit play, and we connect you to the right node instantly.
                                 </p>
                             </div>
                         </div>
-                        <div className="benefit-card-pop">
-                            <img src="/images/4grid2.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                        <div className="benefit-card-pop p-4 md:p-[32px]">
+                            <img src="/images/4grid2.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
-                                <div className="inline-flex items-center gap-2 text-white">
-                                    <GlobeIcon size={24} className="text-cyan-300" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Global Discovery</span>
-                                </div>
-                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">See What You Are <span className="text-cyan-400">Missing.</span></h2>
-                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+
+                                <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">See What You Are <span className="text-cyan-400">Missing.</span></h2>
+                                <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
                                     Browse movies and live sports not available in your region. Explore global catalogs in one unified hub without switching between apps.
                                 </p>
                             </div>
                         </div>
-                        <div className="benefit-card-pop">
-                            <img src="/images/4grid3.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                        <div className="benefit-card-pop p-4 md:p-[32px]">
+                            <img src="/images/4grid3.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
-                                <div className="inline-flex items-center gap-2 text-white">
-                                    <Zap size={24} className="text-cyan-300" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Zero Lag</span>
-                                </div>
-                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">Stream Without <span className="text-cyan-400">Device Lag.</span></h2>
-                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+
+                                <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Stream Without <span className="text-cyan-400">Device Lag.</span></h2>
+                                <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
                                     Traditional VPNs slow your entire device. We target only your streaming apps, leaving your maps, banking, and messages at full speed.
                                 </p>
                             </div>
                         </div>
-                        <div className="benefit-card-pop">
-                            <img src="/images/4grid4.png" alt="" className="h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
-                                <div className="inline-flex items-center gap-2 text-white">
-                                    <FastForward size={24} className="text-cyan-300" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Instant Delivery</span>
-                                </div>
-                                <h2 className="text-2xl font-black uppercase tracking-tighter high-visibility-heading">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
-                                <p className="text-sm text-white/90 font-medium leading-relaxed">
+                        <div className="benefit-card-pop p-4 md:p-[32px]">
+                            <img src="/images/4grid4.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
+
+                                <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
+                                <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
                                     Our network is built for high-bandwidth 4K video. Connect to optimized routing lanes for lag-free global premieres.
                                 </p>
                             </div>
@@ -691,7 +688,7 @@ const App = () => {
                     <div className="flex flex-col items-center text-center mb-20">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">How it works</div>
 
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 high-visibility-heading">
+                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Start Binge-Watching<br/>
                             <span className="text-cyan-400">In 3 Simple Steps.</span>
                         </h2>
@@ -711,9 +708,8 @@ const App = () => {
                                             {i + 1}
                                         </div>
                                         <div className="pr-4 text-left">
-                                            <p className={`text-[10px] font-black uppercase tracking-[0.25em] mb-1 ${activeStep === i ? 'text-cyan-300' : 'text-white/40'}`}>{step.subtitle}</p>
-                                            <h4 className="text-lg font-black uppercase tracking-tight mb-1 text-white">{step.title}</h4>
-                                            <p className={`text-xs font-medium leading-relaxed ${activeStep === i ? 'text-white' : 'text-white/60'}`}>{step.desc}</p>
+                                            <h4 className="text-[16px] md:text-[20px] font-black uppercase tracking-tight mb-1 text-white">{step.title}</h4>
+                                            <p className={`text-[12px] md:text-[16px] font-medium leading-relaxed ${activeStep === i ? 'text-white' : 'text-white/60'}`}>{step.desc}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -757,8 +753,8 @@ const App = () => {
 
                 <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
-                    <h2 className="text-[38px] font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-md">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
-                    <p className="text-slate-100 max-w-xl mx-auto text-sm font-bold leading-relaxed uppercase tracking-[0.2em] drop-shadow-md">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
+                    <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
+                    <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight max-w-3xl mx-auto">Access live sports on SonyLiv, exclusive anime on Crunchyroll Japan, and blockbusters on US Netflix in seconds. Connect once and explore entertainment worldwide.</p>
                 </div>
 
 
@@ -789,7 +785,7 @@ const App = () => {
                 <div className="max-w-7xl mx-auto px-2 md:px-6 relative z-10">
                     <div className="text-center mb-20">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Reviews</div>
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Trusted by over <br/> <span className="text-cyan-400">100,000 Streamers</span>
                         </h2>
                     </div>
@@ -849,7 +845,7 @@ const App = () => {
             <section id="faqs" className="relative bg-transparent py-20 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-20 text-white">
-                        <h2 className="text-[38px] font-black uppercase tracking-tighter mb-6 drop-shadow-md">
+                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Frequently Asked <span className="text-cyan-400">Questions</span>
                         </h2>
                     </div>
@@ -862,14 +858,14 @@ const App = () => {
                                 className={`rounded-[40px] border transition-all duration-500 overflow-hidden cursor-pointer ${openFaq === i ? 'bg-white border-white shadow-[0_0_60px_rgba(255,255,255,0.2)]' : 'bg-white/[0.08] border-white/10 hover:border-white/30 backdrop-blur-md'}`}
                                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                             >
-                                <div className="p-10 flex items-center justify-between gap-8">
-                                    <h4 className={`text-2xl font-black uppercase tracking-tighter transition-colors ${openFaq === i ? 'text-black' : 'text-white'}`}>{item.q}</h4>
-                                    <div className={`p-3 rounded-2xl transition-all shadow-xl ${openFaq === i ? 'bg-[#334155] text-white' : 'bg-white/10 text-white'}`}>
+                                <div className="p-5 md:p-10 flex items-center justify-between gap-4 md:gap-8">
+                                    <h4 className={`text-[18px] md:text-[20px] font-black uppercase tracking-tighter transition-colors ${openFaq === i ? 'text-black' : 'text-white'}`}>{item.q}</h4>
+                                    <div className={`p-1 md:p-3 rounded-md md:rounded-2xl transition-all shadow-xl ${openFaq === i ? 'bg-[#334155] text-white' : 'bg-white/10 text-white'}`}>
                                         {openFaq === i ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
                                     </div>
                                 </div>
                                 <div className={`transition-all duration-500 ease-in-out ${openFaq === i ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <p className={`p-10 pt-0 text-lg font-semibold leading-relaxed border-t ${openFaq === i ? 'text-slate-600 border-slate-100' : 'text-slate-100 border-white/10'}`}>
+                                    <p className={`p-5 md:p-10  pt-0 text-[16px] md:text-[18px] font-semibold leading-relaxed border-t ${openFaq === i ? 'text-slate-600 border-slate-100' : 'text-slate-100 border-white/10'}`}>
                                         {item.a}
                                     </p>
                                 </div>
@@ -888,11 +884,11 @@ const App = () => {
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
 
-                    <h2 className="text-[38px] md:text-[54px] font-black uppercase tracking-tighter text-white leading-none mb-10">
+                    <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-10">
                         Get More From The Subscriptions <br/>
                         <span className="text-cyan-400">You Already Pay For</span>
                     </h2>
-                    <p className="text-slate-100 max-w-2xl mx-auto text-xl font-bold leading-relaxed mb-16 drop-shadow-2xl">
+                    <p className="text-slate-100 max-w-2xl mx-auto text-[18px] md:text-[20px] font-bold leading-relaxed mb-16 drop-shadow-2xl">
                         Unlock more shows, more regions, and smoother streaming - without slowing down the rest of your phone.
                     </p>
                     <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
@@ -914,10 +910,9 @@ const App = () => {
             {/* FOOTER */}
             <footer className="bg-transparent pt-20 px-6 border-t border-white/20 relative overflow-hidden z-10">
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[700px] bg-cyan-500/[0.15] blur-[220px] rounded-full pointer-events-none" />
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
-                        <div className="col-span-1 md:col-span-2">
-                            <div className="flex-shrink-0 flex items-center cursor-pointer mb-10">
+                <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between mb-10">
+
+                            <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 ">
                                 <img
                                     src="/images/Binge-logo.svg"
                                     alt="BingeBeyond Logo"
@@ -926,17 +921,8 @@ const App = () => {
                                 <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
                                 <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                             </div>
-                            <p className="text-slate-200 max-w-sm mb-14 font-semibold text-lg leading-relaxed italic drop-shadow-sm">
-                                Stream global content seamlessly across your favorite OTT platforms. Fast, private, and built for uninterrupted viewing.
-                            </p>
-                            {/*<div className="flex gap-6">*/}
-                            {/*    {[Twitter, Instagram, Github, Mail].map((Icon, i) => (*/}
-                            {/*        <div key={i} className="w-14 h-14 rounded-2xl bg-white/[0.15] border border-white/30 flex items-center justify-center hover:bg-cyan-400 hover:text-black hover:scale-110 cursor-pointer transition-all duration-300 text-white shadow-xl">*/}
-                            {/*            <Icon size={22} />*/}
-                            {/*        </div>*/}
-                            {/*    ))}*/}
-                            {/*</div>*/}
-                        </div>
+
+
                         {/*<div className="space-y-10 text-white">*/}
                         {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
                         {/*    <ul className="space-y-5 text-base font-bold">*/}
@@ -945,20 +931,19 @@ const App = () => {
                         {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
                         {/*    </ul>*/}
                         {/*</div>*/}
-                        <div className="space-y-10 text-white">
-                            <ul className="space-y-5 text-base font-bold">
+                        <div className="space-y-10 text-white ">
+                            <div  className="space-x-10 text-base font-bold ">
 
-                                <li><a  href="https://bingebeyond.com/privacy-policy"
+                                <a  href="https://bingebeyond.com/privacy-policy"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                         className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a></li>
-                                <li><a  href="https://bingebeyond.com/bingebeyond-terms-of-use"
+                                         className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Privacy Policy</a>
+                                <a  href="https://bingebeyond.com/bingebeyond-terms-of-use"
                                         target="_blank"
-                                        rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a></li>
+                                        rel="noopener noreferrer" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Terms & Conditions</a>
                                 {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
-                            </ul>
+                            </div>
                         </div>
-                    </div>
 
                 </div>
             </footer>
