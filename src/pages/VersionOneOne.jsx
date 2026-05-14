@@ -388,7 +388,7 @@ const App = () => {
                     rel="noopener noreferrer"
                     className="inline-block relative z-10"
                 >
-                    <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[16px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                    <button className="px-6 py-2 bg-cyan-400 text-black font-black rounded-full text-[10px] md:text-[16px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                         Download The App
                     </button>
                 </a>
@@ -470,7 +470,7 @@ const App = () => {
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
             {/* Removed max-w-7xl and mx-auto from here */}
-            <section className="py-20  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
+            <section className="py-[120px]  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
 
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -528,14 +528,14 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-transparent border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
-                <div className="px-8 md:px-12 py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
+            <section className="bg-[#091115] border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
+                <div className="px-4 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
         <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">
             Works With
         </span>
                 </div>
                 <div className="flex-1 overflow-hidden relative">
-                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-10">
+                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-5 md:py-10">
                         {[...services, ...services].map((s, i) => (
                             <img
                                 key={i}
@@ -754,10 +754,10 @@ const App = () => {
                 </div>
 
 
-                <div className="relative z-10 flex flex-col gap-20 perspective-[2000px] pb-10 mask-fade-x">
-                    <div className="animate-marquee whitespace-nowrap flex gap-12 py-4">
+                <div className="relative z-10 flex flex-col gap-10 md:gap-20 perspective-[2000px] pb-10 mask-fade-x">
+                    <div className="animate-marquee whitespace-nowrap flex gap-6 md:gap-12 py-0 md:py-4">
                         {[...multiverseContent, ...multiverseContent].map((item, i) => (
-                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
+                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
                                 <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
 
 
@@ -765,9 +765,9 @@ const App = () => {
                         ))}
                     </div>
                     {/* ROW 2 RESTORED */}
-                    <div className="animate-marquee-reverse whitespace-nowrap flex gap-12 py-4">
+                    <div className="animate-marquee-reverse whitespace-nowrap flex gap-6 md:gap-12 py-0 md:py-4">
                         {[...multiverseContent].reverse().concat([...multiverseContent].reverse()).map((item, i) => (
-                            <div key={i} className="group relative w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" >
+                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" >
                                 <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
                             </div>
                         ))}
@@ -892,7 +892,7 @@ const App = () => {
                             href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-14 py-7 bg-cyan-400 text-white font-black rounded-[32px]  hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group"
+                            className="px-6 md:px-14 py-3 md:py-7 bg-cyan-400 text-white font-black rounded-[32px]  hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group"
                         >
                             <span className=" font-black">Download the app</span>
                             <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
