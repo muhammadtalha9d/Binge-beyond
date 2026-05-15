@@ -202,6 +202,13 @@ const App = () => {
     return (
         <div className="min-h-screen master-raycast-atmosphere text-white font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden relative">
             <style>{`
+             @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; }
+        @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-ExtraBold.woff2') format('woff2'); font-weight: 800; font-style: normal; }
+        @font-face { font-family: 'Gilroy'; src: url('./fonts/Gilroy-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
+        * { font-family: 'Gilroy', sans-serif; }
         @keyframes slowPan { 0% { transform: scale(1.1) translate(0, 0); } 50% { transform: scale(1.15) translate(-1%, -1%); } 100% { transform: scale(1.1) translate(0, 0); } }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes marqueeReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
@@ -217,7 +224,7 @@ const App = () => {
         .animate-lock-shake { animation: lockShake 0.4s ease-in-out infinite; }
        
         .master-raycast-atmosphere {
-          background: linear-gradient(97deg, #00E5FF 0%, #091115 40%);
+          background: transparent;
           position: relative;
         }
  @keyframes infiniteScroll {
@@ -270,11 +277,10 @@ const App = () => {
 
 
         .premium-badge {
-          background: #000;
+          background: white;
           border: 2px solid #00f2ff;
-          color: #fff;
+          color: black;
           font-weight: 900;
-          box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
           text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
           padding: 8px 24px;
           border-radius: 9999px;
@@ -330,7 +336,6 @@ const App = () => {
        
         .benefit-card-pop {
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
-          box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.35);
           display: flex;
           align-items: center;
@@ -357,13 +362,11 @@ const App = () => {
       `}</style>
 
 
+            {/* A1.SVG FULL PAGE BACKGROUND */}
+
             {/* FIXED ATMOSPHERIC BACKGROUND LAYER */}
-            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-cyan-400/[0.05] blur-[160px] rounded-full animate-[drift_20s_ease-in-out_infinite]" />
-                <div className="absolute top-[20%] right-[-5%] w-[50%] h-[50%] bg-indigo-400/[0.04] blur-[180px] rounded-full animate-[drift_25s_ease-in-out_infinite_reverse]" />
-                <div className="absolute bottom-[10%] left-[15%] w-[45%] h-[45%] bg-cyan-400/[0.06] blur-[150px] rounded-full animate-[drift_30s_ease-in-out_infinite]" />
-                <div className="absolute bottom-[-15%] right-[10%] w-[55%] h-[55%] bg-blue-400/[0.05] blur-[200px] rounded-full animate-[drift_22s_ease-in-out_infinite_reverse]" />
-            </div>
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <img src="/images/A1.svg" alt="" className="w-full h-full object-cover" /> </div>
 
 
             {/* Navigation */}
@@ -402,80 +405,7 @@ const App = () => {
             </nav>
 
 
-            {/* Hero Section */}
-            {/*<section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">*/}
-            {/*        <div className="absolute inset-0 pointer-events-none">*/}
-            {/*            /!*<img*!/*/}
-            {/*            /!*    src={bgImage}*!/*/}
-            {/*            /!*    className="w-full h-full object-cover"*!/*/}
-            {/*            /!*    alt="Background"*!/*/}
-            {/*            /!*//*/}
-            {/*        </div>*/}
 
-            {/*    <div className="absolute inset-0 z-10" />*/}
-
-            {/*    <div className="relative z-20 px-8 md:px-20 max-w-7xl">*/}
-            {/*        <div className="px-4 py-1.5 bg-cyan-400/20 border border-cyan-400/40 rounded-full text-cyan-400 text-[10px] font-black tracking-[0.4em] mb-8 inline-block uppercase shadow-[0_0_20px_rgba(34,211,238,0.2)] backdrop-blur-md">Unlock Global Content</div>*/}
-            {/*        <h1 className="text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-glow text-white">*/}
-            {/*            Watch Shows, Movies & <br/>*/}
-            {/*            Live Sports - <br/>*/}
-            {/*            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-100 to-white text-glow">Without Location Limits</span>*/}
-            {/*        </h1>*/}
-            {/*        <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl leading-relaxed font-semibold drop-shadow-md">*/}
-            {/*            BingeBeyond works with your streaming apps to access content available in other regions - fast, smooth, and without breaking your device.*/}
-            {/*        </p>*/}
-
-            {/*        <a*/}
-            {/*            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"*/}
-            {/*            target="_blank"*/}
-            {/*            rel="noopener noreferrer"*/}
-            {/*            className="w-1/2 sm:w-1/2 flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all group"*/}
-            {/*        >*/}
-
-
-            {/*            <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">*/}
-            {/*                <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>*/}
-            {/*            </svg>*/}
-            {/*            <div className="text-left">*/}
-            {/*                <div className="text-[12px] font-normal leading-none mb-1 opacity-80 text-glow-white font-black">GET IT*/}
-            {/*                    ON*/}
-            {/*                </div>*/}
-            {/*                <div className="text-[20px] font-semibold leading-none text-glow-white font-black">Google Play</div>*/}
-            {/*            </div>*/}
-            {/*        </a>*/}
-
-            {/*        /!*<button className="px-12 py-6 bg-cyan-400 text-white font-black rounded-2xl shadow-[0_0_40px_rgba(34,211,238,0.7)] hover:shadow-[0_0_60px_rgba(34,211,238,0.9)] hover:scale-105 transition-all flex items-center gap-3 text-sm uppercase tracking-widest group">*!/*/}
-            {/*        /!*    <span className="text-glow-white font-black">Download the app</span> <ChevronRight className="group-hover:translate-x-1 transition-transform drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />*!/*/}
-            {/*        /!*</button>*!/*/}
-            {/*    </div>*/}
-
-
-            {/*    /!* DEVICE SUPPORT INDICATOR *!/*/}
-            {/*    <div className="absolute bottom-12 right-12 z-30 flex gap-8 transition-all duration-700">*/}
-            {/*        <div className="flex flex-col items-center group">*/}
-            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
-            {/*                <Smartphone className="text-cyan-400" size={24} />*/}
-            {/*            </div>*/}
-            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Mobile</span>*/}
-            {/*        </div>*/}
-            {/*        <div className="flex flex-col items-center group">*/}
-            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
-            {/*                <Tablet className="text-cyan-400" size={24} />*/}
-            {/*            </div>*/}
-            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Tablet</span>*/}
-            {/*        </div>*/}
-            {/*        <div className="flex flex-col items-center group">*/}
-            {/*            <div className="neon-device-circle transition-all group-hover:scale-110">*/}
-            {/*                <Tv className="text-cyan-400" size={24} />*/}
-            {/*            </div>*/}
-            {/*            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Smart TV</span>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-
-
-            {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
-            {/*</section>*/}
-            {/* Removed max-w-7xl and mx-auto from here */}
             <section className="py-[120px]  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center  bg-transparent z-10">
 
                 {/* 1. Background Gradient Fix */}
@@ -537,7 +467,7 @@ const App = () => {
             <section className="relative z-20 -mt-12 pb-20 md:pb-40">
                 <div className="bg-[#091115] border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm ">
                     <div
-                        className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white max-w-[80px] md:max-w-[300px] text-center bg-black">
+                        className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-[#091115] max-w-[80px] md:max-w-[300px] text-center">
         <span
             className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap ">
             Works <br className="block md:hidden"/> With
@@ -548,15 +478,15 @@ const App = () => {
                             <React.Fragment key={loop}>
 
                                 <img src="/images/netflix.png" alt="Netflix" className="h-3 md:h-8 mx-3 md:mx-12  "/>
-                                <img src="/images/disney.png" alt="Disney+"
+                                <img src="/images/disney.svg" alt="Disney+"
                                      className="h-10 md:h-16 mx-3 md:mx-12 pb-2 "/>
                                 <img src="/images/crunchy.png" alt="Crunchyroll"
                                      className="h-5 md:h-10 mx-3 md:mx-12 "/>
-                                <img src="/images/hbo.png" alt="HBO Max" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/hbo.svg" alt="HBO Max" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                                 <img src="/images/espn.png" alt="ESPN+" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                                 <img src="/images/hulu.png" alt="Hulu" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                                 <img src="/images/syfy.png" alt="Syfy" className="h-3 md:h-8 mx-3 md:mx-12 "/>
-                                <img src="/images/xumo.png" alt="Xumo" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/xumo.svg" alt="Xumo" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                             </React.Fragment>
                         ))}
                     </div>
@@ -570,7 +500,7 @@ const App = () => {
             {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
             <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
-                    <div className="space-y-6 text-white mb-20 max-w-4xl text-center md:text-left">
+                    <div className="space-y-6 text-white mb-20 max-w-4xl text-center">
                         <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Your Favorite Shows Aren't Gone.<br/>
                             <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
@@ -638,7 +568,7 @@ const App = () => {
                 <div className="depth-wash-heavy" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
                     <div className="text-center mb-24">
-                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">High-Performance VPN</div>
+                        <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8 text-black">High-Performance VPN</div>
                         <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Built For Binge-Watching.<br/>
                             <span className="text-cyan-400">Optimized For Speed.</span>
@@ -648,7 +578,7 @@ const App = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="benefit-card-pop p-4 md:p-[32px]">
-                            <img src="/images/4grid1.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <img src="/images/4grid1.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
 
                                 <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">One Tap From Search <span className="text-cyan-400">To Stream.</span></h2>
@@ -658,7 +588,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="benefit-card-pop p-4 md:p-[32px]">
-                            <img src="/images/4grid2.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <img src="/images/4grid2.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden  mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
 
                                 <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">See What You Are <span className="text-cyan-400">Missing.</span></h2>
@@ -668,7 +598,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="benefit-card-pop p-4 md:p-[32px]">
-                            <img src="/images/4grid3.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>
+                            <img src="/images/4grid3.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden  mb-10 flex items-center justify-center"/>
                             <div className="space-y-6">
 
                                 <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Stream Without <span className="text-cyan-400">Device Lag.</span></h2>
@@ -678,7 +608,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="benefit-card-pop p-4 md:p-[32px]">
-                            <img src="/images/4grid4.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden shadow-inner mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
+                            <img src="/images/4grid4.png" alt="" className="h-auto md:h-[280px] w-full rounded-[32px]  overflow-hidden  mb-10 flex items-center justify-center"/>                            <div className="space-y-6">
 
                             <h2 className="text-[20px] md:text-[24px] font-black uppercase tracking-tighter">Smooth Buffer-Free <span className="text-cyan-400">Playback.</span></h2>
                             <p className="text-[14px] md:text-[18px] text-white/90 font-medium leading-relaxed">
@@ -693,7 +623,7 @@ const App = () => {
 
 
             {/* HOW IT WORKS SECTION */}
-            <section id="protocol" className="relative bg-transparent py-20 overflow-hidden z-10 border-y border-white/5">
+            <section id="protocol" className="relative bg-transparent py-20 overflow-hidden z-10">
                 <div className="absolute inset-0 blueprint-grid opacity-[0.08] pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
                     <div className="flex flex-col items-center text-center mb-20">
@@ -757,7 +687,7 @@ const App = () => {
 
 
             {/* MULTIVERSE FEED SECTION - RESTORED DUAL ROWS */}
-            <section id="beyond" className="relative py-20 bg-transparent relative overflow-hidden z-10 border-t border-white/10">
+            <section id="beyond" className="relative py-20 bg-transparent relative overflow-hidden z-10">
                 <div className="absolute inset-0 blueprint-grid opacity-60 z-0" />
 
 
@@ -792,7 +722,7 @@ const App = () => {
 
 
             {/* TESTIMONIALS SECTION - 3 CARDS PER SLIDE */}
-            <section id="testimonials" className="relative bg-transparent py-20 overflow-hidden border-t border-white/10 z-10">
+            <section id="testimonials" className="relative bg-transparent py-20 overflow-hidden z-10">
                 <div className="max-w-7xl mx-auto px-2 md:px-6 relative z-10">
                     <div className="text-center mb-20">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Reviews</div>
@@ -853,7 +783,7 @@ const App = () => {
             </section>
 
             {/* FAQs SECTION */}
-            <section id="faqs" className="relative bg-transparent py-20 overflow-hidden border-t border-white/20 z-10 blueprint-grid">
+            <section id="faqs" className="relative bg-transparent py-20 overflow-hidden  z-10 blueprint-grid">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-20 text-white">
                         <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
@@ -888,7 +818,7 @@ const App = () => {
 
 
             {/* FINAL CTA SECTION */}
-            <section className="relative py-72 bg-transparent overflow-hidden border-t border-white/20 z-10">
+            <section className="relative py-72 bg-transparent overflow-hidden z-10">
                 <div className="absolute inset-0 z-0">
                     <img src="/images/cta-img.png" alt="CTA Hero" className="w-full h-full object-cover scale-100 animate-slow-pan" />
 
@@ -902,18 +832,31 @@ const App = () => {
                     <p className="text-slate-100 max-w-2xl mx-auto text-[18px] md:text-[20px] font-bold leading-relaxed mb-16 drop-shadow-2xl">
                         Unlock more shows, more regions, and smoother streaming - without slowing down the rest of your phone.
                     </p>
-                    <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-
-                        <a
-                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 md:px-14 py-3 md:py-7 bg-cyan-400 text-white font-black rounded-[32px]  hover:scale-105 transition-all flex items-center gap-4 text-base uppercase tracking-widest group"
+                    <div
+                        className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                        <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                           target="_blank" rel="noopener noreferrer"
+                           className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
                         >
-                            <span className=" font-black">Download the app</span>
-                            <ChevronRight className="group-hover:translate-x-2 transition-transform drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
+                            <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                <g id="Layer_x0020_1">
+                                    <path fill="#EA4335"
+                                          d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                    <path fill="#FBBC04"
+                                          d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                    <path fill="#34A853"
+                                          d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                    <path fill="#4285F4"
+                                          d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                </g>
+                            </svg>
+                            <div className="text-left">
+                                <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                    ON
+                                </div>
+                                <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                            </div>
                         </a>
-
                     </div>
                 </div>
             </section>
