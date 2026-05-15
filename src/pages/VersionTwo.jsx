@@ -177,7 +177,7 @@ const App = () => {
                             <h1 className=" mb-8 text-white font-black text-[36px] md:text-[48px]">
                                 The Streaming-First VPN for <span className="text-[#00E5FF]"> <br/>Geo-Blocked Content</span>
                             </h1>
-                            <p className="text-[18px] md:text-[20px] text-white/60 mb-5 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-[18px] md:text-[20px] text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                                 Access geo blocked content, shows, and live sports across your favourite OTT platforms -
                                 while the rest of your phone stays fast and unaffected.
                             </p>
@@ -220,25 +220,25 @@ const App = () => {
 
 
             {/* 2. Trust Bar */}
-            <section className="relative z-20 -mt-12 md:pb-24">
-                <div className="bg-white border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm">
-                    <div className="px-4 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white">
-        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-black whitespace-nowrap">
-            Works With
+            <section className="relative z-20 -mt-12 pb-20 md:pb-40">
+                <div className="bg-white border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm ">
+                    <div className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white max-w-[80px] md:max-w-[300px]">
+        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-black whitespace-nowrap ">
+            Works <br className="block md:hidden"/> With
         </span>
                     </div>
                     <div className="flex items-center animate-scroll whitespace-nowrap relative">
                         {[1, 2].map((loop) => (
                             <React.Fragment key={loop}>
 
-                                <img src="/images/netflix.png" alt="Netflix" className="h-6 md:h-8 mx-6 md:mx-12  "/>
-                                <img src="/images/disney.png" alt="Disney+" className="h-6 md:h-14 mx-6 md:mx-12 "/>
-                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-6 md:h-8 mx-6 md:mx-12 "/>
-                                <img src="/images/hbo.png" alt="HBO Max" className="h-6 md:h-8 mx-6 md:mx-12 "/>
-                                <img src="/images/espn.png" alt="ESPN+" className="h-6 md:h-8 mx-6 md:mx-12 "/>
-                                <img src="/images/hulu.png" alt="Hulu" className="h-6 md:h-8 mx-6 md:mx-12 "/>
-                                <img src="/images/syfy.png" alt="Syfy" className="h-6 md:h-8 mx-6 md:mx-12 "/>
-                                <img src="/images/xumo.png" alt="Xumo" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/netflix.png" alt="Netflix" className="h-3 md:h-8 mx-3 md:mx-12  "/>
+                                <img src="/images/disney.png" alt="Disney+" className="h-10 md:h-16 mx-3 md:mx-12 pb-2 "/>
+                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-5 md:h-10 mx-3 md:mx-12 "/>
+                                <img src="/images/hbo.png" alt="HBO Max" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/espn.png" alt="ESPN+" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/hulu.png" alt="Hulu" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/syfy.png" alt="Syfy" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/xumo.png" alt="Xumo" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                             </React.Fragment>
                         ))}
                     </div>
@@ -247,9 +247,9 @@ const App = () => {
 
 
             {/* 3. Built for Fast Streaming */}
-            <section id="features" className="bg-white py-24 md:pb-32 px-2 md:px-6">
+            <section id="features" className="bg-white pb-20 md:pb-40 px-2 md:px-6">
                 <div
-                    className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                    className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24">
                     <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             WHY BINGEBEYOND
@@ -268,7 +268,7 @@ const App = () => {
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Full Device Speed Intact</h4>
                                 <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">BingeBeyond only works with streaming apps, so the rest of your phone stays fast.</p>
                             </div>
-                            <img src="/images/4grid1.png" alt=""/>                        </div>
+                            <img src="/images/4grid4.png" alt=""/>                        </div>
 
                         {/* Feature 2 */}
                         <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
@@ -276,10 +276,10 @@ const App = () => {
                                 <div className="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-8 border border-green-500/20 shadow-inner">
                                     <Power className="w-7 h-7" />
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">One-Taps Setup</h4>
-                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Pick your show and start streaming instantly — no server switching or setup needed.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">One-Tap Setup</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Pick your show and start streaming instantly - no server switching or setup needed.</p>
                             </div>
-                            <img src="/images/4grid2.png" alt=""/>
+                            <img src="/images/4grid1.png" alt=""/>
                         </div>
 
 
@@ -292,7 +292,7 @@ const App = () => {
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover Global Libraries.</h4>
                                 <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Browse movies, tv shows, and live sports unavailable in your region. Explore global catalogs in one unified hub.</p>
                             </div>
-                            <img src="/images/4grid3.png" alt=""/>
+                            <img src="/images/4grid2.png" alt=""/>
                         </div>
 
 
@@ -305,7 +305,7 @@ const App = () => {
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Stable 4K Streaming</h4>
                                 <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Enjoy smooth HD and 4K playback built for high-quality OTT viewing.</p>
                             </div>
-                            <img src="/images/4grid4.png" alt=""/>
+                            <img src="/images/4grid3.png" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -313,8 +313,8 @@ const App = () => {
 
 
             {/* 4. How It Works */}
-            <section id="how-it-works" className=" bg-white py-18 md:pb-32  px-2 md:px-12">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section id="how-it-works" className=" bg-white pb-20 md:pb-40 px-2 md:px-6">
+                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto  px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                         <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             HOW IT WORKS
@@ -397,8 +397,8 @@ const App = () => {
 
 
             {/* 5. FAQ Section (Accordion) */}
-            <section id="faq" className="bg-white py-24 md:pb-32 px-2 md:px-12">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section id="faq" className="bg-white pb-20 md:pb-40 px-2 md:px-6">
+                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-20 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                         <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             FAQ
