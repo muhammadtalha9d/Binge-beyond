@@ -113,7 +113,7 @@ const App = () => {
 
 
             {/* 1. Dark Hero Section */}
-            <header className="bg-[#020617] relative pt-24 pb-32 md:pt-32 md:pb-40 overflow-hidden">
+            <header className="bg-[#020617] relative pt-32 pb-36  md:pt-32 md:pb-40 overflow-hidden">
                 {/* Mesh Glow */}
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
                     <div className="absolute -top-[10%] -left-[10%] w-[60%] h-[80%] bg-[radial-gradient(circle,rgba(0,229,255,0.15)_0%,transparent_70%)] blur-[100px]" />
@@ -121,7 +121,7 @@ const App = () => {
 
 
                 {/* Sticky Nav */}
-                <nav className="absolute top-6 md:top-8 left-0 w-full z-[100] px-4 md:px-6 ">
+                <nav className="absolute top-8 md:top-8 left-0 w-full z-[100] px-4 md:px-6 ">
                     <div className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-3 md:px-8 border border-white/10 shadow-lg">
                         <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10 ">
                             <img
@@ -158,7 +158,7 @@ const App = () => {
                                 rel="noopener noreferrer"
                                 className="bg-white text-black px-2 md:px-6 py-1.5 md:py-2.5 rounded-xl md:rounded-full font-black text-sm hover:scale-105 transition-all"
                             >
-                                Download the App Now
+                                Download the App
                             </a>
                             {/* Mobile Menu Button */}
 
@@ -186,7 +186,7 @@ const App = () => {
                                     className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                                     <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                                        target="_blank" rel="noopener noreferrer"
-                                       className="w-full sm:w-auto flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
+                                       className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
                                     >
                                         <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
                                             <g id="Layer_x0020_1">
@@ -213,7 +213,7 @@ const App = () => {
 
 
                         {/* Mockup Area */}
-                        <img src="/images/v2-hero.png" alt=""/>
+                        <img src="/images/v2-hero.png" alt="" className="scale-[120%] md:scale-[100%]"/>
                     </div>
                 </div>
             </header>
