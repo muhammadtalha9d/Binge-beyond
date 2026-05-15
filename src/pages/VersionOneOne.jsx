@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import bgImage from './collage2.jpg'; // Adjust path as needed
 import bgImage from './hero-logo2.png';
-import bgImage2 from './selected-movie.png';
+import bgImage2 from './selected-movie.svg';
 import unlocked from './unlocked.jpg';
 import bingeWatching from './bingeWatching.jpg';
 import stepsImg from './3steps-bg.jpg';
@@ -281,7 +281,6 @@ const App = () => {
           border: 2px solid #00f2ff;
           color: black;
           font-weight: 900;
-          text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
           padding: 8px 24px;
           border-radius: 9999px;
         }
@@ -432,7 +431,7 @@ const App = () => {
 
 
 
-                    <h1 className="text-[38px] md:text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
+                    <h1 className="text-[32px] md:text-[48px] font-black leading-[1.1] tracking-tighter max-w-4xl uppercase drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] text-white">
                         Watch Shows, Movies & <br/>
                         Live Sports - <br/>
                         <span className=" text-cyan-400 ">
@@ -464,7 +463,7 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="relative z-20 -mt-12 pb-20 md:pb-40">
+            <section className="relative z-20 -mt-12 pb-20">
                 <div className="bg-[#091115] border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm ">
                     <div
                         className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-[#091115] max-w-[80px] md:max-w-[300px] text-center">
@@ -501,7 +500,7 @@ const App = () => {
             <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                     <div className="space-y-6 text-white mb-20 max-w-4xl text-center">
-                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                        <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Your Favorite Shows Aren't Gone.<br/>
                             <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
                         </h2>
@@ -548,8 +547,8 @@ const App = () => {
                             <img src="/images/unlocked.jpg" alt="" className="hidden md:block"/>
                             <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
                             <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                                <div className="bg-cyan-400 text-black px-12 py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
-                                    <span className="text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
+                                <div className="bg-cyan-400 text-black px-8 md:px-12 py-4 md:py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
+                                    <span className="text-xl md:text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
                                 </div>
                             </div>
                         </div>
@@ -569,7 +568,7 @@ const App = () => {
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
                     <div className="text-center mb-24">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8 text-black">High-Performance VPN</div>
-                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                        <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Built For Binge-Watching.<br/>
                             <span className="text-cyan-400">Optimized For Speed.</span>
                         </h2>
@@ -629,7 +628,7 @@ const App = () => {
                     <div className="flex flex-col items-center text-center mb-20">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">How it works</div>
 
-                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                        <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Start Binge-Watching<br/>
                             <span className="text-cyan-400">In 3 Simple Steps.</span>
                         </h2>
@@ -694,15 +693,15 @@ const App = () => {
 
                 <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
-                    <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
+                    <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
                     <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight max-w-3xl mx-auto">Access Live sports, TV shows, and movies from all your favourite OTT platforms.</p>
                 </div>
 
 
-                <div className="relative z-10 flex flex-col gap-10 md:gap-20 perspective-[2000px] pb-10 mask-fade-x">
+                <div className="relative z-10 flex flex-col gap-10 md:gap-20 perspective-[2000px] mask-fade-x">
                     <div className="animate-marquee whitespace-nowrap flex gap-6 md:gap-12 py-0 md:py-4">
                         {[...multiverseContent, ...multiverseContent].map((item, i) => (
-                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40">
+                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700   border-white/40">
                                 <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
 
 
@@ -712,7 +711,7 @@ const App = () => {
                     {/* ROW 2 RESTORED */}
                     <div className="animate-marquee-reverse whitespace-nowrap flex gap-6 md:gap-12 py-0 md:py-4">
                         {[...multiverseContent].reverse().concat([...multiverseContent].reverse()).map((item, i) => (
-                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  shadow-[0_30px_70px_rgba(0,0,0,0.6)] border-white/40" >
+                            <div key={i} className="group relative w-[150px] md:w-[320px] aspect-[16/9] flex-shrink-0 rounded-[20px] overflow-hidden  transition-all duration-700  border-white/40" >
                                 <img src={item.src} className="absolute inset-0 w-full h-full object-cover transition-all duration-700" alt="" />
                             </div>
                         ))}
@@ -726,7 +725,7 @@ const App = () => {
                 <div className="max-w-7xl mx-auto px-2 md:px-6 relative z-10">
                     <div className="text-center mb-20">
                         <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Reviews</div>
-                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                        <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Trusted by over <br/> <span className="text-cyan-400">100,000 Streamers</span>
                         </h2>
                     </div>
@@ -786,7 +785,7 @@ const App = () => {
             <section id="faqs" className="relative bg-transparent py-20 overflow-hidden  z-10 blueprint-grid">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-20 text-white">
-                        <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
+                        <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Frequently Asked <span className="text-cyan-400">Questions</span>
                         </h2>
                     </div>
@@ -818,14 +817,14 @@ const App = () => {
 
 
             {/* FINAL CTA SECTION */}
-            <section className="relative py-72 bg-transparent overflow-hidden z-10">
-                <div className="absolute inset-0 z-0">
+            <section className="relative py-72 bg-transparent overflow-hidden z-10 mt-20">
+                <div className="absolute inset-0 z-0 ">
                     <img src="/images/cta-img.png" alt="CTA Hero" className="w-full h-full object-cover scale-100 animate-slow-pan" />
 
                 </div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
 
-                    <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-10">
+                    <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-10">
                         Get More From The Subscriptions <br/>
                         <span className="text-cyan-400">You Already Pay For</span>
                     </h2>
@@ -876,15 +875,6 @@ const App = () => {
                         <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                     </div>
 
-
-                    {/*<div className="space-y-10 text-white">*/}
-                    {/*    <h5 className="font-black text-[11px] uppercase tracking-[0.4em] mb-4 text-slate-300">Core Network</h5>*/}
-                    {/*    <ul className="space-y-5 text-base font-bold">*/}
-                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Global Library</a></li>*/}
-                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Server Status</a></li>*/}
-                    {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
                     <div className="space-y-10 text-white flex justify-center md:justify-end">
                         <div  className="space-x-10 text-base font-bold ">
 
@@ -898,6 +888,7 @@ const App = () => {
                             {/*<li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Upgrade Hub</a></li>*/}
                         </div>
                     </div>
+                    <div className="text-slate-400 text-sm">© 2026 BingeBeyond.</div>
 
                 </div>
             </footer>
