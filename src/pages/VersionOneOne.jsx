@@ -502,7 +502,7 @@ const App = () => {
                     <div className="space-y-6 text-white mb-20 max-w-4xl text-center">
                         <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Your Favorite Shows Aren't Gone.<br/>
-                            <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
+                            <span className="text-cyan-400">They’re Just Unavailable in Your Region. </span>
                         </h2>
                         <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">
                             You pay 100% for your OTT subscription. Stop settling for 10% access.
