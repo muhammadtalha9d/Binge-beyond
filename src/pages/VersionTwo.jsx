@@ -596,7 +596,7 @@ const App = () => {
 
 
             <footer
-                className="px-10 py-16 border-t border-slate-100 bg-white flex flex-col md:flex-row justify-between items-center gap-6">
+                className=" py-16 md:py-8 border-t border-slate-100 bg-white flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
                 <a href="#" className="flex items-center gap-2 text-[1.3rem] font-extrabold tracking-tighter">
                     <div
                         className="flex-shrink-0 flex items-center cursor-pointer mb-10 md:mb-0 bg-black rounded-[20px]  p-2  ">
