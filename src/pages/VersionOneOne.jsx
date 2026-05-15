@@ -125,6 +125,7 @@ const App = () => {
 
 
     const services = [
+        { name: "Netflix", image: "/images/netflix.png" },
         { name: "Disney+", image: "/images/disney.png" },
         { name: "Crunchyroll", image: "/images/crunchy.png" },
         { name: "Paramount", image: "/images/paramount.png" },

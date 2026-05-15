@@ -31,16 +31,16 @@ const App = () => {
 
     const stepData = [
         {
-            title: "Pick Your Apps",
-            text: "Select your favorite streaming platforms on your phone or Android TV."
+            title: "Connect your platforms",
+            text: "Select the streaming apps you already use. Zero logins or passwords required - we just need to know what you have."
         },
         {
-            title: "Find Your Show",
-            text: "Search for movies, series, or live matches across global catalogs in one place."
+            title: "Discover Beyond",
+            text: "Discover movies, shows, live sports, and regional catalogs available across different countries and platforms"
         },
         {
-            title: "Start Watching Instantly",
-            text: "Tap play and start streaming immediately on your chosen platform."
+            title: "Launch & Stream",
+            text: "Choose a title and BingeBeyond automatically applies the right streaming connection before opening it on your selected OTT platform."
         }
     ];
 
@@ -202,14 +202,15 @@ const App = () => {
                     <div className="flex items-center animate-scroll whitespace-nowrap">
                         {[1, 2].map((loop) => (
                             <React.Fragment key={loop}>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg" alt="Prime Video" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg" alt="Hulu" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.svg" alt="Crunchyroll" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Sony_LIV_logo.svg" alt="SonyLiv" className="h-6 md:h-8 mx-6 md:mx-12 opacity-80 grayscale hover:grayscale-0 transition-all" />
+
+                                <img src="/images/netflix.png" alt="Netflix" className="h-6 md:h-8 mx-6 md:mx-12  " />
+                                <img src="/images/disney.png" alt="Disney+" className="h-6 md:h-14 mx-6 md:mx-12 " />
+                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/hbo.png" alt="HBO Max" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/espn.png" alt="ESPN+" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/hulu.png" alt="Hulu" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/syfy.png" alt="Syfy" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/xumo.png" alt="Xumo" className="h-6 md:h-8 mx-6 md:mx-12 " />
                             </React.Fragment>
                         ))}
                     </div>
@@ -236,7 +237,7 @@ const App = () => {
                                     <Zap className="w-7 h-7" />
                                 </div>
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Full Device Speed Intact</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">BingeBeyond only works with streaming apps, so the rest of your phone stays fast.</p>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">BingeBeyond only works with streaming apps, so the rest of your phone stays fast.</p>
                             </div>
                             <img src="/images/4grid1.png" alt=""/>                        </div>
 
@@ -247,7 +248,7 @@ const App = () => {
                                     <Power className="w-7 h-7" />
                                 </div>
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">One-Taps Setup</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">Pick your show and start streaming instantly — no server switching or setup needed.</p>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Pick your show and start streaming instantly — no server switching or setup needed.</p>
                             </div>
                             <img src="/images/4grid2.png" alt=""/>
                         </div>
@@ -259,8 +260,8 @@ const App = () => {
                                 <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-8 border border-purple-500/20 shadow-inner">
                                     <Battery className="w-7 h-7" />
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Lower Battery Drain</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">Focused streaming keeps your device from working overtime like full-device VPNs.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover Global Libraries.</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Browse movies, tv shows, and live sports unavailable in your region. Explore global catalogs in one unified hub.</p>
                             </div>
                             <img src="/images/4grid3.png" alt=""/>
                         </div>
@@ -273,7 +274,7 @@ const App = () => {
                                     <Monitor className="w-7 h-7" />
                                 </div>
                                 <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Stable 4K Streaming</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">Enjoy smooth HD and 4K playback built for high-quality OTT viewing.</p>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Enjoy smooth HD and 4K playback built for high-quality OTT viewing.</p>
                             </div>
                             <img src="/images/4grid4.png" alt=""/>
                         </div>
@@ -302,6 +303,7 @@ const App = () => {
                                         className={`cursor-pointer py-4 border-l-4 transition-all duration-300 pl-6 md:pl-8 ${
                                             activeStep === idx ? 'border-[#00E5FF]' : 'border-transparent'
                                         }`}
+                                        onMouseEnter={() => setActiveStep(idx)}
                                         onClick={() => setActiveStep(idx)}
                                     >
                                         {/* Title */}
@@ -321,7 +323,7 @@ const App = () => {
                                         >
                                             {/* overflow-hidden is required for the grid-rows animation to work */}
                                             <div className="overflow-hidden">
-                                                <p className="text-slate-500 text-lg leading-relaxed max-w-md">
+                                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed max-w-md">
                                                     {step.text}
                                                 </p>
                                             </div>
@@ -385,7 +387,7 @@ const App = () => {
                                     className="w-full text-left p-6 md:p-8 flex justify-between items-center outline-none"
                                     onClick={() => toggleFaq(index)}
                                 >
-                                    <h4 className="text-base md:text-lg font-bold text-slate-900 pr-8">{faq.question}</h4>
+                                    <h4 className="text-[20px] md:text-[24px] font-bold text-slate-900 pr-8">{faq.question}</h4>
                                     <div className={`w-8 md:w-10 h-8 md:h-10 rounded-full bg-slate-50 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index ? 'rotate-180 bg-[#00E5FF]/10' : ''}`}>
                                         <ChevronDown className={`w-4 md:w-5 h-4 md:h-5 ${openFaqIndex === index ? 'text-[#0891b2]' : 'text-slate-400'}`} />
                                     </div>
@@ -394,7 +396,7 @@ const App = () => {
                                     className={`transition-all duration-300 ease-in-out overflow-hidden ${openFaqIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
                                 >
                                     <div className="px-6 md:px-8 pb-8 pt-0">
-                                        <p className="text-slate-500 text-sm md:text-base leading-relaxed">
+                                        <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">
                                             {faq.answer}
                                         </p>
                                     </div>
@@ -407,18 +409,21 @@ const App = () => {
 
 
             {/* 6. Footer CTA */}
-            <section className="max-w-7xl mx-auto px-6 py-24 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section className="max-w-7xl mx-auto px-6 py-24  animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
 
-                <div className="rounded-[3rem] md:rounded-[4rem] py-20 md:py-24 px-8 text-center relative overflow-hidden shadow-2xl border border-white/10 group">
+                {/* Added: flex flex-col items-center justify-center */}
+                <div className="flex flex-col items-center justify-center rounded-[3rem] md:rounded-[4rem] md:min-h-[600px] py-20 md:py-24 px-8 text-center relative overflow-hidden shadow-2xl border border-white/10 group">
+
                     {/* Fun Background Image */}
                     <div className="absolute inset-0 z-0">
                         <img src="/images/cta-img.png" alt="CTA Hero" className="w-full h-full object-cover scale-100 animate-slow-pan" />
-
                     </div>
+
                     {/* Overlays */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.2)_0%,transparent_70%)]" />
 
+                    {/* Content Container */}
                     <div className="relative z-10">
                         <h2 className="text-[28px] md:text-[36px] font-black italic uppercase tracking-tighter text-white mb-8 md:mb-10 leading-tight">
                             Unlock Global <span className="text-[#00E5FF]">Content in Seconds</span>
@@ -432,6 +437,7 @@ const App = () => {
                             Download for Android Now
                         </a>
                     </div>
+
                 </div>
             </section>
 
