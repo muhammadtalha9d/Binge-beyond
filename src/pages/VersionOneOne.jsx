@@ -386,7 +386,7 @@ const App = () => {
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-7 text-[16px] font-bold tracking-[0.1em] text-white uppercase">
                     <a href="#benefits" className="hover:text-cyan-400 transition-colors uppercase">Benefits</a>
                     <a href="#protocol" className="hover:text-cyan-400 transition-colors uppercase">How it works</a>
-                    <a href="" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
+                    <a href="#beyond" className="hover:text-cyan-400 transition-colors uppercase">Discover Beyond</a>
                 </div>
 
                 {/* 3. RIGHT: Button Container */}
@@ -694,7 +694,6 @@ const App = () => {
                 <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
                     <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
-                    <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight max-w-3xl mx-auto">Access Live sports, TV shows, and movies from all your favourite OTT platforms.</p>
                 </div>
 
 
