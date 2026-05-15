@@ -470,7 +470,7 @@ const App = () => {
             {/*    <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0f172a] to-transparent z-30" />*/}
             {/*</section>*/}
             {/* Removed max-w-7xl and mx-auto from here */}
-            <section className="py-[120px]  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center bg-transparent z-10">
+            <section className="py-[120px]  lg:mt-0 relative h-full md:h-[90vh] w-full overflow-hidden flex items-center  bg-transparent z-10">
 
                 {/* 1. Background Gradient Fix */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -492,7 +492,7 @@ const App = () => {
 
                 {/* 3. Content Container */}
                 {/* Added mx-auto and w-full here to center the content within the full-width section */}
-                <div className="w-full mx-auto relative z-20 px-8  max-w-7xl">
+                <div className="w-full mx-auto items-center md:items-start text-center md:text-start relative z-20 px-8  max-w-7xl">
 
 
 
