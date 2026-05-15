@@ -220,8 +220,13 @@ const App = () => {
           background: linear-gradient(97deg, #00E5FF 0%, #091115 40%);
           position: relative;
         }
-
-
+ @keyframes infiniteScroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          animation: infiniteScroll 40s linear infinite;
+        }
         .noise-overlay {
           position: absolute;
           inset: 0;
@@ -493,7 +498,7 @@ const App = () => {
 
                 {/* 3. Content Container */}
                 {/* Added mx-auto and w-full here to center the content within the full-width section */}
-                <div className="w-full mx-auto items-center md:items-start text-center md:text-start relative z-20 px-8  max-w-7xl">
+                <div className="w-full mx-auto flex flex-col items-center md:items-start text-center md:text-start relative z-20 px-8  max-w-7xl">
 
 
 
@@ -513,7 +518,7 @@ const App = () => {
                         href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all hover:scale-105 group"
+                        className="w-full sm:w-max flex items-center justify-center gap-3 bg-cyan-400 text-white px-8 py-3.5 rounded-xl transition-all hover:scale-105 group max-w-[220px]"
                     >
                         <svg className="w-7 h-7" viewBox="0 0 512 512" fill="currentColor">
                             <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
@@ -529,21 +534,30 @@ const App = () => {
 
 
             {/* Marquee Bar - UPDATED SERVICES LIST */}
-            <section className="bg-[#091115] border-y border-white/15 flex items-center overflow-hidden backdrop-blur-2xl z-10">
-                <div className="px-4 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-white/20 z-10 bg-slate-800/40">
-        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">
-            Works With
+            <section className="relative z-20 -mt-12 pb-20 md:pb-40">
+                <div className="bg-[#091115] border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm ">
+                    <div
+                        className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white max-w-[80px] md:max-w-[300px] text-center bg-black">
+        <span
+            className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap ">
+            Works <br className="block md:hidden"/> With
         </span>
-                </div>
-                <div className="flex-1 overflow-hidden relative">
-                    <div className="animate-marquee whitespace-nowrap flex items-center gap-24 py-5 md:py-10">
-                        {[...services, ...services].map((s, i) => (
-                            <img
-                                key={i}
-                                src={s.image}
-                                alt={s.name}
-                                className="h-10 w-auto object-contain transition-all hover:scale-110"
-                            />
+                    </div>
+                    <div className="flex items-center animate-scroll whitespace-nowrap relative">
+                        {[1, 2].map((loop) => (
+                            <React.Fragment key={loop}>
+
+                                <img src="/images/netflix.png" alt="Netflix" className="h-3 md:h-8 mx-3 md:mx-12  "/>
+                                <img src="/images/disney.png" alt="Disney+"
+                                     className="h-10 md:h-16 mx-3 md:mx-12 pb-2 "/>
+                                <img src="/images/crunchy.png" alt="Crunchyroll"
+                                     className="h-5 md:h-10 mx-3 md:mx-12 "/>
+                                <img src="/images/hbo.png" alt="HBO Max" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/espn.png" alt="ESPN+" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/hulu.png" alt="Hulu" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/syfy.png" alt="Syfy" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                                <img src="/images/xumo.png" alt="Xumo" className="h-3 md:h-8 mx-3 md:mx-12 "/>
+                            </React.Fragment>
                         ))}
                     </div>
                 </div>
@@ -556,7 +570,7 @@ const App = () => {
             {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
             <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
-                    <div className="space-y-6 text-white mb-20 max-w-4xl">
+                    <div className="space-y-6 text-white mb-20 max-w-4xl text-center md:text-left">
                         <h2 className="text-[28px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Your Favorite Shows Aren't Gone.<br/>
                             <span className="text-cyan-400">They’re Just Not Available in Your Region. </span>
@@ -700,11 +714,11 @@ const App = () => {
                                     onMouseEnter={() => setActiveStep(i)}
                                     className={`flex-1 group relative p-6 rounded-[32px] border transition-all duration-500 cursor-pointer flex items-center ${activeStep === i ? 'bg-[#111827]/95 border-cyan-300/50 shadow-[0_0_40px_rgba(0,242,255,0.1)] scale-[1.02]' : 'bg-[#111827]/40 border-white/5 hover:border-white/20'}`}
                                 >
-                                    <div className="flex gap-6 items-center">
+                                    <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-center">
                                         <div className={`flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl italic ${activeStep === i ? 'bg-cyan-400 text-black shadow-[0_0_20px_rgba(0,242,255,0.4)]' : 'bg-white/5 text-white/40'}`}>
                                             {i + 1}
                                         </div>
-                                        <div className="pr-4 text-left">
+                                        <div className="pr-4 text-center md:text-left">
                                             <h4 className="text-[16px] md:text-[20px] font-black uppercase tracking-tight mb-1 text-white">{step.title}</h4>
                                             <p className={`text-[12px] md:text-[16px] font-medium leading-relaxed ${activeStep === i ? 'text-white' : 'text-white/60'}`}>{step.desc}</p>
                                         </div>
@@ -909,7 +923,7 @@ const App = () => {
             <footer className="bg-transparent pt-20 px-6 border-t border-white/20 relative overflow-hidden z-10">
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between mb-10">
 
-                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 ">
+                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 justify-center md:justify-start">
                         <img
                             src="/images/Binge-logo.svg"
                             alt="BingeBeyond Logo"
@@ -928,7 +942,7 @@ const App = () => {
                     {/*        <li><a href="#" className="text-white hover:text-cyan-400 transition-colors uppercase text-[12px] tracking-widest">Speed Test</a></li>*/}
                     {/*    </ul>*/}
                     {/*</div>*/}
-                    <div className="space-y-10 text-white ">
+                    <div className="space-y-10 text-white flex justify-center md:justify-end">
                         <div  className="space-x-10 text-base font-bold ">
 
                             <a  href="https://bingebeyond.com/privacy-policy"
