@@ -121,13 +121,13 @@ const App = () => {
 
 
                 {/* Sticky Nav */}
-                <nav className="absolute top-6 md:top-8 left-0 w-full z-[100] px-2 md:px-6 ">
-                    <div className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-8 border border-white/10 shadow-lg">
-                        <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10">
+                <nav className="absolute top-6 md:top-8 left-0 w-full z-[100] px-4 md:px-6 ">
+                    <div className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-3 md:px-8 border border-white/10 shadow-lg">
+                        <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10 ">
                             <img
                                 src="/images/Binge-logo.svg"
                                 alt="BingeBeyond Logo"
-                                className="h-8 w-8 object-contain mr-2"
+                                className="h-5 w-5 md:h-8 md:w-8 object-contain mr-2"
                             />
                             <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
                             <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
@@ -140,16 +140,16 @@ const App = () => {
                             <a href="#faq" className="hover:text-[#00E5FF] transition-colors">FAQ</a>
                         </div>
 
-                        {isMenuOpen && (
-                            <div className="md:hidden mt-4 mx-auto max-w-sm glass rounded-3xl p-6 border border-white/10 flex flex-col gap-4 text-center">
-                                <a href="#features" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>Performance</a>
-                                <a href="#how-it-works" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>How it Works</a>
-                                <a href="#faq" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>FAQ</a>
-                            </div>
-                        )}
-                        <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                            {isMenuOpen ? <X /> : <Menu />}
-                        </button>
+                        {/*{isMenuOpen && (*/}
+                        {/*    <div className="md:hidden mt-4 mx-auto max-w-sm glass rounded-3xl p-6 border border-white/10 flex flex-col gap-4 text-center">*/}
+                        {/*        <a href="#features" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>Performance</a>*/}
+                        {/*        <a href="#how-it-works" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>How it Works</a>*/}
+                        {/*        <a href="#faq" className="text-white font-bold" onClick={() => setIsMenuOpen(false)}>FAQ</a>*/}
+                        {/*    </div>*/}
+                        {/*)}*/}
+                        {/*<button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>*/}
+                        {/*    {isMenuOpen ? <X /> : <Menu />}*/}
+                        {/*</button>*/}
 
                         <div className="flex items-center gap-4">
                             <a
@@ -158,7 +158,7 @@ const App = () => {
                                 rel="noopener noreferrer"
                                 className="bg-white text-black px-2 md:px-6 py-1.5 md:py-2.5 rounded-xl md:rounded-full font-black text-sm hover:scale-105 transition-all"
                             >
-                                Get App
+                                Download the App Now
                             </a>
                             {/* Mobile Menu Button */}
 
@@ -171,21 +171,44 @@ const App = () => {
 
 
                 {/* Hero Content */}
-                <div className="max-w-7xl mx-auto px-2 md:px-0 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                <div className="max-w-7xl mx-auto px-4 md:px-0 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="glass p-8 md:p-12 lg:p-24 rounded-[3rem] md:rounded-[5rem] text-center flex flex-col items-center border border-white/10 shadow-2xl">
                         <div className="max-w-4xl mb-12 md:mb-20">
-                            <h1 className="hero-heading mb-8 text-white font-black text-[36px] md:text-[48px]">
-                                The Streaming-First VPN for <span className="text-[#00E5FF]">Geo-Blocked Content</span>
+                            <h1 className=" mb-8 text-white font-black text-[36px] md:text-[48px]">
+                                The Streaming-First VPN for <span className="text-[#00E5FF]"> <br/>Geo-Blocked Content</span>
                             </h1>
                             <p className="text-[18px] md:text-[20px] text-white/60 mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed">
-                                Access geo-blocked movies, shows, and live sports across your favourite OTT platforms - while the rest of your phone stays fast and unaffected.
+                                Access geo blocked content, shows, and live sports across your favourite OTT platforms -
+                                while the rest of your phone stays fast and unaffected.
                             </p>
-                            <a
-                                href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                                className="bg-white text-black px-4 md:px-12 py-4 md:py-5 rounded-3xl md:rounded-[2rem] font-black text-base text-md md:text-lg shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3"
-                            >
-                                Download for Play Store <Download className="w-5 h-5" />
-                            </a>
+
+                                <div
+                                    className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                                    <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                                       target="_blank" rel="noopener noreferrer"
+                                       className="w-full sm:w-auto flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
+                                    >
+                                        <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                            <g id="Layer_x0020_1">
+                                                <path fill="#EA4335"
+                                                      d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                                <path fill="#FBBC04"
+                                                      d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                                <path fill="#34A853"
+                                                      d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                                <path fill="#4285F4"
+                                                      d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                            </g>
+                                        </svg>
+                                        <div className="text-left">
+                                            <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                                ON
+                                            </div>
+                                            <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                                        </div>
+                                    </a>
+                                </div>
+
                         </div>
 
 
@@ -199,18 +222,23 @@ const App = () => {
             {/* 2. Trust Bar */}
             <section className="relative z-20 -mt-12 md:pb-24">
                 <div className="bg-white border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm">
-                    <div className="flex items-center animate-scroll whitespace-nowrap">
+                    <div className="px-4 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white">
+        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-black whitespace-nowrap">
+            Works With
+        </span>
+                    </div>
+                    <div className="flex items-center animate-scroll whitespace-nowrap relative">
                         {[1, 2].map((loop) => (
                             <React.Fragment key={loop}>
 
-                                <img src="/images/netflix.png" alt="Netflix" className="h-6 md:h-8 mx-6 md:mx-12  " />
-                                <img src="/images/disney.png" alt="Disney+" className="h-6 md:h-14 mx-6 md:mx-12 " />
-                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-6 md:h-8 mx-6 md:mx-12 " />
-                                <img src="/images/hbo.png" alt="HBO Max" className="h-6 md:h-8 mx-6 md:mx-12 " />
-                                <img src="/images/espn.png" alt="ESPN+" className="h-6 md:h-8 mx-6 md:mx-12 " />
-                                <img src="/images/hulu.png" alt="Hulu" className="h-6 md:h-8 mx-6 md:mx-12 " />
-                                <img src="/images/syfy.png" alt="Syfy" className="h-6 md:h-8 mx-6 md:mx-12 " />
-                                <img src="/images/xumo.png" alt="Xumo" className="h-6 md:h-8 mx-6 md:mx-12 " />
+                                <img src="/images/netflix.png" alt="Netflix" className="h-6 md:h-8 mx-6 md:mx-12  "/>
+                                <img src="/images/disney.png" alt="Disney+" className="h-6 md:h-14 mx-6 md:mx-12 "/>
+                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/hbo.png" alt="HBO Max" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/espn.png" alt="ESPN+" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/hulu.png" alt="Hulu" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/syfy.png" alt="Syfy" className="h-6 md:h-8 mx-6 md:mx-12 "/>
+                                <img src="/images/xumo.png" alt="Xumo" className="h-6 md:h-8 mx-6 md:mx-12 "/>
                             </React.Fragment>
                         ))}
                     </div>
@@ -220,9 +248,10 @@ const App = () => {
 
             {/* 3. Built for Fast Streaming */}
             <section id="features" className="bg-white py-24 md:pb-32 px-2 md:px-6">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                <div
+                    className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24">
-                        <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
+                    <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             WHY BINGEBEYOND
                         </div>
                         <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Built for Fast Streaming</h2>
