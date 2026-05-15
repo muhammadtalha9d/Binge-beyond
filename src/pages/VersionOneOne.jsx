@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 // import bgImage from './collage2.jpg'; // Adjust path as needed
 import bgImage from './hero-logo2.png';
 import bgImage2 from './selected-movie.svg';
@@ -23,12 +23,14 @@ import logo from "../Binge-logo.svg";
 
 const App = () => {
     const [scrolled, setScrolled] = useState(false);
-    const [revealStage, setRevealStage] = useState('problem');
     const [activeStep, setActiveStep] = useState(0);
     const [openFaq, setOpenFaq] = useState(null);
     const [testimonialSlide, setTestimonialSlide] = useState(0);
-    const sectionRef = useRef(null);
-    const timeoutIds = useRef([]);
+
+    // Drag-reveal state
+    const [dragPct, setDragPct] = useState(10);
+    const wrapRef = useRef(null);
+    const dragging = useRef(false);
 
 
     useEffect(() => {
@@ -39,59 +41,31 @@ const App = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Drag-reveal handlers
+    const getClientX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
 
-    const clearAllTimeouts = () => {
-        timeoutIds.current.forEach(clearTimeout);
-        timeoutIds.current = [];
-    };
+    const onDragMove = useCallback((e) => {
+        if (!dragging.current) return;
+        e.preventDefault();
+        const rect = wrapRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        const x = Math.max(0, Math.min(getClientX(e) - rect.left, rect.width));
+        setDragPct((x / rect.width) * 100);
+    }, []);
 
-
-
-
-
-
-
-    const startAnimationSequence = () => {
-        // Prevent it from firing again if it's already running or done
-        if (revealStage === 'scanning' || revealStage === 'done') return;
-        clearAllTimeouts();
-        setRevealStage('scanning');
-        const id = setTimeout(() => {
-            setRevealStage('done');
-        }, 3100);
-        timeoutIds.current.push(id);
-    };
-
-    const handleReplay = () => {
-        setRevealStage('problem');
-        clearAllTimeouts();
-    };
-
-// --- NEW: Scroll Detection Logic ---
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                // If the section is in view AND the animation hasn't started yet, run it
-                if (entry.isIntersecting && revealStage === 'problem') {
-                    startAnimationSequence();
-                }
-            },
-            {
-                threshold: 0.4 // Triggers when 40% of the section is visible on screen
-            }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
+        const stop = () => { dragging.current = false; };
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('mouseup', stop);
+        window.addEventListener('touchmove', onDragMove, { passive: false });
+        window.addEventListener('touchend', stop);
         return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
+            window.removeEventListener('mousemove', onDragMove);
+            window.removeEventListener('mouseup', stop);
+            window.removeEventListener('touchmove', onDragMove);
+            window.removeEventListener('touchend', stop);
         };
-    }, [revealStage]); // Dependency array ensures it checks the current stage
+    }, [onDragMove]);
 
 
     const multiverseContent = [
@@ -492,70 +466,75 @@ const App = () => {
                 </div>
             </section>
 
-
-            {/* SCANNER SECTION */}
-
-
-            {/* SCANNER SECTION - UPDATED TO STACKED LAYOUT WITH NEW TEXT */}
-            <section ref={sectionRef} className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
+            {/* SCANNER SECTION — drag to reveal */}
+            <section className="py-20 bg-transparent px-6 relative overflow-hidden z-10 text-center">
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                     <div className="space-y-6 text-white mb-20 max-w-4xl text-center">
                         <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">
                             Your Favorite Shows Aren't Gone.<br/>
-                            <span className="text-cyan-400">They’re Just Unavailable in Your Region. </span>
+                            <span className="text-cyan-400">They're Just Unavailable in Your Region.</span>
                         </h2>
-                        <p className="text-[18px] md:text-[28px] font-medium text-white/80  tracking-tight">
+                        <p className="text-[18px] md:text-[28px] font-medium text-white/80 tracking-tight">
                             You pay 100% for your OTT subscription. Stop settling for 10% access.
                         </p>
                     </div>
 
-
                     <div
-                        onClick={revealStage === 'done' ? handleReplay : undefined}
-                        className="relative h-auto w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden cursor-pointer group"
+                        ref={wrapRef}
+                        onMouseDown={(e) => { dragging.current = true; onDragMove(e); }}
+                        onTouchStart={(e) => { dragging.current = true; onDragMove(e); }}
+                        className="relative w-full max-w-5xl rounded-[56px] border border-white/20 overflow-hidden select-none cursor-ew-resize"
+                        style={{ height: '550px' }}
                     >
-                        <div className="relative w-full h-[550px] overflow-hidden">
-
-                            {/* 1. Background Image Layer */}
-                            <div className="absolute inset-0 z-0 overflow-hidden">
-                                <img
-                                    src="/images/unlocked.jpg"
-                                    alt="Background"
-                                    className="w-full h-auto"
-                                />
-
-                                <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
-                            </div>
-
-
-
-                        </div>
-                        <div className="absolute inset-0 bg-transparent flex flex-col items-center justify-center p-8 text-white backdrop-blur-md">
-                            <div className="w-full max-w-md bg-[#111827]/80 p-12 rounded-[40px] border border-white/20 shadow-2xl transition-all duration-700">
-                                <div className="flex flex-col items-center text-center">
-                                    <div className={`p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 ${revealStage === 'problem' ? 'animate-lock-shake' : ''}`}><Lock size={44} className="text-red-500" /></div>
-                                    <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md text-glow">"This title is not available in your current region."</h4>
-                                    <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
-                                        <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
+                        {/* LOCKED layer */}
+                        <div className="absolute inset-0 z-0">
+                            <img src="/images/unlocked.jpg" alt="Background" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-[#111827]/70 backdrop-blur-md" />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-white">
+                                <div className="w-full max-w-md bg-[#111827]/80 p-12 rounded-[40px] border border-white/20 shadow-2xl">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="p-5 bg-red-500/10 border border-red-500/30 rounded-full mb-8 animate-lock-shake">
+                                            <Lock size={44} className="text-red-500" />
+                                        </div>
+                                        <h4 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-md">"This title is not available in your current region."</h4>
+                                        <div className="px-6 py-2 bg-red-500/20 border border-red-500/30 rounded-full shadow-lg">
+                                            <span className="text-[11px] font-black text-red-500 uppercase tracking-[0.2em]">ERROR: GEO-BLOCKED</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-                        <div className={`absolute inset-0 z-30  bg-[#111827]/60 backdrop-blur-3xl ${revealStage === 'scanning' ? 'animate-clip' : revealStage === 'done' ? '' : 'opacity-0'}`} style={revealStage === 'done' ? {clipPath: 'inset(0 0 0 0)'} : {}}>
-                            <img src="/images/unlocked.jpg" alt="" className="hidden md:block"/>
-                            <img src="/images/mobile-view2.png" alt="" className="block md:hidden"/>
-                            <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 delay-500 ${revealStage === 'done' ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                        {/* UNBLOCKED layer — clipped by drag */}
+                        <div
+                            className="absolute inset-0 z-20"
+                            style={{ clipPath: `inset(0 ${100 - dragPct}% 0 0)` }}
+                        >
+                            <img src="/images/unlocked.jpg" alt="" className="w-full h-full object-cover hidden md:block" />
+                            <img src="/images/mobile-view2.png" alt="" className="w-full h-full object-cover block md:hidden" />
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                 <div className="bg-cyan-400 text-black px-8 md:px-12 py-4 md:py-6 rounded-[24px] shadow-[0_0_100px_rgba(34,211,238,0.8)] flex flex-col items-center border border-black/10">
-                                    <span className="text-xl md:text-3xl font-black uppercase tracking-tighter italic text-glow">100% UNBLOCKED</span>
+                                    <span className="text-xl md:text-3xl font-black uppercase tracking-tighter italic">100% UNBLOCKED</span>
                                 </div>
                             </div>
                         </div>
 
+                        {/* Drag divider + handle */}
+                        <div
+                            className="absolute top-0 bottom-0 z-30 w-[3px] bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)] pointer-events-none"
+                            style={{ left: `${dragPct}%`, transform: 'translateX(-50%)' }}
+                        >
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]">
+                                <Unlock size={32} />
+                            </div>
+                        </div>
 
-                        <div className={`absolute top-0 bottom-0 w-[3px] bg-cyan-400 z-50 transition-opacity duration-300 ${revealStage === 'scanning' ? 'opacity-100 animate-scanner' : 'opacity-0 pointer-events-none'}`}>
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(34,211,238,1)]"><Unlock size={32} /></div>
+                        {/* Drag hint */}
+                        <div
+                            className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-full bg-black/50 border border-white/20 pointer-events-none transition-opacity duration-500"
+                            style={{ opacity: dragPct > 5 ? 0 : 1 }}
+                        >
+                            <span className="text-xs font-bold text-white/70 uppercase tracking-widest">Drag to reveal</span>
                         </div>
                     </div>
                 </div>
@@ -615,6 +594,32 @@ const App = () => {
                             </p>
                         </div>
                         </div>
+                    </div>
+                    <div
+                        className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full pt-20">
+                        <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                           target="_blank" rel="noopener noreferrer"
+                           className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
+                        >
+                            <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                <g id="Layer_x0020_1">
+                                    <path fill="#EA4335"
+                                          d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                    <path fill="#FBBC04"
+                                          d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                    <path fill="#34A853"
+                                          d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                    <path fill="#4285F4"
+                                          d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                </g>
+                            </svg>
+                            <div className="text-left">
+                                <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                    ON
+                                </div>
+                                <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
