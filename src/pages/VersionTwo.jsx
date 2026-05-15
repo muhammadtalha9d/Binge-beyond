@@ -121,8 +121,8 @@ const App = () => {
 
 
                 {/* Sticky Nav */}
-                <nav className="absolute top-6 md:top-8 left-0 w-full z-[100] px-6 ">
-                    <div className="max-w-6xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-8 border border-white/10 shadow-lg">
+                <nav className="absolute top-6 md:top-8 left-0 w-full z-[100] px-2 md:px-6 ">
+                    <div className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-8 border border-white/10 shadow-lg">
                         <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10">
                             <img
                                 src="/images/Binge-logo.svg"
@@ -171,7 +171,7 @@ const App = () => {
 
 
                 {/* Hero Content */}
-                <div className="max-w-7xl mx-auto px-6 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                <div className="max-w-7xl mx-auto px-2 md:px-0 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="glass p-8 md:p-12 lg:p-24 rounded-[3rem] md:rounded-[5rem] text-center flex flex-col items-center border border-white/10 shadow-2xl">
                         <div className="max-w-4xl mb-12 md:mb-20">
                             <h1 className="hero-heading mb-8 text-white font-black text-[36px] md:text-[48px]">
@@ -197,7 +197,7 @@ const App = () => {
 
 
             {/* 2. Trust Bar */}
-            <section className="relative z-20 -mt-12">
+            <section className="relative z-20 -mt-12 md:pb-24">
                 <div className="bg-white border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm">
                     <div className="flex items-center animate-scroll whitespace-nowrap">
                         {[1, 2].map((loop) => (
@@ -219,8 +219,8 @@ const App = () => {
 
 
             {/* 3. Built for Fast Streaming */}
-            <section id="features" className="bg-white py-24 md:py-32 px-6">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-8 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section id="features" className="bg-white py-24 md:pb-32 px-2 md:px-6">
+                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24">
                         <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             WHY BINGEBEYOND
@@ -284,8 +284,8 @@ const App = () => {
 
 
             {/* 4. How It Works */}
-            <section id="how-it-works" className=" bg-white py-24 md:py-32 px-6 md:px-12">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-8 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section id="how-it-works" className=" bg-white py-18 md:pb-32  px-2 md:px-12">
+                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                         <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             HOW IT WORKS
@@ -368,8 +368,8 @@ const App = () => {
 
 
             {/* 5. FAQ Section (Accordion) */}
-            <section id="faq" className="bg-white py-24 md:py-32 px-6">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-8 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section id="faq" className="bg-white py-24 md:pb-32 px-2 md:px-12">
+                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   p-4 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-20 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                         <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             FAQ
@@ -409,7 +409,7 @@ const App = () => {
 
 
             {/* 6. Footer CTA */}
-            <section className="max-w-7xl mx-auto px-6 py-24  animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section className="max-w-7xl mx-auto px-2 md:px-0 py-18 pb-14 md:pb-24  animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
 
                 {/* Added: flex flex-col items-center justify-center */}
                 <div className="flex flex-col items-center justify-center rounded-[3rem] md:rounded-[4rem] md:min-h-[600px] py-20 md:py-24 px-8 text-center relative overflow-hidden shadow-2xl border border-white/10 group">
@@ -445,13 +445,16 @@ const App = () => {
             {/* Footer */}
             <footer className="py-20 text-center border-t border-slate-100 bg-slate-50">
                 <div className="flex flex-col items-center gap-10">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-black rounded-2xl flex items-center justify-center shadow-lg border border-white/10">
-                            <Play className="fill-[#00E5FF] text-[#00E5FF] w-4 h-4" />
-                        </div>
-                        <span className="text-2xl font-black text-slate-900 tracking-tight">BingeBeyond</span>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black ">
+                        <img
+                            src="/images/Binge-logo.svg"
+                            alt="BingeBeyond Logo"
+                            className="h-8 w-8 object-contain mr-2"
+                        />
+                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                     </div>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
+                    <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-[14px] md:text-[16px] font-bold text-slate-400 uppercase tracking-[0.4em]">
                         <a href="#" className="hover:text-[#00E5FF] transition-colors">Privacy</a>
                         <a href="#" className="hover:text-[#00E5FF] transition-colors">Terms</a>
                         <a href="#" className="hover:text-[#00E5FF] transition-colors">Support</a>
