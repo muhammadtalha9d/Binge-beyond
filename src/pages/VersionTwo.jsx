@@ -177,7 +177,7 @@ const App = () => {
                             <h1 className=" mb-8 text-white font-black text-[36px] md:text-[48px]">
                                 The Streaming-First VPN for <span className="text-[#00E5FF]"> <br/>Geo-Blocked Content</span>
                             </h1>
-                            <p className="text-[18px] md:text-[20px] text-white/60 mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-[18px] md:text-[20px] text-white/60 mb-5 md:mb-12 max-w-2xl mx-auto leading-relaxed">
                                 Access geo blocked content, shows, and live sports across your favourite OTT platforms -
                                 while the rest of your phone stays fast and unaffected.
                             </p>
