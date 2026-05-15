@@ -693,7 +693,7 @@ const App = () => {
 
                 <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center text-white">
                     <div className="inline-flex items-center gap-5 premium-badge text-[10px] uppercase tracking-[0.4em] mb-8">Millions of Shows, Matches & Movies</div>
-                    <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1] mb-6">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
+                    <h2 className="text-[24px] md:text-[36px] font-black tracking-tighter uppercase leading-[1.1]">Stream right on the apps <br/> <span className="text-cyan-400">you already use.</span></h2>
                 </div>
 
 
