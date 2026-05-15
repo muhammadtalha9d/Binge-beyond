@@ -502,6 +502,11 @@ const App = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div
+                                    className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-full bg-black/50 border border-white/20 pointer-events-none transition-opacity duration-500"
+                                >
+                                    <span className="text-xs font-bold text-white/70 uppercase tracking-widest">Drag to reveal</span>
+                                </div>
                             </div>
                         </div>
 
@@ -530,12 +535,7 @@ const App = () => {
                         </div>
 
                         {/* Drag hint */}
-                        <div
-                            className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-full bg-black/50 border border-white/20 pointer-events-none transition-opacity duration-500"
-                            style={{ opacity: dragPct > 5 ? 0 : 1 }}
-                        >
-                            <span className="text-xs font-bold text-white/70 uppercase tracking-widest">Drag to reveal</span>
-                        </div>
+
                     </div>
                 </div>
             </section>
