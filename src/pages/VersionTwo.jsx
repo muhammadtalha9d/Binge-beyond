@@ -445,7 +445,7 @@ const App = () => {
             {/* Footer */}
             <footer className="py-20 text-center border-t border-slate-100 bg-slate-50">
                 <div className="flex flex-col items-center gap-10">
-                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black ">
+                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black rounded-[20px]  p-4  ">
                         <img
                             src="/images/Binge-logo.svg"
                             alt="BingeBeyond Logo"
