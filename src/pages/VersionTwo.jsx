@@ -1,5 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Download, Zap, Power, Battery, Monitor, Search, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import {
+    Play,
+    Download,
+    Zap,
+    Power,
+    Battery,
+    Monitor,
+    Search,
+    ChevronDown,
+    ChevronRight,
+    Menu,
+    X,
+    Globe
+} from 'lucide-react';
 
 
 const App = () => {
@@ -287,9 +300,9 @@ const App = () => {
                         <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
                             <div className="flex-1 mb-10">
                                 <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-8 border border-purple-500/20 shadow-inner">
-                                    <Battery className="w-7 h-7" />
+                                    <Globe className="w-7 h-7" />
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover Global Libraries.</h4>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover Global Libraries</h4>
                                 <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Browse movies, tv shows, and live sports unavailable in your region. Explore global catalogs in one unified hub.</p>
                             </div>
                             <img src="/images/4grid2.png" alt=""/>
@@ -457,14 +470,32 @@ const App = () => {
                         <h2 className="text-[28px] md:text-[36px] font-black italic uppercase tracking-tighter text-white mb-8 md:mb-10 leading-tight">
                             Unlock Global <span className="text-[#00E5FF]">Content in Seconds</span>
                         </h2>
-                        <a
-                            href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white text-black px-10 py-4 rounded-full font-black text-base md:text-lg hover:scale-105 transition-all shadow-xl inline-block"
-                        >
-                            Download for Android Now
-                        </a>
+                        <div
+                            className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                            <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                               target="_blank" rel="noopener noreferrer"
+                               className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
+                            >
+                                <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                    <g id="Layer_x0020_1">
+                                        <path fill="#EA4335"
+                                              d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                        <path fill="#FBBC04"
+                                              d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                        <path fill="#34A853"
+                                              d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                        <path fill="#4285F4"
+                                              d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                    </g>
+                                </svg>
+                                <div className="text-left">
+                                    <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                        ON
+                                    </div>
+                                    <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -472,13 +503,13 @@ const App = () => {
 
 
             {/* Footer */}
-            <footer className="py-20 text-center border-t border-slate-100 bg-slate-50">
-                <div className="flex flex-col items-center gap-10">
-                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black rounded-[20px]  p-4  ">
+            <footer className="py-10 text-center border-t border-slate-100 bg-slate-50">
+                <div className="flex flex-row items-center justify-between gap-10 max-w-7xl mx-auto">
+                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black rounded-[20px]  p-2  ">
                         <img
                             src="/images/Binge-logo.svg"
                             alt="BingeBeyond Logo"
-                            className="h-8 w-8 object-contain mr-2"
+                            className="h-5 w-5 object-contain mr-2"
                         />
                         <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
                         <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
@@ -489,7 +520,7 @@ const App = () => {
                         <a href="#" className="hover:text-[#00E5FF] transition-colors">Support</a>
                     </div>
                     <p className="text-slate-300 text-[9px] font-bold uppercase tracking-widest italic px-6">
-                        © 2026 BingeBeyond. High-Speed Global Access. Built for Android.
+                        © 2026 BingeBeyond.
                     </p>
                 </div>
             </footer>
