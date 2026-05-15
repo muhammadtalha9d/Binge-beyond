@@ -888,6 +888,7 @@ const App = () => {
                         Unlock more shows, more regions, and smoother streaming - without slowing down the rest of your phone.
                     </p>
                     <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+
                         <a
                             href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
                             target="_blank"
