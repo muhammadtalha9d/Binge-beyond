@@ -129,21 +129,25 @@ const App = () => {
             <header className="bg-[#020617] relative pt-32 pb-36  md:pt-32 md:pb-40 overflow-hidden">
                 {/* Mesh Glow */}
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-                    <div className="absolute -top-[10%] -left-[10%] w-[60%] h-[80%] bg-[radial-gradient(circle,rgba(0,229,255,0.15)_0%,transparent_70%)] blur-[100px]" />
+                    <div
+                        className="absolute -top-[10%] -left-[10%] w-[60%] h-[80%] bg-[radial-gradient(circle,rgba(0,229,255,0.15)_0%,transparent_70%)] blur-[100px]"/>
                 </div>
 
 
                 {/* Sticky Nav */}
                 <nav className="absolute top-8 md:top-8 left-0 w-full z-[100] px-4 md:px-6 ">
-                    <div className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-3 md:px-8 border border-white/10 shadow-lg">
+                    <div
+                        className="max-w-7xl mx-auto glass rounded-[2.5rem] h-16 flex items-center justify-between px-3 md:px-8 border border-white/10 shadow-lg">
                         <div className="flex-shrink-0 flex items-center cursor-pointer relative z-10 ">
                             <img
                                 src="/images/Binge-logo.svg"
                                 alt="BingeBeyond Logo"
                                 className="h-5 w-5 md:h-8 md:w-8 object-contain mr-2"
                             />
-                            <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                            <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
+                            <span
+                                className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                            <span
+                                className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                         </div>
 
                         {/* Desktop Nav */}
@@ -184,49 +188,52 @@ const App = () => {
 
 
                 {/* Hero Content */}
-                <div className="max-w-7xl mx-auto px-4 md:px-0 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                    <div className="glass p-8 md:p-12 lg:p-24 rounded-[3rem] md:rounded-[5rem] text-center flex flex-col items-center border border-white/10 shadow-2xl">
+                <div
+                    className="max-w-7xl mx-auto px-4 md:px-0 relative z-10 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                    <div
+                        className="glass p-8 md:p-12 lg:p-24 rounded-[3rem] md:rounded-[5rem] text-center flex flex-col items-center border border-white/10 shadow-2xl">
                         <div className="max-w-4xl mb-12 md:mb-20">
                             <h1 className=" mb-8 text-white font-black text-[36px] md:text-[48px]">
-                                The Streaming-First VPN for <span className="text-[#00E5FF]"> <br/>Geo-Blocked Content</span>
+                                The Streaming-First VPN for <span
+                                className="text-[#00E5FF]"> <br/>Geo-Blocked Content</span>
                             </h1>
                             <p className="text-[18px] md:text-[20px] text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                                 Access geo blocked content, shows, and live sports across your favourite OTT platforms -
                                 while the rest of your phone stays fast and unaffected.
                             </p>
 
-                                <div
-                                    className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                                    <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
-                                       target="_blank" rel="noopener noreferrer"
-                                       className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
-                                    >
-                                        <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
-                                            <g id="Layer_x0020_1">
-                                                <path fill="#EA4335"
-                                                      d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
-                                                <path fill="#FBBC04"
-                                                      d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
-                                                <path fill="#34A853"
-                                                      d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
-                                                <path fill="#4285F4"
-                                                      d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
-                                            </g>
-                                        </svg>
-                                        <div className="text-left">
-                                            <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
-                                                ON
-                                            </div>
-                                            <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                            <div
+                                className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                                <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                                   target="_blank" rel="noopener noreferrer"
+                                   className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group"
+                                >
+                                    <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                        <g id="Layer_x0020_1">
+                                            <path fill="#EA4335"
+                                                  d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                            <path fill="#FBBC04"
+                                                  d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                            <path fill="#34A853"
+                                                  d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                            <path fill="#4285F4"
+                                                  d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                        </g>
+                                    </svg>
+                                    <div className="text-left">
+                                        <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                            ON
                                         </div>
-                                    </a>
-                                </div>
+                                        <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                                    </div>
+                                </a>
+                            </div>
 
                         </div>
 
 
                         {/* Mockup Area */}
-                        <img src="/images/v2-hero.png" alt="" className="scale-[120%] md:scale-[100%]"/>
+                        <img src="/images/v2-hero.svg" alt="" className="scale-[120%] md:scale-[100%]"/>
                     </div>
                 </div>
             </header>
@@ -235,8 +242,10 @@ const App = () => {
             {/* 2. Trust Bar */}
             <section className="relative z-20 -mt-12 pb-20 md:pb-40">
                 <div className="bg-white border-y border-slate-100 h-24 flex items-center overflow-hidden shadow-sm ">
-                    <div className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white max-w-[80px] md:max-w-[300px]">
-        <span className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-black whitespace-nowrap ">
+                    <div
+                        className="px-2 md:px-12 py-5 md:py-10 flex-shrink-0 border-r border-black z-10 bg-white max-w-[80px] md:max-w-[300px] text-center">
+        <span
+            className="text-[10px] md:text-[18px] font-black uppercase tracking-[0.3em] text-black whitespace-nowrap ">
             Works <br className="block md:hidden"/> With
         </span>
                     </div>
@@ -245,8 +254,10 @@ const App = () => {
                             <React.Fragment key={loop}>
 
                                 <img src="/images/netflix.png" alt="Netflix" className="h-3 md:h-8 mx-3 md:mx-12  "/>
-                                <img src="/images/disney.png" alt="Disney+" className="h-10 md:h-16 mx-3 md:mx-12 pb-2 "/>
-                                <img src="/images/crunchy.png" alt="Crunchyroll" className="h-5 md:h-10 mx-3 md:mx-12 "/>
+                                <img src="/images/disney.png" alt="Disney+"
+                                     className="h-10 md:h-16 mx-3 md:mx-12 pb-2 "/>
+                                <img src="/images/crunchy.png" alt="Crunchyroll"
+                                     className="h-5 md:h-10 mx-3 md:mx-12 "/>
                                 <img src="/images/hbo.png" alt="HBO Max" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                                 <img src="/images/espn.png" alt="ESPN+" className="h-3 md:h-8 mx-3 md:mx-12 "/>
                                 <img src="/images/hulu.png" alt="Hulu" className="h-3 md:h-8 mx-3 md:mx-12 "/>
@@ -260,63 +271,81 @@ const App = () => {
 
 
             {/* 3. Built for Fast Streaming */}
-            <section id="features" className="bg-white pb-20 md:pb-40 px-2 md:px-6">
+            <section id="features" className="bg-white pb-20 md:pb-40 px-4 md:px-0 ">
                 <div
                     className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                     <div className="text-center mb-16 md:mb-24">
-                    <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
+                        <div
+                            className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             WHY BINGEBEYOND
                         </div>
-                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Built for Fast Streaming</h2>
+                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Built for
+                            Fast Streaming</h2>
                     </div>
 
 
                     <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                         {/* Feature 1 */}
-                        <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
-                            <div className="flex-1 mb-10">
-                                <div className="w-14 h-14 bg-[#00E5FF]/10 rounded-2xl flex items-center justify-center text-[#00E5FF] mb-8 border border-[#00E5FF]/20 shadow-inner">
-                                    <Zap className="w-7 h-7" />
+                        <div
+                            className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
+                            <div className="flex-1 mb-10 max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
+                                <div
+                                    className="w-14 h-14 bg-[#00E5FF]/10 rounded-2xl flex items-center justify-center text-[#00E5FF] mb-8 border border-[#00E5FF]/20 shadow-inner">
+                                    <Zap className="w-7 h-7"/>
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Full Device Speed Intact</h4>
-                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">BingeBeyond only works with streaming apps, so the rest of your phone stays fast.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Stream Without Device Lag</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">BingeBeyond
+                                    only works with streaming apps, so the rest of your phone stays fast.</p>
                             </div>
-                            <img src="/images/4grid4.png" alt=""/>                        </div>
+                            <img src="/images/4grid4.png" alt=""/></div>
 
                         {/* Feature 2 */}
-                        <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
-                            <div className="flex-1 mb-10">
-                                <div className="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-8 border border-green-500/20 shadow-inner">
-                                    <Power className="w-7 h-7" />
+                        <div
+                            className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
+                            <div className="flex-1 mb-10 max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
+                                <div
+                                    className="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-8 border border-green-500/20 shadow-inner">
+                                    <Power className="w-7 h-7"/>
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">One-Tap Setup</h4>
-                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Pick your show and start streaming instantly - no server switching or setup needed.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">One-Tap
+                                    Setup</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Pick your show
+                                    and start streaming instantly - no server switching or setup needed.</p>
                             </div>
                             <img src="/images/4grid1.png" alt=""/>
                         </div>
 
 
                         {/* Feature 3 */}
-                        <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
-                            <div className="flex-1 mb-10">
-                                <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-8 border border-purple-500/20 shadow-inner">
-                                    <Globe className="w-7 h-7" />
+                        <div
+                            className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
+                            <div className="flex-1 mb-10 max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
+                                <div
+                                    className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-8 border border-purple-500/20 shadow-inner">
+                                    <Globe className="w-7 h-7"/>
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover Global Libraries</h4>
-                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Browse movies, tv shows, and live sports unavailable in your region. Explore global catalogs in one unified hub.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Discover
+                                    Global Libraries</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Browse movies,
+                                    tv shows, and live sports unavailable in your region. Explore global catalogs in one
+                                    unified hub.</p>
                             </div>
                             <img src="/images/4grid2.png" alt=""/>
                         </div>
 
 
                         {/* Feature 4 */}
-                        <div className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
-                            <div className="flex-1 mb-10">
-                                <div className="w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-600 mb-8 border border-yellow-500/20 shadow-inner">
-                                    <Monitor className="w-7 h-7" />
+                        <div
+                            className="bg-white border border-slate-100 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col group shadow-sm">
+                            <div className="flex-1 mb-10 max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
+                                <div
+                                    className="w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-600 mb-8 border border-yellow-500/20 shadow-inner">
+                                    <Monitor className="w-7 h-7"/>
                                 </div>
-                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Stable 4K Streaming</h4>
-                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Enjoy smooth HD and 4K playback built for high-quality OTT viewing.</p>
+                                <h4 className="text-[18px] md:text-[24px] font-black text-slate-900 mb-4">Stable 4K
+                                    Streaming</h4>
+                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed">Enjoy smooth HD
+                                    and 4K playback built for high-quality streaming.</p>
                             </div>
                             <img src="/images/4grid3.png" alt=""/>
                         </div>
@@ -326,23 +355,28 @@ const App = () => {
 
 
             {/* 4. How It Works */}
-            <section id="how-it-works" className=" bg-white pb-20 md:pb-40 px-2 md:px-6">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto  px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                    <div className="text-center mb-16 md:mb-24 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                        <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
+            <section id="how-it-works" className=" bg-white pb-20 md:pb-40 px-4 md:px-0">
+                <div
+                    className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto  px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                    <div
+                        className="text-center mb-16 md:mb-24 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                        <div
+                            className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             HOW IT WORKS
                         </div>
-                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Start Binge Watching in 3 Steps</h2>
+                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Start Binge
+                            Watching in 3 Steps</h2>
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center ">
                         {/* Left Content */}
-                        <div className="flex flex-col animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                        <div
+                            className="flex flex-col animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
                             <div className="space-y-4 mb-12 md:mb-16">
                                 {stepData.map((step, idx) => (
                                     <div
                                         key={idx}
-                                        className={`cursor-pointer py-4 border-l-4 transition-all duration-300 pl-6 md:pl-8 ${
+                                        className={`cursor-pointer py-4 border-l-4 max-md:border-l-0 max-md:border-t-4 transition-all duration-300 pl-6 md:pl-8 max-md:pl-0 max-md:pt-4 max-md:text-center ${
                                             activeStep === idx ? 'border-[#00E5FF]' : 'border-transparent'
                                         }`}
                                         onMouseEnter={() => setActiveStep(idx)}
@@ -365,7 +399,7 @@ const App = () => {
                                         >
                                             {/* overflow-hidden is required for the grid-rows animation to work */}
                                             <div className="overflow-hidden">
-                                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed max-w-md">
+                                                <p className="text-slate-500 text-[16px] md:text-[18px] leading-relaxed max-w-md max-md:mx-auto">
                                                     {step.text}
                                                 </p>
                                             </div>
@@ -378,20 +412,40 @@ const App = () => {
                             {/* Note: Completely delete your second 'Dynamic Step Detail Container' below this */}
 
 
-                            <a
-                                href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-black text-white px-10 py-4 rounded-full font-black text-sm hover:scale-105 transition-all self-start shadow-xl"
-                            >
-                                Install BingeBeyond
-                            </a>
+                            <div
+                                className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full hidden md:block justify-center">
+                                <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                                   target="_blank" rel="noopener noreferrer"
+                                   className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group max-w-[220px]"
+                                >
+                                    <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                        <g id="Layer_x0020_1">
+                                            <path fill="#EA4335"
+                                                  d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                            <path fill="#FBBC04"
+                                                  d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                            <path fill="#34A853"
+                                                  d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                            <path fill="#4285F4"
+                                                  d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                        </g>
+                                    </svg>
+                                    <div className="text-left">
+                                        <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                            ON
+                                        </div>
+                                        <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
 
 
                         {/* Right Visual Image Box */}
-                        <div className="relative flex items-center animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                            <div className="glass-light rounded-[2.5rem] md:rounded-[3rem] w-full  overflow-hidden flex items-center justify-center relative shadow-2xl">
+                        <div
+                            className="relative flex items-center animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                            <div
+                                className="glass-light rounded-[2.5rem] md:rounded-[3rem] w-full  overflow-hidden flex items-center justify-center relative shadow-2xl">
                                 {/* Visuals change based on activeStep */}
                                 {activeStep === 0 && (
                                     <img src="/images/A1.png" alt=""/>
@@ -404,19 +458,49 @@ const App = () => {
                                 )}
                             </div>
                         </div>
+                        <div
+                            className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full block md:hidden  justify-center">
+                            <a href="https://play.google.com/store/apps/details?id=bingebeyond.vpn.streaming&pli=1"
+                               target="_blank" rel="noopener noreferrer"
+                               className="w-auto  flex items-center justify-center gap-3 bg-black hover:!bg-slate-800 !text-white border-[1.5px] border-grey-600 !outline-none px-6 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-xl group max-w-[220px]"
+                            >
+                                <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                                    <g id="Layer_x0020_1">
+                                        <path fill="#EA4335"
+                                              d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
+                                        <path fill="#FBBC04"
+                                              d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
+                                        <path fill="#34A853"
+                                              d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
+                                        <path fill="#4285F4"
+                                              d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
+                                    </g>
+                                </svg>
+                                <div className="text-left">
+                                    <div className="text-[12px] font-normal leading-none mb-1 opacity-80">GET IT
+                                        ON
+                                    </div>
+                                    <div className="text-[20px] font-semibold leading-none">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
 
             {/* 5. FAQ Section (Accordion) */}
-            <section id="faq" className="bg-white pb-20 md:pb-40 px-2 md:px-6">
-                <div className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                    <div className="text-center mb-16 md:mb-20 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
-                        <div className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
+            <section id="faq" className="bg-white pb-20 md:pb-40 px-4 md:px-0">
+                <div
+                    className="bg-[url('/images/bg-gradient1.png')] bg-cover bg-center bg-no-repeat max-w-7xl mx-auto   px-4 py-12 md:p-12 lg:p-20 rounded-[3rem] md:rounded-[4rem] animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                    <div
+                        className="text-center mb-16 md:mb-20 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+                        <div
+                            className="inline-block bg-black text-[#00E5FF] px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase mb-6 shadow-md border border-white/10">
                             FAQ
                         </div>
-                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Common Questions</h2>
+                        <h2 className="text-[28px] md:text-[36px] font-black text-slate-900 leading-tight">Common
+                            Questions</h2>
                     </div>
 
                     <div className="space-y-4 animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
@@ -430,8 +514,10 @@ const App = () => {
                                     onClick={() => toggleFaq(index)}
                                 >
                                     <h4 className="text-[20px] md:text-[24px] font-bold text-slate-900 pr-8">{faq.question}</h4>
-                                    <div className={`w-8 md:w-10 h-8 md:h-10 rounded-full bg-slate-50 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index ? 'rotate-180 bg-[#00E5FF]/10' : ''}`}>
-                                        <ChevronDown className={`w-4 md:w-5 h-4 md:h-5 ${openFaqIndex === index ? 'text-[#0891b2]' : 'text-slate-400'}`} />
+                                    <div
+                                        className={`w-8 md:w-10 h-8 md:h-10 rounded-full bg-slate-50 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index ? 'rotate-180 bg-[#00E5FF]/10' : ''}`}>
+                                        <ChevronDown
+                                            className={`w-4 md:w-5 h-4 md:h-5 ${openFaqIndex === index ? 'text-[#0891b2]' : 'text-slate-400'}`}/>
                                     </div>
                                 </button>
                                 <div
@@ -451,24 +537,28 @@ const App = () => {
 
 
             {/* 6. Footer CTA */}
-            <section className="max-w-7xl mx-auto px-2 md:px-0 py-18 pb-14 md:pb-24  animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
+            <section
+                className="max-w-7xl mx-auto px-4 md:px-0 py-18 pb-14 md:pb-24  animate-on-scroll transition-all duration-1000 opacity-0 translate-y-12">
 
                 {/* Added: flex flex-col items-center justify-center */}
-                <div className="flex flex-col items-center justify-center rounded-[3rem] md:rounded-[4rem] md:min-h-[600px] py-20 md:py-24 px-8 text-center relative overflow-hidden shadow-2xl border border-white/10 group">
+                <div
+                    className="flex flex-col items-center justify-center rounded-[3rem] md:rounded-[4rem] md:min-h-[600px] py-20 md:py-24 px-8 text-center relative overflow-hidden shadow-2xl border border-white/10 group">
 
                     {/* Fun Background Image */}
                     <div className="absolute inset-0 z-0">
-                        <img src="/images/cta-img.png" alt="CTA Hero" className="w-full h-full object-cover scale-100 animate-slow-pan" />
+                        <img src="/images/cta-img.png" alt="CTA Hero"
+                             className="w-full h-full object-cover scale-100 animate-slow-pan"/>
                     </div>
 
                     {/* Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.2)_0%,transparent_70%)]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"/>
+                    <div
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.2)_0%,transparent_70%)]"/>
 
                     {/* Content Container */}
                     <div className="relative z-10">
                         <h2 className="text-[28px] md:text-[36px] font-black italic uppercase tracking-tighter text-white mb-8 md:mb-10 leading-tight">
-                            Unlock Global <span className="text-[#00E5FF]">Content in Seconds</span>
+                            Unlock  <span className="text-[#00E5FF]">Global Content </span>in Seconds
                         </h2>
                         <div
                             className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
@@ -503,26 +593,30 @@ const App = () => {
 
 
             {/* Footer */}
-            <footer className="py-10 text-center border-t border-slate-100 bg-slate-50">
-                <div className="flex flex-row items-center justify-between gap-10 max-w-7xl mx-auto">
-                    <div className="flex-shrink-0 flex items-center cursor-pointer mb-10 bg-black rounded-[20px]  p-2  ">
+
+
+            <footer
+                className="px-10 py-16 border-t border-slate-100 bg-white flex flex-col md:flex-row justify-between items-center gap-6">
+                <a href="#" className="flex items-center gap-2 text-[1.3rem] font-extrabold tracking-tighter">
+                    <div
+                        className="flex-shrink-0 flex items-center cursor-pointer mb-10 md:mb-0 bg-black rounded-[20px]  p-2  ">
                         <img
                             src="/images/Binge-logo.svg"
                             alt="BingeBeyond Logo"
                             className="h-5 w-5 object-contain mr-2"
                         />
-                        <span className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
-                        <span className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
+                        <span
+                            className="text-white font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Binge</span>
+                        <span
+                            className="text-[#00D1E9] font-gilroy text-[16px] md:text-[22px] lg:text-[28px] font-normal non-italic leading-[130%]">Beyond</span>
                     </div>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-[14px] md:text-[16px] font-bold text-slate-400 uppercase tracking-[0.4em]">
-                        <a href="#" className="hover:text-[#00E5FF] transition-colors">Privacy</a>
-                        <a href="#" className="hover:text-[#00E5FF] transition-colors">Terms</a>
-                        <a href="#" className="hover:text-[#00E5FF] transition-colors">Support</a>
-                    </div>
-                    <p className="text-slate-300 text-[9px] font-bold uppercase tracking-widest italic px-6">
-                        © 2026 BingeBeyond.
-                    </p>
+                </a>
+                <div className="flex flex-col md:flex-row gap-[20px] text-center font-semibold">
+                    <a href="#" className="hover:text-[#00E5FF] transition-colors">Privacy policy</a>
+                    <a href="#" className="hover:text-[#00E5FF] transition-colors">Terms & Conditions</a>
                 </div>
+
+                <div className="text-slate-400 text-sm">© 2026 BingeBeyond.</div>
             </footer>
         </div>
     );
@@ -530,4 +624,3 @@ const App = () => {
 
 
 export default App;
-
