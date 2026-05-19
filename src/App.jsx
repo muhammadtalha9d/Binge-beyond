@@ -731,8 +731,8 @@ export default function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/v1.1" element={<VersionOneOne />} />
-                <Route path="/v2" element={<VersionTwo />} />
+                <Route path="/unblock-global-content" element={<VersionOneOne />} />
+                <Route path="/vpn-for-global-streaming" element={<VersionTwo />} />
             </Routes>
         </Router>
     );
